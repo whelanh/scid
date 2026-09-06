@@ -1,10 +1,10 @@
 Name:           scidcommunity
-Version:        5.1.4.09
+Version:        5.1.4.10
 Release:        3.git%{shortcommit}%{?dist}
 Summary:        Chess database application with play and training functionality
 
 # Commit hash from github branch
-%global commit 62bd13afcc717c7f7d20c594e5fe0d8e9c605b28  
+%global commit a263aa310de33c7cb2265933f380f574aeabc802  
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 License:        GPL-2.0-or-later
@@ -62,6 +62,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/io.github.whel
 %{_metainfodir}/io.github.whelanh.scidCommunity.appdata.xml
 
 %changelog
+* Sun Sep 06, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-10
+- "Enable viewing up to 3 books in the Book Window"
 * Fri Sep 04, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-09
 - "Combine Analysis Graph/Time Analysis Graph"
 * Wed Sep 02, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-08

@@ -79,6 +79,11 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+ <release version="5.1.4.10" date="2026-09-06">
+      <description>
+        <p>Enable viewing up to 3 books in the Book Window</p>
+      </description>
+    </release>
  <release version="5.1.4.09" date="2026-09-04">
       <description>
         <p>Combine Analysis Graph/Time Analysis Graph</p>
