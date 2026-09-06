@@ -315,9 +315,14 @@ namespace eval pgn {
   proc ResetColors {} {
     global pgnColor
     if {![winfo exists .pgnWin]} { return }
-    .pgnWin.text tag configure Current -background $pgnColor(Current)
-    ::htext::init .pgnWin.text
-    ::htext::updateRate .pgnWin.text 0
+    set w .pgnWin.text
+    set bg $pgnColor(Current)
+    set fg [$w cget -foreground]
+    if {$fg eq ""} { set fg black }
+    if {[::htext::isDarkColor $w $bg]} { set fg white }
+    $w tag configure Current -background $bg -foreground $fg
+    ::htext::init $w
+    ::htext::updateRate $w 0
     ::pgn::Refresh 1
   }
   ################################################################################
