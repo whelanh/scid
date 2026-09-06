@@ -1276,9 +1276,9 @@ translate Y OtherBookMoves {Opponent's book}
 # ====== TODO To be translated ======
 translate Y OtherBookMovesTooltip {Moves to which the opponent has a reply}
 # ====== TODO To be translated ======
-translate Y Alphabetical {Alphabetical}
+translate Y Alphabetical {Azbučno}
 # ====== TODO To be translated ======
-translate Y BookCount {Books}
+translate Y BookCount {Knjige}
 # ====== TODO To be translated ======
 translate Y EngineList {Analysis Engine List}
 # ====== TODO To be translated ======

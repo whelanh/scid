@@ -610,6 +610,11 @@ if {[file exists $optionsFile] && [catch {safeLoadConfig $optionsFile}]} {
   tk_messageBox -message $::errorInfo
 }
 
+# Migrate the single-book setting without overwriting a newer slot-1 choice.
+if {[info exists ::book::lastBook] && $::book::lastBook ne "" && $::book::lastBook1 eq ""} {
+  set ::book::lastBook1 $::book::lastBook
+}
+
 # Clean up legacy toolbar_state entries that no longer map to widgets
 if {[info exists toolbar_state(rotate)]} {
   unset toolbar_state(rotate)

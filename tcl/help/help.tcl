@@ -4612,11 +4612,11 @@ set helpText(Book) {<h1>Book window</h1>
   Please refer to polyglots documentation about how to create a book.
   </p>
   <p>
-  Up to three books can be displayed at the same time: use the <i>Books</i>
-  selector to choose how many. Each book has its own drop down list and column
-  showing the moves it contains, so different books can easily be compared side
-  by side. Checking <i>Alphabetical</i> sorts the moves alphabetically and aligns
-  identical moves on the same line across the books.
+  The <i>Books</i> selector chooses how many book panels are visible, up to three.
+  Each visible panel has its own book drop down list and move-list column. With
+  two or three books displayed, they can easily be compared side by side.
+  Checking <i>Alphabetical</i> sorts the moves alphabetically and aligns identical
+  moves on the same line across the books.
   </p>
   <p>
   For each position, the book window displays all possible moves it
