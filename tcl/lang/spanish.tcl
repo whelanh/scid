@@ -853,6 +853,8 @@ translate S TimeMs {Tiempo (ms)}
 translate S Book {Libro}
 translate S OtherBookMoves {Otros movimientos del libro}
 translate S OtherBookMovesTooltip {Movimientos para los que el oponente tiene una respuesta}
+translate S Alphabetical {Alfabético}
+translate S BookCount {Libros}
 
 # Analysis Engine open dialog:
 translate S EngineList {Lista de motores de análisis}

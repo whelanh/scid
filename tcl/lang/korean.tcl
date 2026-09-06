@@ -837,6 +837,8 @@ translate k TimeMs {시간(ms)}
 translate k Book {책}
 translate k OtherBookMoves {반대의 책}
 translate k OtherBookMovesTooltip {상대방이 대답장을 한 동작}
+translate k Alphabetical {알파벳순}
+translate k BookCount {서적}
 
 # Analysis Engine open dialog:
 translate k EngineList {분석 엔진 목록}

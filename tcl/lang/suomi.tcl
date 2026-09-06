@@ -835,6 +835,8 @@ translate U TimeMs {Aika (ms)}
 translate U Book {Kirja}
 translate U OtherBookMoves {Vastustajan kirja}
 translate U OtherBookMovesTooltip {Siirrot, joihin vastustajalla on vastaus}
+translate U Alphabetical {Aakkosellinen}
+translate U BookCount {Kirjat}
 
 # Analysis Engine open dialog:
 translate U EngineList {Analyysimoottorilista}

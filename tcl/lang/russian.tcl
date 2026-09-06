@@ -803,6 +803,8 @@ translate R TimeMs {Время (мс)}
 translate R Book {Книга}
 translate R OtherBookMoves {Книга соперника}
 translate R OtherBookMovesTooltip {Ходы, к которым противник имеет ответ}
+translate R Alphabetical {Алфавитный}
+translate R BookCount {Книги}
 
 # Analysis Engine open dialog:
 translate R EngineList {Список анализирующих движков}

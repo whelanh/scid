@@ -828,6 +828,8 @@ translate G TimeMs {Χρόνος(ms)}
 translate G Book {Βιβλίο}
 translate G OtherBookMoves {Βιβλίο αντιπάλου}
 translate G OtherBookMovesTooltip {Κινήσεις για τις οποίες ο αντίπαλος διαθέτει απάντηση}
+translate G Alphabetical {Αλφαβητική}
+translate G BookCount {Βιβλία}
 
 # Analysis Engine open dialog:
 translate G EngineList {Λίστα μηχανής ανάλυσης}

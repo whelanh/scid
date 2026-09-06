@@ -836,6 +836,8 @@ translate D TimeMs {Zeit (ms)}
 translate D Book {Buch}
 translate D OtherBookMoves {Eröffnungsbuch des Gegners}
 translate D OtherBookMovesTooltip {Züge, für die der Gegner eine Antwort kennt}
+translate D Alphabetical {Alphabetisch}
+translate D BookCount {Bücher}
 
 # Analysis Engine open dialog:
 translate D EngineList {Analyse-Engines}

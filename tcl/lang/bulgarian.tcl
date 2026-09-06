@@ -837,6 +837,8 @@ translate g TimeMs {Време (ms)}
 translate g Book {книга}
 translate g OtherBookMoves {Книга на противника}
 translate g OtherBookMovesTooltip {Ходове, на които противникът има отговор}
+translate g Alphabetical {Азбучен ред}
+translate g BookCount {Книги}
 
 # Analysis Engine open dialog:
 translate g EngineList {Списък на механизмите за анализ}

@@ -800,6 +800,8 @@ translate T TimeMs {Zaman(ms)}
 translate T Book {Kitap}
 translate T OtherBookMoves {Rakibin kitabı}
 translate T OtherBookMovesTooltip {Rakibin cevap vereceği hamleler}
+translate T Alphabetical {Alfabetik}
+translate T BookCount {Kitaplar}
 
 # Analysis Engine open dialog:
 translate T EngineList {Analiz Motoru Listesi}

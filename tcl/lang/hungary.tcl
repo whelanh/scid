@@ -804,6 +804,8 @@ translate H TimeMs {Idõ (ms)}
 translate H Book {Megnyitástár}
 translate H OtherBookMoves {Az ellenfél megnyitástára}
 translate H OtherBookMovesTooltip {Azok a lépések, amelyekre az ellenfélnek van válasza}
+translate H Alphabetical {Betűrendes}
+translate H BookCount {Könyvek}
 
 # Analysis Engine open dialog:
 translate H EngineList {Elemzõ motorok listája}

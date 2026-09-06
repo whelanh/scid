@@ -801,6 +801,8 @@ translate C TimeMs {as (ms)}
 translate C Book {Knihovna zahjen}
 translate C OtherBookMoves {Soupeova knihovna zahjen}
 translate C OtherBookMovesTooltip {Tahy, na kter m soupe odpov}
+translate C Alphabetical {Abecední}
+translate C BookCount {knihy}
 
 # Analysis Engine open dialog:
 translate C EngineList {Seznam hernch program pro analzu}

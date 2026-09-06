@@ -796,6 +796,8 @@ translate b TimeMs {সময়(ms)}
 translate b Book {বই}
 translate b OtherBookMoves {প্রতিপক্ষের বই}
 translate b OtherBookMovesTooltip {প্রতিপক্ষের একটি উত্তর আছে যা চালনা}
+translate b Alphabetical {বর্ণানুক্রমিক}
+translate b BookCount {বই}
 
 # Analysis Engine open dialog:
 translate b EngineList {বিশ্লেষণ ইঞ্জিন তালিকা}

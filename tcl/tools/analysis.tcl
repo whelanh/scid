@@ -18,7 +18,7 @@ set analysis(logMax) 5000
 set analysis(log_stdout) 0
 
 set analysisBookSlot 1
-set useAnalysisBookName $::book::lastBook
+set useAnalysisBookName $::book::lastBook1
 set wentOutOfBook 0
 # State variable: 1 <=> engine is making an initial
 # assessment of the current position, before progressing
@@ -377,7 +377,7 @@ proc configAnnotation {} {
     set i 0
     foreach file  $bookList {
         lappend tmp [ file tail $file ]
-        if {$::book::lastBook == [ file tail $file ] } {
+        if {$::book::lastBook1 == [ file tail $file ] } {
             set idx $i
         }
         incr i
@@ -453,7 +453,7 @@ proc configAnnotation {} {
     }
     ttk::button $f.buttons.ok -text "OK" -command {
         set ::useAnalysisBookName [.configAnnotation.f.analyse.comboBooks get]
-        set ::book::lastBook $::useAnalysisBookName
+        set ::book::lastBook1 $::useAnalysisBookName
         
         # tactical positions is selected, must be in multipv mode
         if {$::markTacticalExercises} {

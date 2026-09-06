@@ -807,6 +807,8 @@ translate I TimeMs {Tempo (ms)}
 translate I Book {Libro}
 translate I OtherBookMoves {Libro dell'avversario}
 translate I OtherBookMovesTooltip {Mosse alle quali l'avversario ha una risposta}
+translate I Alphabetical {Alfabetico}
+translate I BookCount {Libri}
 
 # Analysis Engine open dialog:
 translate I EngineList {Lista dei motori di analisi}

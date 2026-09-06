@@ -807,6 +807,8 @@ translate W TimeMs {Tid(ms)}
 translate W Book {Bok}
 translate W OtherBookMoves {Motståndarens bok}
 translate W OtherBookMovesTooltip {Drag som motståndaren har ett svar på}
+translate W Alphabetical {Alfabetisk}
+translate W BookCount {Böcker}
 
 # Analysis Engine open dialog:
 translate W EngineList {Lista över schackprogram}
