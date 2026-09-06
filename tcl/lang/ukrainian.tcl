@@ -797,6 +797,8 @@ translate Q TimeMs {Час (мс)}
 translate Q Book {книга}
 translate Q OtherBookMoves {Книга суперника}
 translate Q OtherBookMovesTooltip {Ходи, на які противник має відповідь}
+translate Q Alphabetical {Алфавітний}
+translate Q BookCount {Книги}
 
 # Analysis Engine open dialog:
 translate Q EngineList {Список механізмів аналізу}

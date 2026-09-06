@@ -734,6 +734,8 @@ translate P TimeMs {Czas (ms)}
 translate P Book {Księga debiutowa}
 translate P OtherBookMoves {Księga przeciwnika}
 translate P OtherBookMovesTooltip {Posunięcia, na które przeciwnik ma odpowiedź}
+translate P Alphabetical {Alfabetyczny}
+translate P BookCount {Książki}
 
 # Analysis Engine open dialog:
 translate P EngineList {Lista silników analizy}

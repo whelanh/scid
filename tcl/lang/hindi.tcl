@@ -796,6 +796,8 @@ translate h TimeMs {समय(एमएस)}
 translate h Book {किताब}
 translate h OtherBookMoves {विरोधी की किताब}
 translate h OtherBookMovesTooltip {ऐसी चालें जिनका प्रतिद्वंद्वी के पास उत्तर हो}
+translate h Alphabetical {वर्णमाला}
+translate h BookCount {किताबें}
 
 # Analysis Engine open dialog:
 translate h EngineList {विश्लेषण इंजन सूची}

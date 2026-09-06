@@ -809,6 +809,8 @@ translate B TimeMs {Tempo (ms)}
 translate B Book {Livro}
 translate B OtherBookMoves {Livro do oponente}
 translate B OtherBookMovesTooltip {Movimentos para os quais o oponente tem resposta}
+translate B Alphabetical {Alfabético}
+translate B BookCount {Livros}
 
 # Analysis Engine open dialog:
 translate B EngineList {Lista de Programas de Análise}

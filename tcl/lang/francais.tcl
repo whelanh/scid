@@ -809,6 +809,8 @@ translate F TimeMs {Temps (ms)}
 translate F Book {Bibliothèque}
 translate F OtherBookMoves {Bibliothèque de l'adversaire}
 translate F OtherBookMovesTooltip {Coups pour lesquels l'adversaire a une réponse}
+translate F Alphabetical {Alphabétique}
+translate F BookCount {Livres}
 
 # Analysis Engine open dialog:
 translate F EngineList {Liste des moteurs d'analyse}

@@ -806,6 +806,8 @@ translate O TimeMs {Tid (ms)}
 translate O Book {Bok}
 translate O OtherBookMoves {Motstanderens bok}
 translate O OtherBookMovesTooltip {Trekk som motstanderen har et svar på}
+translate O Alphabetical {Alfabetisk}
+translate O BookCount {Bøker}
 
 # Analysis Engine open dialog:
 translate O EngineList {Liste over analysemotorer}

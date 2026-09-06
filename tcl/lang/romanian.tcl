@@ -837,6 +837,8 @@ translate L TimeMs {Timp (ms)}
 translate L Book {Carte}
 translate L OtherBookMoves {Cartea adversarului}
 translate L OtherBookMovesTooltip {Mișcări la care adversarul are răspuns}
+translate L Alphabetical {Alfabetic}
+translate L BookCount {Cărți}
 
 # Analysis Engine open dialog:
 translate L EngineList {Lista motorului de analiză}

@@ -826,6 +826,8 @@ translate N TimeMs {Tijd (ms)}
 translate N Book {Openingenboek}
 translate N OtherBookMoves {Boek van de tegenspeler}
 translate N OtherBookMovesTooltip {Zetten waarvoor de tegenspeler een antwoord heeft}
+translate N Alphabetical {Alfabetisch}
+translate N BookCount {Boeken}
 
 # Analysis Engine open dialog:
 translate N EngineList {Analyse Engine Lijst}

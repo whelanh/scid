@@ -772,6 +772,8 @@ translate M TimeMs {时间（毫秒）}
 translate M Book {开局库}
 translate M OtherBookMoves {Opponent's book}
 translate M OtherBookMovesTooltip {Moves to which the opponent has a reply}
+translate M Alphabetical {按字母顺序}
+translate M BookCount {图书}
 
 # Analysis Engine open dialog:
 translate M EngineList {Analysis Engine List}

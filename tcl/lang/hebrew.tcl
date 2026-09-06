@@ -797,6 +797,8 @@ translate V TimeMs {זמן (ms)}
 translate V Book {סֵפֶר}
 translate V OtherBookMoves {ספר היריב}
 translate V OtherBookMovesTooltip {מהלכים שאליהם יש ליריב תשובה}
+translate V Alphabetical {אָלֶף בֵּיתִי}
+translate V BookCount {ספרים}
 
 # Analysis Engine open dialog:
 translate V EngineList {רשימת מנועים לניתוח}

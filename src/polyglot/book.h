@@ -14,7 +14,7 @@
 #include <vector>
 
 // constants
-const int MaxBook = 4;
+const int MaxBook = 8;
 
 // functions
 

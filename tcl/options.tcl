@@ -557,7 +557,12 @@ set ::utils::sound::moveSoundOnly 0
 set spellCheckFile [file join $scidShareDir "spelling.ssp"]
 
 # book configuration
-set ::book::lastBook "" ; # book name without extension (.bin)
+set ::book::lastBook1 "" ; # book name without extension (.bin)
+set ::book::lastBook2 ""
+set ::book::lastBook3 ""
+set ::book::bookCount 1      ; # number of books shown in the book window (1..3)
+set ::book::sortAlpha 0
+set ::book::oppMovesVisible 0
 
 
 # Engines data:
@@ -667,7 +672,9 @@ proc options.write {} {
           gameInfo(photos) gameInfo(hideNextMove) gameInfo(wrap) \
           gameInfo(fullComment) gameInfo(showMarks) \
           gameInfo(showMaterial) gameInfo(showFEN) \
-          engineCoach1 engineCoach2 scidBooksDir scidBasesDir ::book::lastBook \
+          engineCoach1 engineCoach2 scidBooksDir scidBasesDir ::book::lastBook1 \
+          ::book::lastBook2 ::book::lastBook3 ::book::bookCount ::book::sortAlpha \
+          ::book::oppMovesVisible \
           ::utils::sound::soundFolder ::utils::sound::announceNew \
           ::utils::sound::announceForward ::utils::sound::announceBack \
           ::utils::sound::moveSoundOnly \

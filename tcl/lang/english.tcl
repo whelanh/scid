@@ -836,6 +836,8 @@ translate E TimeMs {Time(ms)}
 translate E Book {Book}
 translate E OtherBookMoves {Opponent's book}
 translate E OtherBookMovesTooltip {Moves to which the opponent has a reply}
+translate E Alphabetical {Alphabetical}
+translate E BookCount {Books}
 
 # Analysis Engine open dialog:
 translate E EngineList {Analysis Engine List}

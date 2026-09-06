@@ -822,6 +822,8 @@ translate K TimeMs {Temps (ms)}
 translate K Book {Llibre}
 translate K OtherBookMoves {Altres jugades del llibre}
 translate K OtherBookMovesTooltip {Jugades a les que el contrari te una respuesta}
+translate K Alphabetical {Alfabètic}
+translate K BookCount {Llibres}
 
 # Analysis Engine open dialog:
 translate K EngineList {Llista de Motors d'Anàlisi}

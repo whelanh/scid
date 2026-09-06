@@ -837,6 +837,8 @@ translate A TimeMs {時間(ミリ秒)}
 translate A Book {本}
 translate A OtherBookMoves {相手の本}
 translate A OtherBookMovesTooltip {相手が返答のある手}
+translate A Alphabetical {アルファベット順}
+translate A BookCount {本}
 
 # Analysis Engine open dialog:
 translate A EngineList {解析エンジン一覧}

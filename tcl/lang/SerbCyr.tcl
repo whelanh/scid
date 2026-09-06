@@ -837,6 +837,8 @@ translate J TimeMs {време(мс)}
 translate J Book {Боок}
 translate J OtherBookMoves {Књига противника}
 translate J OtherBookMovesTooltip {Потези на које противник има одговор}
+translate J Alphabetical {Абецедно}
+translate J BookCount {Књиге}
 
 # Analysis Engine open dialog:
 translate J EngineList {Листа механизама за анализу}

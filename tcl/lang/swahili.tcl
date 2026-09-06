@@ -796,6 +796,8 @@ translate Z TimeMs {Saa(ms)}
 translate Z Book {Kitabu}
 translate Z OtherBookMoves {Kitabu cha mpinzani}
 translate Z OtherBookMovesTooltip {Hatua ambazo mpinzani ana jibu}
+translate Z Alphabetical {Kialfabeti}
+translate Z BookCount {Vitabu}
 
 # Analysis Engine open dialog:
 translate Z EngineList {Orodha ya Injini ya Uchambuzi}
