@@ -236,7 +236,11 @@ proc ::batch_annotate::start_engines {{num_instances ""}} {
     
     if {[catch {
         for {set i 0} {$i < $num_instances} {incr i} {
-            set pipe [open "| \"[file nativename $cmd]\" $args" r+]
+            if {$::windowsOS} {
+                set pipe [open [list | $cmd {*}$args] r+]
+            } else {
+                set pipe [open "| \"[file nativename $cmd]\" $args" r+]
+            }
             lappend pipes $pipe
             fconfigure $pipe -buffering line -blocking 0
             
