@@ -1851,7 +1851,7 @@ translate J UndeleteGame {Поништи брисање игре}
 translate J ResetSort {Ресетуј сортирање}
 translate J LayoutExists {Распоред '%s' већ постоји.}
 translate J ConfirmDeleteLayout {Да ли сте сигурни да желите да избришете изглед „%s"?}
-translate J ConfirmStripGames {Уклонити напомене из %д изабраних игара)?}
+translate J ConfirmStripGames {Уклонити напомене из %d изабраних игара?}
 
 translate J ConvertNullMove {Претворите нулте потезе у коментаре}
 translate J SetupBoard {Сетуп Боард}
