@@ -110,6 +110,8 @@ menuText A EditRedo "やり直し" 0 {最後のゲーム変更をやり直す}
 menuText A EditStripComments "コメント" 0 \
   {このゲームからすべてのコメントと注釈を削除します}
 menuText A EditStripVars "バリエーション" 0 {このゲームからすべてのバリエーションを削除}
+menuText A EditStripAll "コメントとバリエーション" 0 \
+  {このゲームからすべてのコメント、注釈、バリエーションを削除します}
 menuText A EditStripBegin "最初から動く" 1 \
   {ゲーム開始時からストリップが動きます}
 menuText A EditStripEnd "最後に移動します" 0 \
@@ -1849,6 +1851,7 @@ translate A UndeleteGame {ゲームの削除を取り消す}
 translate A ResetSort {並べ替えをリセット}
 translate A LayoutExists {レイアウト '%s' はすでに存在します。}
 translate A ConfirmDeleteLayout {レイアウト '%s' を削除してもよろしいですか?}
+translate A ConfirmStripGames {選択した %d ゲームから注釈を削除します?}
 
 translate A ConvertNullMove {null 移動をコメントに変換する}
 translate A SetupBoard {セットアップボード}

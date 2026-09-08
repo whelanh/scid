@@ -73,6 +73,8 @@ menuText F EditRedo "Rétablir" 0 {Refaire la dernière modification de cette pa
 menuText F EditStripComments "Commentaires" 0 \
   {Épurer cette partie de tous les commentaires et annotations}
 menuText F EditStripVars "Variantes" 0 {Épurer cette partie des variantes}
+menuText F EditStripAll "Commentaires et variantes" 0 \
+  {Supprimez tous les commentaires, annotations et variantes de ce jeu}
 menuText F EditStripBegin "Coups depuis le début" 1 \
   {Épurer cette partie des coups depuis le début}
 menuText F EditStripEnd "Coups jusqu'à la fin" 0 \
@@ -1836,6 +1838,7 @@ translate F UndeleteGame {Restaurer le jeu}
 translate F ResetSort {Réinitialiser le tri}
 translate F LayoutExists {La mise en page '%s' existe déjà.}
 translate F ConfirmDeleteLayout {Êtes-vous sûr de vouloir supprimer la mise en page '%s' ?}
+translate F ConfirmStripGames {Supprimer les annotations de %d jeux sélectionnés ?}
 
 translate F ConvertNullMove {Convertir les mouvements nuls en commentaires}
 translate F SetupBoard {Définir la position de départ}

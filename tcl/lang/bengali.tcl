@@ -69,6 +69,8 @@ menuText b EditRedo "আবার করুন" 0 {শেষ খেলা পর
 menuText b EditStripComments "মন্তব্য" 0 \
   {এই গেম থেকে সমস্ত মন্তব্য এবং টীকা ছিনিয়ে নিন}
 menuText b EditStripVars "বৈচিত্র" 0 {এই গেম থেকে সমস্ত বৈচিত্র বাদ দিন}
+menuText b EditStripAll "মন্তব্য এবং বৈচিত্র" 0 \
+  {এই গেম থেকে সমস্ত মন্তব্য, টীকা এবং বৈচিত্র বাদ দিন}
 menuText b EditStripBegin "শুরু থেকেই চলে" 1 \
   {খেলার শুরু থেকেই স্ট্রিপ মুভ করে}
 menuText b EditStripEnd "শেষ পর্যন্ত চলে" 0 \
@@ -1808,6 +1810,7 @@ translate b UndeleteGame {খেলা অপসারণ}
 translate b ResetSort {সাজানোর রিসেট করুন}
 translate b LayoutExists {লেআউট '%s' ইতিমধ্যেই বিদ্যমান।}
 translate b ConfirmDeleteLayout {আপনি কি '%s' লেআউট মুছে ফেলার বিষয়ে নিশ্চিত?}
+translate b ConfirmStripGames {%dটি নির্বাচিত গেমগুলি থেকে স্ট্রিপ টীকা?}
 
 translate b ConvertNullMove {নাল চালগুলিকে মন্তব্যে রূপান্তর করুন}
 translate b SetupBoard {সেটআপ বোর্ড}

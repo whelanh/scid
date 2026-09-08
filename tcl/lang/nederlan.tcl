@@ -78,6 +78,8 @@ menuText N EditRedo "Opnieuw uitvoeren" 0 {Voer de laatste spelwijziging opnieuw
 menuText N EditStripComments "Commentaar" 0 \
   {Verwijder alle commentaar en annotaties uit deze partij}
 menuText N EditStripVars "Varianten" 0 {Verwijder alle varianten uit deze partij}
+menuText N EditStripAll "Opmerkingen en variaties" 0 \
+  {Verwijder alle opmerkingen, annotaties en variaties uit dit spel}
 menuText N EditStripBegin " Zetten vanaf begin " 1 \
   {Verwijder alle zetten vanaf begin van de partij} ;
 menuText N EditStripEnd " Zetten tot het einde  " 0 \
@@ -1855,6 +1857,7 @@ translate N UndeleteGame {Spel ongedaan maken}
 translate N ResetSort {Sortering opnieuw instellen}
 translate N LayoutExists {Lay-out '%s' bestaat al.}
 translate N ConfirmDeleteLayout {Weet u zeker dat u de lay-out '%s' wilt verwijderen?}
+translate N ConfirmStripGames {Annotaties van %d geselecteerde games verwijderen?}
 
 translate N ConvertNullMove {Converteer nulbewegingen naar opmerkingen}
 translate N SetupBoard {Opstellingsbord}

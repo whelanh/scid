@@ -78,6 +78,8 @@ menuText S EditRedo "Rehacer" 0 {Rehacer el último cambio de juego}
 menuText S EditStripComments "Comentarios" 0 \
   {Quita todos los comentarios y variaciones de esta partida}
 menuText S EditStripVars "Variaciones" 0 {Quita todas las variaciones de esta partida}
+menuText S EditStripAll "Comentarios y variaciones" 0 \
+  {Elimina todos los comentarios, anotaciones y variaciones de este juego.}
 menuText S EditStripBegin "Movimientos desde el principio" 1 \
   {Quita los movimientos desde el principio de la partida}
 menuText S EditStripEnd "Movimientos hasta el final" 0 \
@@ -1883,6 +1885,7 @@ translate S UndeleteGame {Recuperar juego}
 translate S ResetSort {Restablecer clasificación}
 translate S LayoutExists {El diseño '%s' ya existe.}
 translate S ConfirmDeleteLayout {¿Está seguro de que desea eliminar el diseño '%s'?}
+translate S ConfirmStripGames {¿Quitar anotaciones de %d partidas seleccionadas?}
 
 translate S ConvertNullMove {Convertir movimientos nulos en comentarios}
 translate S SetupBoard {Tablero de configuración}

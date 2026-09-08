@@ -75,6 +75,8 @@ menuText R EditRedo "Вернуть" 0 {Вернуть изменения в п�
 menuText R EditStripComments "Комментарии" 0 \
   {Убрать все комментарии и аннотации из этой партии}
 menuText R EditStripVars "Варианты" 0 {Убрать все варианты из этой партии}
+menuText R EditStripAll "Комментарии и вариации" 0 \
+  {Удалить все комментарии, аннотации и варианты из этой игры.}
 menuText R EditStripBegin "Двигаться от начала" 1 \
   {Вырезает ходы от начала партии}
 menuText R EditStripEnd "Двигаться к концу" 0 \
@@ -1832,6 +1834,7 @@ translate R UndeleteGame {Отменить удаление игры}
 translate R ResetSort {Сбросить сортировку}
 translate R LayoutExists {Макет «%s» уже существует.}
 translate R ConfirmDeleteLayout {Вы уверены, что хотите удалить макет «%s»?}
+translate R ConfirmStripGames {Удалить аннотации из %d выбранных игр?}
 
 translate R ConvertNullMove {Преобразовать пустые ходы в комментарии}
 translate R SetupBoard {Настроить доску}

@@ -109,6 +109,8 @@ menuText E EditRedo "Redo" 0 {Redo last game change}
 menuText E EditStripComments "Comments" 0 \
   {Strip all comments and annotations from this game}
 menuText E EditStripVars "Variations" 0 {Strip all variations from this game}
+menuText E EditStripAll "Comments and Variations" 0 \
+  {Strip all comments, annotations and variations from this game}
 menuText E EditStripBegin "Moves from the beginning" 1 \
   {Strip moves from the beginning of the game}
 menuText E EditStripEnd "Moves to the end" 0 \
@@ -1862,6 +1864,7 @@ translate E UndeleteGame {Undelete game}
 translate E ResetSort {Reset sort}
 translate E LayoutExists {Layout '%s' already exists.}
 translate E ConfirmDeleteLayout {Are you sure you want to delete the layout '%s'?}
+translate E ConfirmStripGames {Strip annotations from %d selected game(s)?}
 
 translate E ConvertNullMove {Convert null moves to comments}
 translate E SetupBoard {Setup Board}

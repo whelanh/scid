@@ -73,6 +73,8 @@ menuText O EditRedo "Gjenta" 0 {Gjenta siste spillendring}
 menuText O EditStripComments "Kommentarer" 0 \
   {Fjern alle kommentarer og annotasjoner fra dette partiet}
 menuText O EditStripVars "Variasjoner" 0 {Fjern alle variasjoner fra dette partiet}
+menuText O EditStripAll "Kommentarer og varianter" 0 \
+  {Fjern alle kommentarer, merknader og varianter fra dette spillet}
 menuText O EditStripBegin "Moves from the beginning" 1 \
   {Strip moves from the beginning of the game} ;# ***
 menuText O EditStripEnd "Moves to the end" 0 \
@@ -1830,6 +1832,7 @@ translate O UndeleteGame {Angre sletting av spill}
 translate O ResetSort {Tilbakestill sortering}
 translate O LayoutExists {Layout '%s' eksisterer allerede.}
 translate O ConfirmDeleteLayout {Er du sikker på at du vil slette layouten '%s'?}
+translate O ConfirmStripGames {Vil du fjerne kommentarer og varianter fra %d valgte spill?}
 
 translate O ConvertNullMove {Konverter null-trekk til kommentarer}
 translate O SetupBoard {Oppsettbrett}

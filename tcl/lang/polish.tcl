@@ -52,6 +52,8 @@ menuText P EditUndo {Cofnij} 0 {Cofnij ostatnią zmianę w partii}
 menuText P EditRedo {Ponów} 0 {Ponów ostatnią zmianę w partii}
 menuText P EditStripComments {Komentarze} 0 {Usuń wszystkie komentarze i adnotacje z tej partii}
 menuText P EditStripVars {Warianty} 0 {Usuń wszystkie warianty z tej partii}
+menuText P EditStripAll "Komentarze i warianty" 0 \
+  {Usuń wszystkie komentarze, adnotacje i warianty tej gry}
 menuText P EditStripBegin {Posunięcia od początku} 0 {Usuń posunięcia od początku partii}
 menuText P EditStripEnd {Posunięcia do końca} 0 {Usuń posunięcia do końca partii}
 menuText P EditReset {Opróżnij schowek} 0 {Całkowicie opróżnij bazę schowka}
@@ -1760,6 +1762,7 @@ translate P UndeleteGame {Przywróć partię}
 translate P ResetSort {Resetuj sortowanie}
 translate P LayoutExists {Układ '%s' już istnieje.}
 translate P ConfirmDeleteLayout {Czy na pewno chcesz usunąć układ '%s'?}
+translate P ConfirmStripGames {Usunąć adnotacje z %d wybranych gier?}
 
 translate P ConvertNullMove {Zamień posunięcia zerowe na komentarze}
 translate P SetupBoard {Ustaw szachownicę}

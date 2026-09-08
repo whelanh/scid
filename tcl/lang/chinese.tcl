@@ -66,6 +66,8 @@ menuText M EditUndo "撤销" 0 {撤销上次游戏更改}
 menuText M EditRedo "重做" 0 {重做上次游戏更改}
 menuText M EditStripComments "注释" 0 {从此游戏中删除所有注释和标注}
 menuText M EditStripVars "变化" 0 {从此游戏中删除所有变化}
+menuText M EditStripAll "评论和变化" 0 \
+  {删除该游戏的所有评论、注释和变体}
 menuText M EditStripBegin "从开始到这里的着法" 0 {从开始到当前位置删除着法}
 menuText M EditStripEnd "从这里到结束的着法" 0 {从当前位置到结束删除着法}
 menuText M EditReset "清空剪贴板" 0 {将剪贴板完全清空}
@@ -1784,6 +1786,7 @@ translate M UndeleteGame {恢复删除游戏}
 translate M ResetSort {重置排序}
 translate M LayoutExists {布局“%s”已存在。}
 translate M ConfirmDeleteLayout {您确定要删除布局“%s”吗？}
+translate M ConfirmStripGames {从 %d 个选定的游戏中删除注释？}
 
 translate M ConvertNullMove {将空动作转换为评论}
 translate M SetupBoard {设置板}

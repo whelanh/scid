@@ -73,6 +73,8 @@ menuText T EditRedo "Yinele" 0 {Son oyun değişikliğini yeniden yap}
 menuText T EditStripComments "Yorumlar" 0 \
   {Bu oyundaki tüm yorumları ve ek açıklamaları kaldır}
 menuText T EditStripVars "Varyasyonlar" 0 {Bu oyundaki tüm varyasyonları çıkarın}
+menuText T EditStripAll "Yorumlar ve Varyasyonlar" 0 \
+  {Bu oyundaki tüm yorumları, açıklamaları ve varyasyonları kaldırın}
 menuText T EditStripBegin "Başlangıçtan itibaren hareket eder" 1 \
   {Oyunun başından itibaren şerit hareketleri}
 menuText T EditStripEnd "Sona doğru hareket eder" 0 \
@@ -1812,6 +1814,7 @@ translate T UndeleteGame {Oyunun silinmesini geri al}
 translate T ResetSort {Sıralamayı sıfırla}
 translate T LayoutExists {'%s' düzeni zaten mevcut.}
 translate T ConfirmDeleteLayout {'%s' düzenini silmek istediğinizden emin misiniz?}
+translate T ConfirmStripGames {Seçili %d oyundaki ek açıklamalar kaldırılsın mı?}
 
 translate T ConvertNullMove {Boş hareketleri yorumlara dönüştürün}
 translate T SetupBoard {Kurulum Panosu}

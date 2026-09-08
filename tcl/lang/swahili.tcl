@@ -69,6 +69,8 @@ menuText Z EditRedo "Rudia" 0 {Rudia mabadiliko ya mchezo uliopita}
 menuText Z EditStripComments "Maoni" 0 \
   {Ondoa maoni na vidokezo vyote kutoka kwa mchezo huu}
 menuText Z EditStripVars "Tofauti" 0 {Ondoa tofauti zote kutoka kwa mchezo huu}
+menuText Z EditStripAll "Maoni na Tofauti" 0 \
+  {Ondoa maoni yote, vidokezo na tofauti kutoka kwa mchezo huu}
 menuText Z EditStripBegin "Inasonga kutoka mwanzo" 1 \
   {Strip inasonga tangu mwanzo wa mchezo}
 menuText Z EditStripEnd "Inasonga hadi mwisho" 0 \
@@ -1808,6 +1810,7 @@ translate Z UndeleteGame {Ondoa mchezo}
 translate Z ResetSort {Weka upya kupanga}
 translate Z LayoutExists {Muundo '%s' tayari upo.}
 translate Z ConfirmDeleteLayout {Je, una uhakika unataka kufuta mpangilio wa '%s'?}
+translate Z ConfirmStripGames {Ungependa kufuta vidokezo kutoka michezo %d iliyochaguliwa?}
 
 translate Z ConvertNullMove {Badilisha miondoko batili kuwa maoni}
 translate Z SetupBoard {Bodi ya Kuweka}

@@ -69,6 +69,8 @@ menuText h EditRedo "फिर से करना" 0 {अंतिम गेम
 menuText h EditStripComments "टिप्पणियाँ" 0 \
   {इस गेम से सभी टिप्पणियाँ और टिप्पणियाँ हटा दें}
 menuText h EditStripVars "बदलाव" 0 {इस खेल से सभी विविधताएँ हटाएँ}
+menuText h EditStripAll "टिप्पणियाँ और विविधताएँ" 0 \
+  {इस गेम से सभी टिप्पणियाँ और विविधताएँ हटा दें}
 menuText h EditStripBegin "प्रारंभ से चलता है" 1 \
   {खेल की शुरुआत से ही स्ट्रिप चलती रहती है}
 menuText h EditStripEnd "अंत की ओर बढ़ता है" 0 \
@@ -1808,6 +1810,7 @@ translate h UndeleteGame {गेम को अनडिलीट करें}
 translate h ResetSort {सॉर्ट रीसेट करें}
 translate h LayoutExists {लेआउट '%s' पहले से मौजूद है.}
 translate h ConfirmDeleteLayout {क्या आप वाकई '%s' लेआउट को हटाना चाहते हैं?}
+translate h ConfirmStripGames {%d चयनित गेम से एनोटेशन स्ट्रिप करें?}
 
 translate h ConvertNullMove {शून्य चालों को टिप्पणियों में बदलें}
 translate h SetupBoard {सेटअप बोर्ड}

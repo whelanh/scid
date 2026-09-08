@@ -1401,6 +1401,7 @@ proc glist.popupmenu_ {{w} {x} {y} {abs_x} {abs_y} {layout}} {
       if { [winfo exists $w.game_menu.copy] } { destroy $w.game_menu.copy }
       if { [winfo exists $w.game_menu.filter] } { destroy $w.game_menu.filter }
       if { [winfo exists $w.game_menu.export] } { destroy $w.game_menu.export }
+      if { [winfo exists $w.game_menu.strip] } { destroy $w.game_menu.strip }
       $w.game_menu delete 0 end
       #LOAD/BROWSE/MERGE GAME
       if {[llength $sel] == 1} {
@@ -1421,6 +1422,16 @@ proc glist.popupmenu_ {{w} {x} {y} {abs_x} {abs_y} {layout}} {
         $w.game_menu add command -label $::tr(BatchAnnotate) \
            -command [list ::batch_annotate::config $::glistBase($w) $sel_literal]
       }
+      menu $w.game_menu.strip
+      $w.game_menu.strip add command -label [tr EditStripComments] \
+        -command [list ::game::StripSelected $::glistBase($w) $sel_literal comments]
+      $w.game_menu.strip add command -label [tr EditStripVars] \
+        -command [list ::game::StripSelected $::glistBase($w) $sel_literal variations]
+      $w.game_menu.strip add command -label [tr EditStripAll] \
+        -command [list ::game::StripSelected $::glistBase($w) $sel_literal all]
+      set stripLabel [tr EditStrip]
+      if {[llength $sel] > 1} { set stripLabel "$stripLabel ([llength $sel])" }
+      $w.game_menu add cascade -label $stripLabel -menu $w.game_menu.strip
 
       set is_del 1
       foreach s $sel {

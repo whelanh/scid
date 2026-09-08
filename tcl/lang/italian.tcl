@@ -75,6 +75,8 @@ menuText I EditRedo "Ripeti" 0 {Ripete l'ultima modifica della partita}
 menuText I EditStripComments "Commenti" 0 \
   {Elimina tutti i commenti e le annotazioni dalla parita corrente}
 menuText I EditStripVars "Varianti" 0 {Elimina tutte le varianti dalla partita corrente}
+menuText I EditStripAll "Commenti e variazioni" 0 \
+  {Elimina tutti i commenti, le annotazioni e le variazioni da questo gioco}
 menuText I EditStripBegin "Mosse dall'inizio" 1 \
   {Elimina le mosse dall'inizio della partita}
 menuText I EditStripEnd "Mosse rimanenti" 0 \
@@ -1832,6 +1834,7 @@ translate I UndeleteGame {Annulla l'eliminazione del gioco}
 translate I ResetSort {Reimposta ordinamento}
 translate I LayoutExists {Il layout '%s' esiste già.}
 translate I ConfirmDeleteLayout {Sei sicuro di voler eliminare il layout '%s'?}
+translate I ConfirmStripGames {Rimuovere le annotazioni da %d giochi selezionati?}
 
 translate I ConvertNullMove {Converti mosse nulle in commenti}
 translate I SetupBoard {Scheda di installazione}

@@ -71,6 +71,8 @@ menuText C EditRedo "Pedlat" 0 {Opakujte posledn zmnu hry}
 menuText C EditStripComments "Komente" 0 \
   {Odstranit vechny poznmky a anotace z tto partie}
 menuText C EditStripVars "Varianty" 0 {Odstranit vechny varianty z tto partie}
+menuText C EditStripAll "Komentáře a variace" 0 \
+  {Odstraňte z této hry všechny komentáře, anotace a variace}
 menuText C EditStripBegin "Tahy ze zatku" 5 \
   {Odstranit tahy ze zatku partie}
 menuText C EditStripEnd "Tahy do konce" 5 \
@@ -1830,6 +1832,7 @@ translate C UndeleteGame {Obnovit hru}
 translate C ResetSort {Obnovit azen}
 translate C LayoutExists {Rozložení '%s' již existuje.}
 translate C ConfirmDeleteLayout {Opravdu chcete smazat rozvržení '%s'?}
+translate C ConfirmStripGames {Odebrat anotace z %d vybraných her?}
 
 translate C ConvertNullMove {Pevst nulov pohyby na komente}
 translate C SetupBoard {Instalan deska}
