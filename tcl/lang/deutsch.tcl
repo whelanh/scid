@@ -91,6 +91,8 @@ menuText D EditStripComments "Kommentare" 0 \
   {Alle Kommentare und Kommentarzeichen aus dieser Partie entfernen}
 menuText D EditStripVars "Varianten" 0 \
   {Alle Varianten aus der Partie entfernen}
+menuText D EditStripAll "Kommentare und Variationen" 0 \
+  {Entfernen Sie alle Kommentare, Anmerkungen und Variationen aus diesem Spiel}
 menuText D EditStripBegin "Züge ab Anfang" 8 \
   {Entferne Züge ab Partieanfang}
 menuText D EditStripEnd "Züge bis Ende" 9 \
@@ -1880,6 +1882,7 @@ translate D UndeleteGame {Partie wiederherstellen}
 translate D ResetSort {Sortierung zurücksetzten}
 translate D LayoutExists {Layout „%s“ existiert bereits.}
 translate D ConfirmDeleteLayout {Sind Sie sicher, dass Sie das Layout „%s“ löschen möchten?}
+translate D ConfirmStripGames {Anmerkungen von %d ausgewählten Spielen entfernen)?}
 
 translate D ConvertNullMove {Null-Züge in Kommentare umwandeln}
 translate D SetupBoard {Stellung eingeben}

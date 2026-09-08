@@ -110,6 +110,8 @@ menuText g EditRedo "Повторете" 0 {Повторете последна�
 menuText g EditStripComments "Коментари" 0 \
   {Премахнете всички коментари и анотации от тази игра}
 menuText g EditStripVars "Вариации" 0 {Отстранете всички варианти от тази игра}
+menuText g EditStripAll "Коментари и вариации" 0 \
+  {Премахнете всички коментари, анотации и вариации от тази игра}
 menuText g EditStripBegin "Движи се от самото начало" 1 \
   {Стрип се движи от началото на играта}
 menuText g EditStripEnd "Придвижва се до края" 0 \
@@ -1849,6 +1851,7 @@ translate g UndeleteGame {Отмяна на изтритата игра}
 translate g ResetSort {Нулиране на сортирането}
 translate g LayoutExists {Оформлението „%s“ вече съществува.}
 translate g ConfirmDeleteLayout {Сигурни ли сте, че искате да изтриете оформлението „%s“?}
+translate g ConfirmStripGames {Премахване на анотации от %d избрани игри)?}
 
 translate g ConvertNullMove {Преобразуване на нулеви ходове в коментари}
 translate g SetupBoard {Табло за настройка}

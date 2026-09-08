@@ -110,6 +110,8 @@ menuText k EditRedo "다시 실행" 0 {마지막 게임 변경 다시 실행}
 menuText k EditStripComments "댓글" 0 \
   {이 게임의 모든 댓글과 설명을 제거합니다.}
 menuText k EditStripVars "변형" 0 {이 게임의 모든 변형 제거}
+menuText k EditStripAll "의견 및 변형" 0 \
+  {이 게임의 모든 댓글, 주석 및 변형을 제거합니다.}
 menuText k EditStripBegin "처음부터 포맷인다" 1 \
   {게임시작부터 Strip입니다.}
 menuText k EditStripEnd "끝으로 이동합니다" 0 \
@@ -1849,6 +1851,7 @@ translate k UndeleteGame {게임 삭제 취소}
 translate k ResetSort {대신에}
 translate k LayoutExists {'%s'이(가) 이미 존재합니다.}
 translate k ConfirmDeleteLayout {정말 '%s' 입력을 삭제하시겠습니까?}
+translate k ConfirmStripGames {선택한 %d개의 게임에서 주석을 제거하시겠습니까?}
 
 translate k ConvertNullMove {null 이동을 댓글로 변환}
 translate k SetupBoard {설정 보드}

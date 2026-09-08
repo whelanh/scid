@@ -110,6 +110,8 @@ menuText J EditRedo "Понови" 0 {Понови последњу промен
 menuText J EditStripComments "Коментари" 0 \
   {Уклоните све коментаре и белешке из ове игре}
 menuText J EditStripVars "Варијације" 0 {Скините све варијације из ове игре}
+menuText J EditStripAll "Коментари и варијације" 0 \
+  {Уклоните све коментаре, напомене и варијације из ове игре}
 menuText J EditStripBegin "Креће се од почетка" 1 \
   {Стрип потези од почетка игре}
 menuText J EditStripEnd "Креће се до краја" 0 \
@@ -1849,6 +1851,7 @@ translate J UndeleteGame {Поништи брисање игре}
 translate J ResetSort {Ресетуј сортирање}
 translate J LayoutExists {Распоред '%s' већ постоји.}
 translate J ConfirmDeleteLayout {Да ли сте сигурни да желите да избришете изглед „%s"?}
+translate J ConfirmStripGames {Уклонити напомене из %д изабраних игара)?}
 
 translate J ConvertNullMove {Претворите нулте потезе у коментаре}
 translate J SetupBoard {Сетуп Боард}

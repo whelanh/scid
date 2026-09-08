@@ -107,6 +107,8 @@ menuText U EditRedo "Tee uudelleen" 0 {Tee uudelleen viimeisin muutos}
 menuText U EditStripComments "Kommentit" 1 \
   {Poista kaikki kommentit ja arvioinnit pelistä}
 menuText U EditStripVars "Muunnelmat" 3 {Poista kaikki muunnelmat pelistä}
+menuText U EditStripAll "Kommentteja ja muunnelmia" 0 \
+  {Poista kaikki kommentit, huomautukset ja muunnelmat tästä pelistä}
 menuText U EditStripBegin "Siirtoja alusta" 1 \
   {Poista siirtoja pelin alusta}
 menuText U EditStripEnd "Siirtoja lopusta" 3 \
@@ -1861,6 +1863,7 @@ translate U UndeleteGame {Peru pelin poisto}
 translate U ResetSort {Nollaa lajittelu}
 translate U LayoutExists {Asettelu '%s' on jo olemassa.}
 translate U ConfirmDeleteLayout {Haluatko varmasti poistaa asettelun '%s'?}
+translate U ConfirmStripGames {Poistetaanko huomautukset %d valitusta pelistä)?}
 
 translate U ConvertNullMove {Muunna nollasiirrot kommenteiksi}
 translate U SetupBoard {Asennustaulu}

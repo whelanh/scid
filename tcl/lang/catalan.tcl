@@ -76,6 +76,8 @@ menuText K EditRedo "Refés" 0 {Refés l'últim canvi de la partida}
 menuText K EditStripComments "Comentaris" 0 \
   {Esborra tots els comentaris i variants d'aquesta partida}
 menuText K EditStripVars "Variants" 0 {Esborra totes les variants d'aquesta partida}
+menuText K EditStripAll "Comentaris i variacions" 0 \
+  {Elimina tots els comentaris, anotacions i variacions d'aquest joc}
 menuText K EditStripBegin "Jugades des del començament" 1 \
   {Treu els moviments des del començament de la partida}
 menuText K EditStripEnd "Jugades fins el final" 0 \
@@ -1852,6 +1854,7 @@ translate K UndeleteGame {Desfés esborrar partida}
 translate K ResetSort {Neteja criteri d'ordre}
 translate K LayoutExists {El disseny '%s' ja existeix.}
 translate K ConfirmDeleteLayout {Esteu segur que voleu suprimir el disseny '%s'?}
+translate K ConfirmStripGames {Eliminar les anotacions de %d jocs seleccionats)?}
 
 translate K ConvertNullMove {Converteix jugades nul·les en comentaris}
 translate K SetupBoard {Configura posició}

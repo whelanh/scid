@@ -70,6 +70,8 @@ menuText V EditRedo "לַעֲשׂוֹת שׁוּב" 0 {בצע מחדש את הש
 menuText V EditStripComments "הערות" 0 \
   {הסר את כל ההערות וההערות מהמשחק הזה}
 menuText V EditStripVars "וריאציות" 0 {הסר את כל הווריאציות מהמשחק הזה}
+menuText V EditStripAll "הערות וגיוונים" 0 \
+  {הסר את כל ההערות, ההערות והווריאציות מהמשחק הזה}
 menuText V EditStripBegin "נע מההתחלה" 1 \
   {רצועת מהלכים מתחילת המשחק}
 menuText V EditStripEnd "נע עד הסוף" 0 \
@@ -1809,6 +1811,7 @@ translate V UndeleteGame {בטל מחיקת משחק}
 translate V ResetSort {אפס מיון}
 translate V LayoutExists {הפריסה '%s' כבר קיימת.}
 translate V ConfirmDeleteLayout {האם אתה בטוח שברצונך למחוק את הפריסה '%s'?}
+translate V ConfirmStripGames {להסיר הערות מ-%d משחקים נבחרים)?}
 
 translate V ConvertNullMove {המר מהלכים אפסים להערות}
 translate V SetupBoard {לוח התקנה}

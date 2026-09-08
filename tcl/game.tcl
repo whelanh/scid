@@ -29,6 +29,51 @@ proc ::game::Strip {type} {
   updateTitle
 }
 
+# ::game::StripSelected
+#
+#   Strips comments, variations or both from a list of selected games.
+#   <type> is "comments", "variations" or "all".
+#
+proc ::game::StripSelected {db games_list type} {
+  if {$db eq "" || ![sc_base inUse]} { return }
+  set count 0
+  foreach s $games_list {
+    lassign [split [string trim $s] "_"] idx ply
+    if {$idx eq "" || ![string is integer -strict $idx] || $idx <= 0} { continue }
+    incr count
+  }
+  if {$count == 0} { return }
+  set answer [tk_messageBox -parent . -type yesno -icon question \
+    -title "scidCommunity" -message [format $::tr(ConfirmStripGames) $count]]
+  if {$answer ne "yes"} { return }
+
+  set prev_base [sc_base current]
+  if {$prev_base != $db} {
+    if {[catch {sc_base switch $db} result]} {
+      tk_messageBox -parent . -type ok -icon info -title "scidCommunity" -message $result
+      return
+    }
+  }
+  foreach s $games_list {
+    lassign [split [string trim $s] "_"] idx ply
+    if {$idx eq "" || ![string is integer -strict $idx] || $idx <= 0} { continue }
+    if {[catch {sc_game push copy}]} { continue }
+    if {[catch {sc_game load $idx}]} {
+      catch {sc_game pop}
+      continue
+    }
+    if {$type eq "all"} {
+      catch {sc_game strip comments}
+      catch {sc_game strip variations}
+    } else {
+      catch {sc_game strip $type}
+    }
+    catch {sc_game save $idx}
+    catch {sc_game pop}
+  }
+  ::notify::DatabaseModified $db
+}
+
 # ::game::TruncateBegin
 #
 proc ::game::TruncateBegin {} {

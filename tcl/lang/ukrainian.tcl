@@ -70,6 +70,8 @@ menuText Q EditRedo "Повторити" 0 {Повторити останню з
 menuText Q EditStripComments "Коментарі" 0 \
   {Видалити всі коментарі та анотації з цієї гри}
 menuText Q EditStripVars "Варіації" 0 {Зніміть усі варіації з цієї гри}
+menuText Q EditStripAll "Коментарі та варіації" 0 \
+  {Видалити всі коментарі, анотації та варіації з цієї гри}
 menuText Q EditStripBegin "Рухається з самого початку" 1 \
   {Стрип рухається з початку гри}
 menuText Q EditStripEnd "Рухається до кінця" 0 \
@@ -1809,6 +1811,7 @@ translate Q UndeleteGame {Відновити гру}
 translate Q ResetSort {Скинути сортування}
 translate Q LayoutExists {Макет "%s" вже існує.}
 translate Q ConfirmDeleteLayout {Ви впевнені, що бажаєте видалити макет «%s»?}
+translate Q ConfirmStripGames {Видалити анотації з %d вибраних ігор)?}
 
 translate Q ConvertNullMove {Перетворення нульових ходів на коментарі}
 translate Q SetupBoard {Налаштування дошки}

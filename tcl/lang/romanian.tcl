@@ -110,6 +110,8 @@ menuText L EditRedo "Reface" 0 {Reface ultima schimbare de joc}
 menuText L EditStripComments "Comentarii" 0 \
   {Eliminați toate comentariile și adnotările din acest joc}
 menuText L EditStripVars "Variante" 0 {Eliminați toate variantele din acest joc}
+menuText L EditStripAll "Comentarii și variații" 0 \
+  {Eliminați toate comentariile, adnotările și variațiile din acest joc}
 menuText L EditStripBegin "Se mișcă de la început" 1 \
   {Strip se mișcă de la începutul jocului}
 menuText L EditStripEnd "Se mută până la capăt" 0 \
@@ -1849,6 +1851,7 @@ translate L UndeleteGame {Anulați ștergerea jocului}
 translate L ResetSort {Resetează sortarea}
 translate L LayoutExists {Aspectul „%s” există deja.}
 translate L ConfirmDeleteLayout {Sigur doriți să ștergeți aspectul „%s”?}
+translate L ConfirmStripGames {Eliminați adnotările din %d jocuri selectate)?}
 
 translate L ConvertNullMove {Convertiți mișcările nule în comentarii}
 translate L SetupBoard {Placă de configurare}

@@ -71,6 +71,8 @@ menuText H EditRedo "Újra" 0 {Hajtsa végre a legutóbbi játékmódosítást}
 menuText H EditStripComments "Megjegyzések" 0 \
   {Eltávolítja az összes megjegyzést és elemzést ebbõl a játszmából.}
 menuText H EditStripVars "Változatok" 0 {Eltávolítja az összes változatot ebbõl a játszmából.}
+menuText H EditStripAll "Megjegyzések és variációk" 0 \
+  {Távolíts el minden megjegyzést, megjegyzést és változatot ebből a játékból}
 menuText H EditStripBegin "Az elejétõl" 3 \
   {Levágja a játszma elejét}
 menuText H EditStripEnd "A végéig" 2 \
@@ -1831,6 +1833,7 @@ translate H UndeleteGame {Játék törlésének visszavonása}
 translate H ResetSort {Rendezés visszaállítása}
 translate H LayoutExists {A „%s” elrendezés már létezik.}
 translate H ConfirmDeleteLayout {Biztos, hogy törölni szeretné a(z) '%s' elrendezést?}
+translate H ConfirmStripGames {Töröljük %d kiválasztott játék megjegyzéseit)?}
 
 translate H ConvertNullMove {Konvertálja a null mozgásokat megjegyzésekké}
 translate H SetupBoard {Beállítási tábla}

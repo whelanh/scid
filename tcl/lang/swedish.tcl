@@ -73,6 +73,8 @@ menuText W EditRedo "Göra om" 0 {Gör om senaste spelbyte}
 menuText W EditStripComments "Kommentarer" 0 \
   {Avlägsna alla kommentarer och noteringar från partiet}
 menuText W EditStripVars "Varianter" 0 {Avlägsna alla varianter från partiet}
+menuText W EditStripAll "Kommentarer och variationer" 0 \
+  {Ta bort alla kommentarer, kommentarer och varianter från detta spel}
 menuText W EditStripBegin "Avlägsna tidigare drag" 9 \
   {Avlägsna dragen fram till den aktuella ställningen} 
 menuText W EditStripEnd "Avlägsna resterande drag" 0 \
@@ -1836,6 +1838,7 @@ translate W UndeleteGame {Återställ spel}
 translate W ResetSort {Återställ sortering}
 translate W LayoutExists {Layouten '%s' finns redan.}
 translate W ConfirmDeleteLayout {Är du säker på att du vill ta bort layouten '%s'?}
+translate W ConfirmStripGames {Vill du ta bort kommentarer från %d valda spel)?}
 
 translate W ConvertNullMove {Konvertera null-drag till kommentarer}
 translate W SetupBoard {Installationsbräda}

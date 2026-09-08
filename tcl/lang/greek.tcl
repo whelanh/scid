@@ -100,6 +100,8 @@ menuText G EditRedo "Ξανακάνω" 0 {Επαναλάβετε την τελε
 menuText G EditStripComments "Σχόλια" 0 \
   {Απομακρύνετε όλα τα σχόλια και τον υπομνηματισμό από αυτή τη παρτίδα}
 menuText G EditStripVars "Βαριάντες" 0 {Απομακρύνετε όλες τις βαριάντες από αυτή τη παρτίδα}
+menuText G EditStripAll "Σχόλια και παραλλαγές" 0 \
+  {Αφαιρέστε όλα τα σχόλια, τους σχολιασμούς και τις παραλλαγές από αυτό το παιχνίδι}
 menuText G EditStripBegin "Κινήσεις από την έναρξη" 1 \
   {Απομακρύνετε τις κινήσεις από την έναρξη της παρτίδας}
 menuText G EditStripEnd "Κινήσεις από το φινάλε" 0 \
@@ -1857,6 +1859,7 @@ translate G UndeleteGame {Αναίρεση διαγραφής παιχνιδιο
 translate G ResetSort {Επαναφορά ταξινόμησης}
 translate G LayoutExists {Η διάταξη '%s' υπάρχει ήδη.}
 translate G ConfirmDeleteLayout {Είστε βέβαιοι ότι θέλετε να διαγράψετε τη διάταξη '%s';}
+translate G ConfirmStripGames {Αφαίρεση σχολιασμών από %d επιλεγμένα παιχνίδια);}
 
 translate G ConvertNullMove {Μετατροπή μηδενικών κινήσεων σε σχόλια}
 translate G SetupBoard {Πίνακας εγκατάστασης}
