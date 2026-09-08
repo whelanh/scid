@@ -1851,7 +1851,7 @@ translate A UndeleteGame {ゲームの削除を取り消す}
 translate A ResetSort {並べ替えをリセット}
 translate A LayoutExists {レイアウト '%s' はすでに存在します。}
 translate A ConfirmDeleteLayout {レイアウト '%s' を削除してもよろしいですか?}
-translate A ConfirmStripGames {選択した %d ゲームから注釈を削除します)?}
+translate A ConfirmStripGames {選択した %d ゲームから注釈を削除します?}
 
 translate A ConvertNullMove {null 移動をコメントに変換する}
 translate A SetupBoard {セットアップボード}

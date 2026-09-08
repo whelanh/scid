@@ -1851,7 +1851,7 @@ translate k UndeleteGame {게임 삭제 취소}
 translate k ResetSort {대신에}
 translate k LayoutExists {'%s'이(가) 이미 존재합니다.}
 translate k ConfirmDeleteLayout {정말 '%s' 입력을 삭제하시겠습니까?}
-translate k ConfirmStripGames {선택한 %d개의 게임에서 주석을 제거하시겠습니까?}
+translate k ConfirmStripGames {선택한 %d개의 게임에서 주석과 변형을 제거하시겠습니까?}
 
 translate k ConvertNullMove {null 이동을 댓글로 변환}
 translate k SetupBoard {설정 보드}

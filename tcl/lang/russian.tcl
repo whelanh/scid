@@ -1834,7 +1834,7 @@ translate R UndeleteGame {Отменить удаление игры}
 translate R ResetSort {Сбросить сортировку}
 translate R LayoutExists {Макет «%s» уже существует.}
 translate R ConfirmDeleteLayout {Вы уверены, что хотите удалить макет «%s»?}
-translate R ConfirmStripGames {Удалить аннотации из %d выбранных игр)?}
+translate R ConfirmStripGames {Удалить аннотации из %d выбранных игр?}
 
 translate R ConvertNullMove {Преобразовать пустые ходы в комментарии}
 translate R SetupBoard {Настроить доску}

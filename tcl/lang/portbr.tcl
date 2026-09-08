@@ -1840,7 +1840,7 @@ translate B UndeleteGame {Recuperar jogo deletado}
 translate B ResetSort {Reiniciar ordenação}
 translate B LayoutExists {O layout '%s' já existe.}
 translate B ConfirmDeleteLayout {Tem certeza de que deseja excluir o layout '%s'?}
-translate B ConfirmStripGames {Remover anotações de %d jogos selecionados)?}
+translate B ConfirmStripGames {Remover anotações de %d jogos selecionados?}
 
 translate B ConvertNullMove {Converter movimentos nulos para comentários}
 translate B SetupBoard {Definir tabuleiro}

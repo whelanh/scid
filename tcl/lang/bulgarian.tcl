@@ -1851,7 +1851,7 @@ translate g UndeleteGame {Отмяна на изтритата игра}
 translate g ResetSort {Нулиране на сортирането}
 translate g LayoutExists {Оформлението „%s“ вече съществува.}
 translate g ConfirmDeleteLayout {Сигурни ли сте, че искате да изтриете оформлението „%s“?}
-translate g ConfirmStripGames {Премахване на анотации от %d избрани игри)?}
+translate g ConfirmStripGames {Премахване на анотации от %d избрани игри?}
 
 translate g ConvertNullMove {Преобразуване на нулеви ходове в коментари}
 translate g SetupBoard {Табло за настройка}

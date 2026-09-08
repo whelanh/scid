@@ -1834,7 +1834,7 @@ translate I UndeleteGame {Annulla l'eliminazione del gioco}
 translate I ResetSort {Reimposta ordinamento}
 translate I LayoutExists {Il layout '%s' esiste già.}
 translate I ConfirmDeleteLayout {Sei sicuro di voler eliminare il layout '%s'?}
-translate I ConfirmStripGames {Rimuovere le annotazioni da %d giochi selezionati)?}
+translate I ConfirmStripGames {Rimuovere le annotazioni da %d giochi selezionati?}
 
 translate I ConvertNullMove {Converti mosse nulle in commenti}
 translate I SetupBoard {Scheda di installazione}

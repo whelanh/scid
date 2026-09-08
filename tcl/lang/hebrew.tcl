@@ -1811,7 +1811,7 @@ translate V UndeleteGame {בטל מחיקת משחק}
 translate V ResetSort {אפס מיון}
 translate V LayoutExists {הפריסה '%s' כבר קיימת.}
 translate V ConfirmDeleteLayout {האם אתה בטוח שברצונך למחוק את הפריסה '%s'?}
-translate V ConfirmStripGames {להסיר הערות מ-%d משחקים נבחרים)?}
+translate V ConfirmStripGames {להסיר הערות מ-%d משחקים נבחרים?}
 
 translate V ConvertNullMove {המר מהלכים אפסים להערות}
 translate V SetupBoard {לוח התקנה}

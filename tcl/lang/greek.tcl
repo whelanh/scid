@@ -1859,7 +1859,7 @@ translate G UndeleteGame {Αναίρεση διαγραφής παιχνιδιο
 translate G ResetSort {Επαναφορά ταξινόμησης}
 translate G LayoutExists {Η διάταξη '%s' υπάρχει ήδη.}
 translate G ConfirmDeleteLayout {Είστε βέβαιοι ότι θέλετε να διαγράψετε τη διάταξη '%s';}
-translate G ConfirmStripGames {Αφαίρεση σχολιασμών από %d επιλεγμένα παιχνίδια);}
+translate G ConfirmStripGames {Αφαίρεση σχολιασμών από %d επιλεγμένα παιχνίδια;}
 
 translate G ConvertNullMove {Μετατροπή μηδενικών κινήσεων σε σχόλια}
 translate G SetupBoard {Πίνακας εγκατάστασης}

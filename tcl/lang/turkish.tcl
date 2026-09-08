@@ -1814,7 +1814,7 @@ translate T UndeleteGame {Oyunun silinmesini geri al}
 translate T ResetSort {Sıralamayı sıfırla}
 translate T LayoutExists {'%s' düzeni zaten mevcut.}
 translate T ConfirmDeleteLayout {'%s' düzenini silmek istediğinizden emin misiniz?}
-translate T ConfirmStripGames {Seçili %d oyundaki ek açıklamalar kaldırılsın mı?)}
+translate T ConfirmStripGames {Seçili %d oyundaki ek açıklamalar kaldırılsın mı?}
 
 translate T ConvertNullMove {Boş hareketleri yorumlara dönüştürün}
 translate T SetupBoard {Kurulum Panosu}

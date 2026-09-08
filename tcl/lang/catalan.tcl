@@ -1854,7 +1854,7 @@ translate K UndeleteGame {Desfés esborrar partida}
 translate K ResetSort {Neteja criteri d'ordre}
 translate K LayoutExists {El disseny '%s' ja existeix.}
 translate K ConfirmDeleteLayout {Esteu segur que voleu suprimir el disseny '%s'?}
-translate K ConfirmStripGames {Eliminar les anotacions de %d jocs seleccionats)?}
+translate K ConfirmStripGames {Eliminar les anotacions de %d jocs seleccionats?}
 
 translate K ConvertNullMove {Converteix jugades nul·les en comentaris}
 translate K SetupBoard {Configura posició}

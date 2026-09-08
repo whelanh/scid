@@ -1882,7 +1882,7 @@ translate D UndeleteGame {Partie wiederherstellen}
 translate D ResetSort {Sortierung zurücksetzten}
 translate D LayoutExists {Layout „%s“ existiert bereits.}
 translate D ConfirmDeleteLayout {Sind Sie sicher, dass Sie das Layout „%s“ löschen möchten?}
-translate D ConfirmStripGames {Anmerkungen von %d ausgewählten Spielen entfernen)?}
+translate D ConfirmStripGames {Anmerkungen von %d ausgewählten Spielen entfernen?}
 
 translate D ConvertNullMove {Null-Züge in Kommentare umwandeln}
 translate D SetupBoard {Stellung eingeben}

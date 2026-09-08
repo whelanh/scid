@@ -35,7 +35,7 @@ proc ::game::Strip {type} {
 #   <type> is "comments", "variations" or "all".
 #
 proc ::game::StripSelected {db games_list type} {
-  if {$db eq "" || ![sc_base inUse]} { return }
+  if {$db eq "" || ![sc_base inUse $db]} { return }
   set count 0
   foreach s $games_list {
     lassign [split [string trim $s] "_"] idx ply
@@ -43,6 +43,11 @@ proc ::game::StripSelected {db games_list type} {
     incr count
   }
   if {$count == 0} { return }
+  if {[sc_base isReadOnly $db]} {
+    tk_messageBox -parent . -type ok -icon info -title "scidCommunity" \
+      -message $::tr(ErrReadOnly)
+    return
+  }
   set answer [tk_messageBox -parent . -type yesno -icon question \
     -title "scidCommunity" -message [format $::tr(ConfirmStripGames) $count]]
   if {$answer ne "yes"} { return }
@@ -70,6 +75,9 @@ proc ::game::StripSelected {db games_list type} {
     }
     catch {sc_game save $idx}
     catch {sc_game pop}
+  }
+  if {$prev_base != $db} {
+    catch {sc_base switch $prev_base}
   }
   ::notify::DatabaseModified $db
 }

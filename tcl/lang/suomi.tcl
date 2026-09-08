@@ -1863,7 +1863,7 @@ translate U UndeleteGame {Peru pelin poisto}
 translate U ResetSort {Nollaa lajittelu}
 translate U LayoutExists {Asettelu '%s' on jo olemassa.}
 translate U ConfirmDeleteLayout {Haluatko varmasti poistaa asettelun '%s'?}
-translate U ConfirmStripGames {Poistetaanko huomautukset %d valitusta pelistä)?}
+translate U ConfirmStripGames {Poistetaanko huomautukset %d valitusta pelistä?}
 
 translate U ConvertNullMove {Muunna nollasiirrot kommenteiksi}
 translate U SetupBoard {Asennustaulu}

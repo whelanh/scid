@@ -77,9 +77,8 @@ menuText Y EditRedo "Redo" 0 {Redo last game change}
 menuText Y EditStripComments "Komentare" 0 \
   {Ukloni sve komentare i napomene iz ove partije}
 menuText Y EditStripVars "Varijante" 0 {Ukloni sve varijante iz ove partije}
-# ====== TODO To be translated ======
-menuText Y EditStripAll "Comments and Variations" 0 \
-  {Strip all comments, annotations and variations from this game}
+menuText Y EditStripAll "Komentari i varijante" 0 \
+  {Ukloni sve komentare, napomene i varijante iz ove partije}
 menuText Y EditStripBegin "Moves from the beginning" 1 \
   {Strip moves from the beginning of the game} ;# ***
 menuText Y EditStripEnd "Moves to the end" 0 \
@@ -3085,7 +3084,7 @@ translate Y LayoutExists {Layout '%s' already exists.}
 # ====== TODO To be translated ======
 translate Y ConfirmDeleteLayout {Are you sure you want to delete the layout '%s'?}
 # ====== TODO To be translated ======
-translate Y ConfirmStripGames {Strip annotations from %d selected game(s)?}
+translate Y ConfirmStripGames {Ukloniti napomene iz %d izabranih partija?}
 # ====== TODO To be translated ======
 translate Y ConvertNullMove {Convert null moves to comments}
 # ====== TODO To be translated ======

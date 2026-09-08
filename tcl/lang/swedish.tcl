@@ -1838,7 +1838,7 @@ translate W UndeleteGame {Återställ spel}
 translate W ResetSort {Återställ sortering}
 translate W LayoutExists {Layouten '%s' finns redan.}
 translate W ConfirmDeleteLayout {Är du säker på att du vill ta bort layouten '%s'?}
-translate W ConfirmStripGames {Vill du ta bort kommentarer från %d valda spel)?}
+translate W ConfirmStripGames {Vill du ta bort kommentarer och varianter från %d valda spel?}
 
 translate W ConvertNullMove {Konvertera null-drag till kommentarer}
 translate W SetupBoard {Installationsbräda}

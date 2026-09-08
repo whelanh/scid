@@ -1832,7 +1832,7 @@ translate C UndeleteGame {Obnovit hru}
 translate C ResetSort {Obnovit azen}
 translate C LayoutExists {Rozložení '%s' již existuje.}
 translate C ConfirmDeleteLayout {Opravdu chcete smazat rozvržení '%s'?}
-translate C ConfirmStripGames {Odebrat anotace z %d vybraných her)?}
+translate C ConfirmStripGames {Odebrat anotace z %d vybraných her?}
 
 translate C ConvertNullMove {Pevst nulov pohyby na komente}
 translate C SetupBoard {Instalan deska}

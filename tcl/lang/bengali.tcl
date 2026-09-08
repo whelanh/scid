@@ -1810,7 +1810,7 @@ translate b UndeleteGame {খেলা অপসারণ}
 translate b ResetSort {সাজানোর রিসেট করুন}
 translate b LayoutExists {লেআউট '%s' ইতিমধ্যেই বিদ্যমান।}
 translate b ConfirmDeleteLayout {আপনি কি '%s' লেআউট মুছে ফেলার বিষয়ে নিশ্চিত?}
-translate b ConfirmStripGames {%dটি নির্বাচিত গেমগুলি থেকে স্ট্রিপ টীকা)?}
+translate b ConfirmStripGames {%dটি নির্বাচিত গেমগুলি থেকে স্ট্রিপ টীকা?}
 
 translate b ConvertNullMove {নাল চালগুলিকে মন্তব্যে রূপান্তর করুন}
 translate b SetupBoard {সেটআপ বোর্ড}

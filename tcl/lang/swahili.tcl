@@ -1810,7 +1810,7 @@ translate Z UndeleteGame {Ondoa mchezo}
 translate Z ResetSort {Weka upya kupanga}
 translate Z LayoutExists {Muundo '%s' tayari upo.}
 translate Z ConfirmDeleteLayout {Je, una uhakika unataka kufuta mpangilio wa '%s'?}
-translate Z ConfirmStripGames {Ungependa kufuta vidokezo kutoka michezo %d iliyochaguliwa)?}
+translate Z ConfirmStripGames {Ungependa kufuta vidokezo kutoka michezo %d iliyochaguliwa?}
 
 translate Z ConvertNullMove {Badilisha miondoko batili kuwa maoni}
 translate Z SetupBoard {Bodi ya Kuweka}

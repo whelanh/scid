@@ -1832,7 +1832,7 @@ translate O UndeleteGame {Angre sletting av spill}
 translate O ResetSort {Tilbakestill sortering}
 translate O LayoutExists {Layout '%s' eksisterer allerede.}
 translate O ConfirmDeleteLayout {Er du sikker på at du vil slette layouten '%s'?}
-translate O ConfirmStripGames {Vil du fjerne kommentarer fra %d valgte spill)?}
+translate O ConfirmStripGames {Vil du fjerne kommentarer og varianter fra %d valgte spill?}
 
 translate O ConvertNullMove {Konverter null-trekk til kommentarer}
 translate O SetupBoard {Oppsettbrett}

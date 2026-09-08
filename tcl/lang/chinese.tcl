@@ -1786,7 +1786,7 @@ translate M UndeleteGame {恢复删除游戏}
 translate M ResetSort {重置排序}
 translate M LayoutExists {布局“%s”已存在。}
 translate M ConfirmDeleteLayout {您确定要删除布局“%s”吗？}
-translate M ConfirmStripGames {从 %d 个选定的游戏中删除注释）？}
+translate M ConfirmStripGames {从 %d 个选定的游戏中删除注释？}
 
 translate M ConvertNullMove {将空动作转换为评论}
 translate M SetupBoard {设置板}

@@ -1857,7 +1857,7 @@ translate N UndeleteGame {Spel ongedaan maken}
 translate N ResetSort {Sortering opnieuw instellen}
 translate N LayoutExists {Lay-out '%s' bestaat al.}
 translate N ConfirmDeleteLayout {Weet u zeker dat u de lay-out '%s' wilt verwijderen?}
-translate N ConfirmStripGames {Annotaties van %d geselecteerde games verwijderen)?}
+translate N ConfirmStripGames {Annotaties van %d geselecteerde games verwijderen?}
 
 translate N ConvertNullMove {Converteer nulbewegingen naar opmerkingen}
 translate N SetupBoard {Opstellingsbord}

@@ -1811,7 +1811,7 @@ translate Q UndeleteGame {Відновити гру}
 translate Q ResetSort {Скинути сортування}
 translate Q LayoutExists {Макет "%s" вже існує.}
 translate Q ConfirmDeleteLayout {Ви впевнені, що бажаєте видалити макет «%s»?}
-translate Q ConfirmStripGames {Видалити анотації з %d вибраних ігор)?}
+translate Q ConfirmStripGames {Видалити анотації з %d вибраних ігор?}
 
 translate Q ConvertNullMove {Перетворення нульових ходів на коментарі}
 translate Q SetupBoard {Налаштування дошки}
