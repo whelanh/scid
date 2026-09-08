@@ -1885,7 +1885,7 @@ translate S UndeleteGame {Recuperar juego}
 translate S ResetSort {Restablecer clasificación}
 translate S LayoutExists {El diseño '%s' ya existe.}
 translate S ConfirmDeleteLayout {¿Está seguro de que desea eliminar el diseño '%s'?}
-translate S ConfirmStripGames {¿Quitar anotaciones de %d juegos seleccionados)?}
+translate S ConfirmStripGames {¿Quitar anotaciones de %d partidas seleccionadas?}
 
 translate S ConvertNullMove {Convertir movimientos nulos en comentarios}
 translate S SetupBoard {Tablero de configuración}
