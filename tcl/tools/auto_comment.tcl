@@ -12,11 +12,11 @@ namespace eval ::auto_comment {
 
     # Gemini settings
     options.store ::auto_comment::apiKey ""
-    options.store ::auto_comment::model "gemini-2.5-flash-lite"
+    options.store ::auto_comment::model "gemini-3.5-flash"
 
     # DeepSeek settings
     options.store ::auto_comment::deepseekApiKey ""
-    options.store ::auto_comment::deepseekModel "deepseek-reasoner"
+    options.store ::auto_comment::deepseekModel "deepseek-v4-pro"
 
     variable geminiApiBase "https://generativelanguage.googleapis.com/v1beta/models"
     variable deepseekApiBase "https://api.deepseek.com"
@@ -49,6 +49,39 @@ proc ::auto_comment::logDebug {message} {
     }
 }
 
+# ::auto_comment::fitWindow
+#   Sizes a toplevel window to fit its content and centers it on screen.
+#   Wayland/Hyprland (via XWayland) does not reliably honor the requested
+#   size of a Tk toplevel, which leaves popups clipped. Explicitly setting
+#   the geometry ensures the whole popup is visible. Optional minimum
+#   width/height can be supplied for windows with a preferred floor size.
+#
+proc ::auto_comment::fitWindow {w {minW 0} {minH 0}} {
+    if {![winfo exists $w]} { return }
+    update idletasks
+    set reqW [winfo reqwidth $w]
+    set reqH [winfo reqheight $w]
+    if {$reqW < $minW} { set reqW $minW }
+    if {$reqH < $minH} { set reqH $minH }
+
+    # Keep the window on screen (leave a small margin).
+    set screenW [winfo screenwidth $w]
+    set screenH [winfo screenheight $w]
+    set maxW [expr {$screenW - 40}]
+    set maxH [expr {$screenH - 80}]
+    if {$maxW < 200} { set maxW 200 }
+    if {$maxH < 100} { set maxH 100 }
+    if {$reqW > $maxW} { set reqW $maxW }
+    if {$reqH > $maxH} { set reqH $maxH }
+
+    set x [expr {($screenW - $reqW) / 2}]
+    set y [expr {($screenH - $reqH) / 2}]
+    if {$x < 0} { set x 0 }
+    if {$y < 0} { set y 0 }
+
+    wm geometry $w "${reqW}x${reqH}+${x}+${y}"
+}
+
 # ::auto_comment::configureApiKey
 #   Dialog to configure LLM provider and API keys.
 #
@@ -61,7 +94,8 @@ proc ::auto_comment::configureApiKey {} {
 
     toplevel $w
     wm title $w "Auto Comment - Settings"
-    wm resizable $w 1 0
+    wm resizable $w 1 1
+    wm minsize $w 320 200
 
     ttk::frame $w.content -padding 15
     pack $w.content -fill both -expand 1
@@ -89,8 +123,13 @@ proc ::auto_comment::configureApiKey {} {
 
     ttk::label $w.content.gemini.modellbl -text "Model:"
     pack $w.content.gemini.modellbl -anchor w
-    ttk::entry $w.content.gemini.model -width 30 -textvariable ::auto_comment::model
+    ttk::combobox $w.content.gemini.model -width 30 -textvariable ::auto_comment::model \
+        -values {gemini-3.5-flash gemini-3.5-flash-lite gemini-2.5-flash gemini-2.5-flash-lite}
     pack $w.content.gemini.model -anchor w -pady {0 5}
+
+    ttk::button $w.content.gemini.load -text "Load Models" \
+        -command [list ::auto_comment::loadModels $w.content.gemini.model gemini]
+    pack $w.content.gemini.load -anchor w -pady {0 5}
 
     ttk::button $w.content.gemini.open -text "Get Gemini Key" -command {
         openURL "https://aistudio.google.com/apikey"
@@ -108,8 +147,13 @@ proc ::auto_comment::configureApiKey {} {
 
     ttk::label $w.content.deepseek.modellbl -text "Model:"
     pack $w.content.deepseek.modellbl -anchor w
-    ttk::entry $w.content.deepseek.model -width 30 -textvariable ::auto_comment::deepseekModel
+    ttk::combobox $w.content.deepseek.model -width 30 -textvariable ::auto_comment::deepseekModel \
+        -values {deepseek-v4-pro deepseek-v4-flash deepseek-v4-flash-vision-exp}
     pack $w.content.deepseek.model -anchor w -pady {0 5}
+
+    ttk::button $w.content.deepseek.load -text "Load Models" \
+        -command [list ::auto_comment::loadModels $w.content.deepseek.model deepseek]
+    pack $w.content.deepseek.load -anchor w -pady {0 5}
 
     ttk::button $w.content.deepseek.open -text "Get DeepSeek Key" -command {
         openURL "https://platform.deepseek.com/api_keys"
@@ -125,6 +169,8 @@ proc ::auto_comment::configureApiKey {} {
 
     bind $w <Return> "destroy $w"
     bind $w <Escape> "destroy $w"
+
+    ::auto_comment::fitWindow $w
 }
 
 # ::auto_comment::fetchLichessEval
@@ -415,45 +461,31 @@ proc ::auto_comment::formatChessDBEval {jsonData fen} {
 }
 
 proc ::auto_comment::buildPrompt {fen evalText movePlayed variant {opening ""} {nagSymbol ""} {includeSymbols 1} {whitePerspective 0} {whoMoved ""} {isSingleMove 0} {pgn ""} {treeInfo ""}} {
-    set prompt "You are a chess commentator writing brief annotations for club-level players. You are given objective engine analysis. TRUST the analysis completely.
+    if {$whoMoved eq ""} { set whoMoved "the player who just moved" }
 
-Center your concise commentary on the player who just moved ($whoMoved). Explain why their move was good or bad based on the engine scores and PV lines provided.
+    set prompt "You are a chess commentator writing a short, plain-language annotation for club-level players. You are given objective engine analysis. TRUST it completely: use the quality labels and the VERDICT exactly as provided, and add only a clear explanation of WHY.
 
-===== SCORING PERSPECTIVE AND SCALE =====
-The engine evaluations provided below are from WHITE'S perspective:
-- POSITIVE (+X.XX): White has the advantage.
-- NEGATIVE (-X.XX): BLACK has the advantage.
-- SCALE:
-    * +/- 1.00 = 1 pawn advantage.
-    * +/- 10.00 = Winning advantage.
-    * +/- 50.00 or higher = Forced win or mate.
-- CRITICAL: A large negative score (e.g., -81.15) is NOT equality. It means Black has a crushing win or forced mate. Do NOT describe large negative values as equal or balanced.
+Write your commentary about the move just played by $whoMoved.
 
-===== VERIFICATION CHECKLIST =====
-Before writing any commentary, verify:
-1. LINE RANKING: Line 1 is ALWAYS the engine's best move. If the played move appears in Line 2 or later, Line 1 contains the better alternative.
-2. CASTLING RIGHTS: Extract castling rights from the FEN (the field after the position, e.g., \"KQkq\" or \"kq\" or \"-\").
-   - If 'K' is absent: White CANNOT castle kingside
-   - If 'Q' is absent: White CANNOT castle queenside
-   - If 'k' is absent: Black CANNOT castle kingside
-   - If 'q' is absent: Black CANNOT castle queenside
-   - If castling rights are \"-\" or missing the relevant letter: DO NOT mention castling for that player
-3. MOVE LEGALITY: A move cannot be played \"in the future\" if:
-   - It was already played in the game (check the PGN move history)
-   - The piece has already moved from that square
-   - It does not appear in any of the provided PV lines
+===== HOW TO READ THE ENGINE ANALYSIS =====
+- \"Line N\" is a candidate continuation (PV). Line 1 is ALWAYS the engine's best move; later lines are progressively worse alternatives. Each line already carries a quality label (best, equal, slightly worse, inaccuracy, mistake, blunder).
+- The played move's quality is stated in the VERDICT line. Repeat that label; do not recompute or second-guess it.
+- Numeric scores beside a line are from the SIDE TO MOVE's perspective (the evaluation block states who is to move): a positive score favors the side to move, a negative score favors the opponent. Scores labeled \"before/after\" or shown in a table marked \"White's perspective\" are from White's side. A large value (e.g. -80.00 or +50.00) means a decisive or forced win, never equality.
+- Scale reference: +/- 1.00 is roughly one pawn; +/- 10.00 is winning; mate is given as \"Mate in N\".
 
-===== INSTRUCTIONS =====
-- Start your response with a line: \"VERDICT: $movePlayed is a {adjective} move according to the engine analysis\" where {adjective} is one of: best, equal, slightly worse, an inaccuracy, a mistake, or a blunder.
-- If the player did not select the move in Line 1, YOU MUST cite what the Line 1 moves were that the engine preferred (just the first few).
-- Focus ONLY on moves in the PV lines and the objective changes in the engine evaluation.
-- Do NOT invent plans, motifs, or ideas that are not directly supported by the provided move sequences.
-- NEVER suggest a player \"can play\" or \"could play\" a move unless it appears in one of the PV lines.
-- NEVER mention a move as a future option if it has already been played earlier in the game.
-- Explaining 'blunders', 'mistakes' or 'inaccuracies': explicitly name the best alternative move (from Line 1) and the concrete tactical or structural reason why it is better. Keep these under 70 words.
-- For 'best' or 'equal' moves: briefly explain the point of the move (threat, prevention, stabilization) based only on what appears in the PV. Keep these under 40 words.
-- Use the TREE STATISTICS to identify if the played move is a common theoretical choice vs a sideline.
-- Do NOT use markdown formatting (**bold** or *italics*)."
+===== STRICT RULES =====
+1. Ground every claim in the provided lines. Do NOT invent plans, motifs, tactics, or ideas that are not present in the PV sequences.
+2. Never propose a move unless it appears in one of the provided lines, and never propose a move that was already played earlier in the game (check the PGN).
+3. Castling: read castling rights from the FEN field (e.g. \"KQkq\", \"kq\", or \"-\"). Do not mention castling for a side whose right is absent.
+4. For a blunder, mistake, or inaccuracy, name the better alternative from Line 1 and the concrete tactical or structural reason it is better.
+
+===== OUTPUT FORMAT =====
+- First line (exact form): \"VERDICT: $movePlayed is a {adjective} move according to the engine analysis.\" where {adjective} is the label in the VERDICT line. If the VERDICT line states that the move is absent from the engine's lines, use \"questionable\".
+- Then write ONE concise paragraph:
+  * blunder/mistake/inaccuracy: name the Line 1 alternative and why it is better. Under 70 words.
+  * best/equal: explain the point of the move (threat, prevention, stabilization) using only the PV. Under 40 words.
+- Use the tree statistics only to note whether the move is a common theoretical choice or a sideline.
+- Plain text only: no markdown, no headings, no bold or italics."
 
     append prompt "\n\n===== GAME INFORMATION =====\n"
     if {$pgn ne ""} { append prompt "\nFull PGN:\n$pgn\n" }
@@ -581,6 +613,72 @@ proc ::auto_comment::escapeJson {str} {
         "\r" "\\r"
         "\t" "\\t"
     } $str]
+}
+
+# ::auto_comment::fetchGeminiModels
+#   Queries the Gemini API for the current list of available models.
+#   Returns a list of model names (without the "models/" prefix), or {} on failure.
+#
+proc ::auto_comment::fetchGeminiModels {} {
+    set url "$::auto_comment::geminiApiBase?pageSize=200"
+    set result ""
+    if {[catch {exec curl -s --max-time 15 \
+            -H "x-goog-api-key: $::auto_comment::apiKey" \
+            $url 2>@1} result]} {
+        ::auto_comment::logDebug "Auto Comment: fetchGeminiModels curl error: $result"
+        return {}
+    }
+
+    set models {}
+    foreach {- name} [regexp -all -inline {"name"\s*:\s*"models/([^"]+)"} $result] {
+        # Only the text-generation models are relevant for generateContent.
+        if {[string match "*gemini*" $name]} {
+            lappend models $name
+        }
+    }
+    return [lsort -dictionary $models]
+}
+
+# ::auto_comment::fetchDeepSeekModels
+#   Queries the DeepSeek API for the current list of available models.
+#   Returns a list of model ids, or {} on failure.
+#
+proc ::auto_comment::fetchDeepSeekModels {} {
+    set url "$::auto_comment::deepseekApiBase/models"
+    set result ""
+    if {[catch {exec curl -s --max-time 15 \
+            -H "Authorization: Bearer $::auto_comment::deepseekApiKey" \
+            $url 2>@1} result]} {
+        ::auto_comment::logDebug "Auto Comment: fetchDeepSeekModels curl error: $result"
+        return {}
+    }
+
+    set models {}
+    foreach {- id} [regexp -all -inline {"id"\s*:\s*"([^"]+)"} $result] {
+        lappend models $id
+    }
+    return [lsort -dictionary $models]
+}
+
+# ::auto_comment::loadModels
+#   Populates a model combobox with the current models from the given provider.
+#   Warns the user if the fetch fails (e.g. missing API key or no network).
+#
+proc ::auto_comment::loadModels {combo provider} {
+    if {$provider eq "deepseek"} {
+        set label "DeepSeek"
+        set models [::auto_comment::fetchDeepSeekModels]
+    } else {
+        set label "Gemini"
+        set models [::auto_comment::fetchGeminiModels]
+    }
+    if {[llength $models] > 0} {
+        $combo configure -values $models
+    } else {
+        tk_messageBox -icon warning -type ok -title "Auto Comment" \
+            -message "Could not retrieve the $label model list.\n\nCheck your API key and internet connection." \
+            -parent .
+    }
 }
 
 # ::auto_comment::queryGemini
@@ -804,15 +902,7 @@ proc ::auto_comment::displayPrompt {w prompt} {
     bind $w <Escape> "destroy $w"
     focus $w.result.toolbar.send
 
-    # Center the window
-    update idletasks
-    set winWidth [winfo width $w]
-    set winHeight [winfo height $w]
-    if {$winWidth < 100} { set winWidth 600 }
-    if {$winHeight < 100} { set winHeight 400 }
-    set x [expr {([winfo screenwidth $w] - $winWidth) / 2}]
-    set y [expr {([winfo screenheight $w] - $winHeight) / 2}]
-    wm geometry $w "+$x+$y"
+    ::auto_comment::fitWindow $w 600 400
 }
 
 # ::auto_comment::sendPrompt
@@ -849,11 +939,7 @@ proc ::auto_comment::sendPrompt {} {
     ttk::label $w.lbl -text "Generating AI commentary ([string totitle $::auto_comment::provider])..." \
         -padding 20
     pack $w.lbl
-    update idletasks
-    set x [expr {[winfo screenwidth $w]/2 - 150}]
-    set y [expr {[winfo screenheight $w]/2 - 30}]
-    wm geometry $w "+$x+$y"
-    update idletasks
+    ::auto_comment::fitWindow $w
 
     # Query the LLM
     if {$::auto_comment::provider eq "deepseek"} {

@@ -45,12 +45,6 @@ proc ::analysis_auto_comment::batch_generate {{engineId ""}} {
     wm resizable $w 1 1
     wm minsize $w 450 250
     wm transient $w .
-    
-    # Center the window
-    update idletasks
-    set x [expr {[winfo screenwidth $w]/2 - [winfo width $w]/2}]
-    set y [expr {[winfo screenheight $w]/2 - [winfo height $w]/2}]
-    wm geometry $w "+$x+$y"
 
     ttk::frame $w.content -padding 15
     pack $w.content -fill both -expand 1
@@ -83,6 +77,8 @@ proc ::analysis_auto_comment::batch_generate {{engineId ""}} {
 
     bind $w <Return> "$w.buttons.start invoke"
     bind $w <Escape> "destroy $w"
+
+    ::auto_comment::fitWindow $w 450 250
 }
 
 proc ::analysis_auto_comment::run_batch {{engineId ""}} {
@@ -118,12 +114,6 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
     wm minsize $pw 350 150
     wm transient $pw .
     
-    # Center the window
-    update idletasks
-    set x [expr {[winfo screenwidth $pw]/2 - [winfo width $pw]/2}]
-    set y [expr {[winfo screenheight $pw]/2 - [winfo height $pw]/2}]
-    wm geometry $pw "+$x+$y"
-    
     ttk::frame $pw.content -padding 20
     pack $pw.content -fill both -expand 1
     
@@ -134,6 +124,8 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
     pack $pw.content.pb -fill x -pady 10
     
     update idletasks
+
+    ::auto_comment::fitWindow $pw 350 150
 
     # Start scanning
     sc_move start
@@ -356,7 +348,7 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
                 append prefix "5. CHART ACCURACY: Mention the accuracy percentages, noting they match the labels on the Engine Score Chart.\n"
                 
                 if {!$isNagInvolved} {
-                    append prefix "5. CONCISE START: Since $movePlayed has NO annotation, keep your VERDICT and move commentary to ONE short sentence, then focus 90% on the GAME SUMMARY.\n"
+                    append prefix "6. CONCISE START: Since $movePlayed has NO annotation, keep your VERDICT and move commentary to ONE short sentence, then focus 90% on the GAME SUMMARY.\n"
                 }
                 
                 set prompt "${prefix}\n${prompt}"
