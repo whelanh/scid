@@ -1,10 +1,10 @@
 Name:           scidcommunity
-Version:        5.1.4.12
+Version:        5.1.4.13
 Release:        3.git%{shortcommit}%{?dist}
 Summary:        Chess database application with play and training functionality
 
 # Commit hash from github branch
-%global commit 790751978e0dc0176a80a4f6d4ab2c92272ce31c  
+%global commit 503f6934e4898b94a7b0187011f1de309f46c861  
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 License:        GPL-2.0-or-later
@@ -62,6 +62,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/io.github.whel
 %{_metainfodir}/io.github.whelanh.scidCommunity.appdata.xml
 
 %changelog
+* Wed Sep 09, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-13
+- "Update AI model choices and queries for AI generated commentary"
 * Tue Sep 08, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-12
 - "Enable right-clicking multiple games in the Game List window to strip comments/variations"
 * Sun Sep 06, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-10
