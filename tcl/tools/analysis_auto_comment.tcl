@@ -37,9 +37,10 @@ proc ::analysis_auto_comment::logDebug {message} {
 # sentinel value; returns "" if the token cannot be parsed.
 proc ::analysis_auto_comment::scoreTokenToCp {token} {
     if {$token eq ""} { return "" }
-    # Mate-in-N notation: "M1" (White mates) or "M-3" (Black mates)
-    if {[regexp {^M(-?\d+)$} $token -> n]} {
-        if {$n < 0} { return -100000 }
+    # Mate-in-N notation; the sign may precede or follow the 'M':
+    #   "M3" (White mates), "M-3" or "-M3" (Black mates)
+    if {[regexp {^([+-]?)M([+-]?)\d+$} $token -> s1 s2]} {
+        if {$s1 eq "-" || $s2 eq "-"} { return -100000 }
         return 100000
     }
     # English mate notation
@@ -210,10 +211,10 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
         set playedMoveComment [sc_pos getComment]
         set playedMoveScore ""
         set playedScoreToken ""
-        if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $playedMoveComment -> depth score]} {
+        if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|[+-]?M-?\d+)} $playedMoveComment -> depth score]} {
             set playedMoveScore "score $score at depth $depth"
             set playedScoreToken $score
-        } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $playedMoveComment score]} {
+        } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|[+-]?M-?\d+)} $playedMoveComment score]} {
             set playedMoveScore $score
             set playedScoreToken $score
         }
@@ -310,10 +311,10 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
             lappend variationMoves $firstVarMove
             
             set firstComm [sc_pos getComment]
-            if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $firstComm -> depth score]} {
+            if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|[+-]?M-?\d+)} $firstComm -> depth score]} {
                 lappend varScores "score $score at depth $depth"
                 set bestScoreToken $score
-            } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $firstComm score]} {
+            } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|[+-]?M-?\d+)} $firstComm score]} {
                 lappend varScores $score
                 set bestScoreToken $score
             }
@@ -324,9 +325,9 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
                 set mv [sc_game info previousMoveNT]
                 lappend variationMoves $mv
                 set comm [sc_pos getComment]
-                if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+)} $comm -> depth score]} {
+                if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|[+-]?M-?\d+)} $comm -> depth score]} {
                     if {[llength $varScores] < [llength $variationMoves]} { lappend varScores "score $score at depth $depth" }
-                } elseif {[regexp {(-?\d+\.?\d*|Mate in -?\d+)} $comm score]} {
+                } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|[+-]?M-?\d+)} $comm score]} {
                     if {[llength $varScores] < [llength $variationMoves]} { lappend varScores $score }
                 }
                 incr vCount

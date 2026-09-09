@@ -151,6 +151,7 @@ set helpText(Index) {<h1>scidCommunity Help Topic Index</h1>
   
   <h3>G</h3>
   <ul>
+  <li><a GameComment>Game Comment</a> (Engine Window button)</li>
   <li><a Flags>Game flags</a></li>
   <li><a GameList>Game List</a> window</li>
   <li><a Menus Game>Game menu</a></li>
@@ -3383,7 +3384,7 @@ set helpText(Engine) {<h1>The Engine windows</h1>
     variations.</li>
   <li><b>Config</b> <button tb_eng_config>: Shows or hides the engine configuration
     panel.</li>
-  <li><b>Game Comment</b>: Generates comments for all positions in the game.</li>
+  <li><a GameComment><b>Game Comment</b></a>: Generates comments for all positions in the game.</li>
   </ul>
 
   <h3>Controls</h3>
