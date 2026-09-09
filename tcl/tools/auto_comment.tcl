@@ -480,7 +480,7 @@ Write your commentary about the move just played by $whoMoved.
 4. For a blunder, mistake, or inaccuracy, name the better alternative from Line 1 and the concrete tactical or structural reason it is better.
 
 ===== OUTPUT FORMAT =====
-- First line (exact form): \"VERDICT: $movePlayed is a {adjective} move according to the engine analysis.\" where {adjective} matches the VERDICT label given above.
+- First line (exact form): \"VERDICT: $movePlayed is a {adjective} move according to the engine analysis.\" where {adjective} is the label in the VERDICT line. If the VERDICT line states that the move is absent from the engine's lines, use \"questionable\".
 - Then write ONE concise paragraph:
   * blunder/mistake/inaccuracy: name the Line 1 alternative and why it is better. Under 70 words.
   * best/equal: explain the point of the move (threat, prevention, stabilization) using only the PV. Under 40 words.
