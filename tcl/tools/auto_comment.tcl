@@ -207,73 +207,6 @@ proc ::auto_comment::fetchChessDBEval {fen} {
     }
     return ""
 }
-# ::auto_comment::formatStoredEval
-#   Converts local stored evaluation data (from stored_eval.tcl)
-#   into the prompt-friendly format with SAN and quality labels.
-#   Returns [list evalText moveLabels]
-proc ::auto_comment::formatStoredEval {storedData fen} {
-    lassign $storedData depth source pvlines
-    set color [lindex [split $fen] 1]
-    set isBlack [expr {$color eq "b"}]
-    set sideToMove [expr {$isBlack ? "Black" : "White"}]
-
-    set result "Position evaluation (depth $depth, source: $source). $sideToMove to move.\n"
-    append result "Lines are ranked from best to worst for $sideToMove. Line 1 is the engine's top recommendation.\n"
-
-    set moveLabels [dict create]
-    
-    # Get best score for comparisons
-    set bestCp 0
-    if {[llength $pvlines] > 0} {
-        lassign [lindex $pvlines 0] multipv score score_type pv_uci
-        if {$score_type eq "cp"} {
-            set bestCp [expr {$isBlack ? -1 * $score : $score}]
-        }
-    }
-
-    set lineNum 1
-    foreach pvline $pvlines {
-        lassign $pvline multipv score score_type pv_uci
-        
-        # Determine label
-        set label "best"
-        if {$lineNum > 1 && $score_type eq "cp"} {
-            set thisCp [expr {$isBlack ? -1 * $score : $score}]
-            set cpLoss [expr {$bestCp - $thisCp}]
-            if {$cpLoss < 10} { set label "equal"
-            } elseif {$cpLoss < 50} { set label "slightly worse"
-            } elseif {$cpLoss < 100} { set label "inaccuracy"
-            } elseif {$cpLoss < 200} { set label "mistake"
-            } else { set label "blunder" }
-        } elseif {$score_type eq "mate"} {
-            set label "best (mate)"
-        }
-
-        # SAN conversion
-        set moveList [split $pv_uci " "]
-        set firstMoveUci [lindex $moveList 0]
-        set sanMoves ""
-        catch { set sanMoves [::uci::formatPv $moveList $fen] }
-        set firstMoveSan [lindex [split $sanMoves " "] 0]
-        
-        if {$firstMoveSan ne ""} {
-            dict set moveLabels $firstMoveSan $label
-        }
-
-        # Format score string
-        if {$score_type eq "mate"} {
-            set scoreStr [expr {$score >= 0 ? "+M$score" : "-M[expr {abs($score)}]"}]
-        } else {
-            set scoreStr [format "%+.2f" [expr {$score / 100.0}]]
-        }
-
-        append result "Line $lineNum ($label): $scoreStr. PV: $sanMoves\n"
-        incr lineNum
-    }
-    return [list $result $moveLabels]
-}
-
-
 # ::auto_comment::formatLichessEval
 #   Converts raw Lichess cloud eval JSON into human-readable text
 #   with SAN notation and formatted scores.
@@ -480,10 +413,11 @@ Write your commentary about the move just played by $whoMoved.
 4. For a blunder, mistake, or inaccuracy, name the better alternative from Line 1 and the concrete tactical or structural reason it is better.
 
 ===== OUTPUT FORMAT =====
-- First line (exact form): \"VERDICT: $movePlayed is a {adjective} move according to the engine analysis.\" where {adjective} is the label in the VERDICT line. If the VERDICT line states that the move is absent from the engine's lines, use \"questionable\".
+- First line (exact form): \"VERDICT: $movePlayed is a {adjective} move according to the engine analysis.\" where {adjective} is the label in the VERDICT line. If the move delivers checkmate or forces a win, use \"best\". If the VERDICT line states that the move is absent from the engine's lines, use \"questionable\".
 - Then write ONE concise paragraph:
   * blunder/mistake/inaccuracy: name the Line 1 alternative and why it is better. Under 70 words.
   * best/equal: explain the point of the move (threat, prevention, stabilization) using only the PV. Under 40 words.
+  * checkmate: simply note that the move delivers checkmate and wins the game. Under 30 words.
 - Use the tree statistics only to note whether the move is a common theoretical choice or a sideline.
 - Plain text only: no markdown, no headings, no bold or italics."
 
@@ -840,147 +774,6 @@ proc ::auto_comment::queryDeepSeek {prompt} {
     return [::auto_comment::cleanupText $text]
 }
 
-# ::auto_comment::displayPrompt
-#   Replaces the content of an existing window with the prompt display.
-#   The window must already exist and be mapped (same pattern as Lichess Eval:
-#   destroy loading label, add result frame as sibling, update idletasks, center).
-#
-proc ::auto_comment::displayPrompt {w prompt} {
-    variable _pendingPrompt $prompt
-
-    wm title $w "Auto Comment - LLM Prompt"
-
-    # Remove the loading label (child of $w.content, matching Lichess eval pattern)
-    destroy $w.content.loading
-
-    # Build the prompt display as $w.result (new sibling of $w.content,
-    # same structure as Lichess eval's displayResult)
-    ttk::frame $w.result
-    pack $w.result -fill both -expand 1 -padx 20 -pady 10
-
-    # Toolbar: buttons and provider selector at the top
-    ttk::frame $w.result.toolbar
-    pack $w.result.toolbar -fill x -pady {0 5}
-
-    ttk::label $w.result.toolbar.provlbl -text "Send via:"
-    ttk::combobox $w.result.toolbar.provider -textvariable ::auto_comment::provider \
-        -values {gemini deepseek} -state readonly -width 10
-    pack $w.result.toolbar.provlbl -side left -padx {0 2}
-    pack $w.result.toolbar.provider -side left -padx {0 10}
-
-    ttk::button $w.result.toolbar.send -text "Send" -command [list apply {{w} {
-        destroy $w
-        ::auto_comment::sendPrompt
-    }} $w]
-    ttk::button $w.result.toolbar.copy -text "Copy" -command [list apply {{w} {
-        $w.result.text configure -state normal
-        $w.result.text tag add sel 1.0 end
-        event generate $w.result.text <<Copy>>
-        $w.result.text configure -state disabled
-        $w.result.toolbar.copy configure -text "Copied!"
-        after 1500 [list catch [list $w.result.toolbar.copy configure -text "Copy"]]
-    }} $w]
-    ttk::button $w.result.toolbar.cancel -text "Cancel" -command "destroy $w"
-
-    pack $w.result.toolbar.send -side left -padx 5
-    pack $w.result.toolbar.copy -side left -padx 5
-    pack $w.result.toolbar.cancel -side left -padx 5
-
-    ttk::label $w.result.info -text \
-        "Review the prompt below. Send to an LLM, or Copy to paste into a web AI." \
-        -wraplength 650 -justify left
-    pack $w.result.info -anchor w -pady {0 5}
-
-    # Text widget (same pattern as Lichess Eval: direct pack, no frame)
-    text $w.result.text -height 35 -width 100 -wrap word -relief solid \
-        -borderwidth 1 -font font_Regular -spacing1 4 -spacing3 4
-    pack $w.result.text -fill both -expand 1 -pady {0 10}
-
-    $w.result.text insert end $prompt
-    $w.result.text configure -state disabled
-
-    bind $w <Escape> "destroy $w"
-    focus $w.result.toolbar.send
-
-    ::auto_comment::fitWindow $w 600 400
-}
-
-# ::auto_comment::sendPrompt
-#   Called when the user clicks Send in the prompt preview window.
-#   Handles API key check, LLM query, and comment insertion.
-#
-proc ::auto_comment::sendPrompt {} {
-    set prompt $::auto_comment::_pendingPrompt
-
-    # Check API key before sending
-    set needKey 0
-    if {$::auto_comment::provider eq "deepseek"} {
-        if {$::auto_comment::deepseekApiKey eq ""} { set needKey 1 }
-    } else {
-        if {$::auto_comment::apiKey eq ""} { set needKey 1 }
-    }
-    if {$needKey} {
-        set answer [tk_messageBox -icon question -type yesno \
-            -title "Auto Comment" \
-            -message "No API key configured for [string totitle $::auto_comment::provider].\n\nWould you like to configure it now?" \
-            -parent .]
-        if {$answer eq "yes"} {
-            ::auto_comment::configureApiKey
-        }
-        return
-    }
-
-    # Show progress while querying LLM
-    set w .autoCommentProgress
-    if {[winfo exists $w]} { destroy $w }
-    toplevel $w
-    wm title $w "Auto Comment"
-    wm resizable $w 0 0
-    ttk::label $w.lbl -text "Generating AI commentary ([string totitle $::auto_comment::provider])..." \
-        -padding 20
-    pack $w.lbl
-    ::auto_comment::fitWindow $w
-
-    # Query the LLM
-    if {$::auto_comment::provider eq "deepseek"} {
-        set commentary [::auto_comment::queryDeepSeek $prompt]
-    } else {
-        set commentary [::auto_comment::queryGemini $prompt]
-    }
-
-    destroy $w
-
-    if {$commentary eq ""} {
-        tk_messageBox -icon warning -type ok -title "Auto Comment" \
-            -message "Failed to generate commentary.\n\nPlease check your API key and internet connection." \
-            -parent .
-        return
-    }
-
-    if {[string match "ERROR:*" $commentary]} {
-        set errDetail [string range $commentary 7 end]
-        tk_messageBox -icon warning -type ok -title "Auto Comment" \
-            -message "[string totitle $::auto_comment::provider] API error:\n\n$errDetail" \
-            -parent .
-        return
-    }
-
-    # Insert as comment
-    undoFeature save
-    set existing [sc_pos getComment]
-    if {$existing ne ""} {
-        sc_pos setComment "$existing $commentary"
-    } else {
-        sc_pos setComment $commentary
-    }
-
-    # Refresh the PGN window and comment editor
-    updateBoard -pgn
-    if {[winfo exists .commentWin]} {
-        ::windows::commenteditor::Refresh
-    }
-}
-
 # ::auto_comment::getOpeningName
 #   Retrieves the full opening name for a given ECO code.
 #
@@ -1009,15 +802,14 @@ proc ::auto_comment::getOpeningName {eco} {
 proc ::auto_comment::getTreeInfo {baseId} {
     set treeBlock ""
     set currBase [sc_base current]
-    set targetFen [sc_pos fen]
 
-    # 1. Synchronize the target position with the search database.
-    # We use sc_game fen to set the position in the search base, then sc_filter search board.
+    # 1. Search the database for the current board position.
+    # sc_filter search uses the current game position, which the caller has
+    # already stepped back to before invoking getTreeInfo.
     if {$baseId != $currBase} {
         sc_base switch $baseId
     }
     
-    catch {sc_game fen $targetFen}
     catch {sc_filter search $baseId "tree" board}
 
     # 2. Fetch tree statistics using the combined filter '+dbfilter+tree'.
@@ -1060,172 +852,6 @@ proc ::auto_comment::getTreeInfo {baseId} {
         }
     }
     return $treeBlock
-}
-
-# ::auto_comment::generateComment
-#   Main entry point. Fetches eval, queries LLM, inserts comment.
-#
-proc ::auto_comment::generateComment {{engineId ""}} {
-    # Get the move that was just played
-    # Use untranslated SAN so matching against engine lines is language-independent.
-    set movePlayed [sc_game info previousMoveNT]
-
-    if {$movePlayed eq ""} {
-        tk_messageBox -icon info -type ok -title "Auto Comment" \
-            -message "No move to comment on at the start of the game." \
-            -parent .
-        return
-    }
-
-    # Save current position, then step back to get the position
-    # BEFORE the move was played — this is the position we evaluate.
-    set savedOffset [sc_pos pgnOffset]
-    sc_move back
-    set prevFen [sc_pos fen]
-    # Fetch Tree Statistics WHILE AT THE PRIOR POSITION
-    set treeInfo [::auto_comment::getTreeInfo [sc_base current]]
-    
-    # --- New Engine Data Gathering ---
-    set engineScores ""
-    set engineVerdict ""
-    set winPercChange ""
-    set storedEvalText ""
-
-    if {$engineId ne ""} {
-        set canvas .engineWin$engineId.chart.canvas
-        if {[winfo exists $canvas]} {
-            set scores [::chart::getScores $canvas]
-            set ply [sc_pos location]
-            if {[llength $scores] > $ply && $ply >= 0} {
-                set scoreBefore [lindex $scores $ply]
-                set scoreAfter [lindex $scores [expr {$ply + 1}]]
-                
-                set wpBefore [::accuracy::winPercent $scoreBefore]
-                set wpAfter [::accuracy::winPercent $scoreAfter]
-                set wpDiff [expr {$wpAfter - $wpBefore}]
-                
-                # Format scores and win percentage
-                set sBefore [format "%+0.2f" [expr {$scoreBefore / 100.0}]]
-                set sAfter [format "%+0.2f" [expr {$scoreAfter / 100.0}]]
-                set cpLoss [expr {$scoreBefore - $scoreAfter}]
-                
-                # side == "white" means it's Black's move. We want perspectives for who just moved.
-                set color [sc_pos side]
-                if {$color eq "white"} {
-                    # It was White's move just played.
-                    set winPercChange [format "%+.1f%%" $wpDiff]
-                } else {
-                    # It was Black's move just played.
-                    set winPercChange [format "%+.1f%%" [expr {-$wpDiff}]]
-                }
-                
-                set engineScores "Engine score before: $sBefore, after $movePlayed: $sAfter (Win% change: $winPercChange)."
-            }
-        }
-        
-        # Stored Eval data
-        set fenKey [::stored_eval::fenKey $prevFen]
-        set storedData [::stored_eval::get $engineId $fenKey]
-        if {$storedData ne ""} {
-            set formatted [::stored_eval::formatForDisplay $storedData $prevFen]
-            foreach item $formatted {
-                lassign $item tag text
-                append storedEvalText $text
-            }
-        }
-    }
-
-    # Restore position
-    sc_move pgn $savedOffset
-
-    # Create popup window (same pattern as Lichess Eval: always resizable,
-    # loading label inside a content frame, no early wm geometry)
-    set w .autoCommentPrompt
-    if {[winfo exists $w]} { destroy $w }
-    toplevel $w
-    wm title $w "Auto Comment"
-    wm resizable $w 1 1
-    wm minsize $w 600 400
-    if {[winfo exists .]} { wm transient $w . }
-
-    ttk::frame $w.content -padding 20
-    pack $w.content -fill both -expand 1
-
-    ttk::label $w.content.loading -text "Fetching engine analysis..." -font font_Bold
-    pack $w.content.loading -pady 10
-
-    update idletasks
-
-    # Detect game variant (standard or chess960)
-    set gameVariant [sc_game variant]
-    set variant [expr {$gameVariant eq "chess960" ? "chess960" : "standard"}]
-
-    # Step 1: Check for STORED evaluation (local engine or recent cloud)
-    # This ensures we use the most updated result available in memory.
-    if {$storedEvalText ne ""} {
-        set evalText $storedEvalText
-        # Re-format with labels for the prompt
-        lassign [::auto_comment::formatStoredEval $storedData $prevFen] evalText moveLabels
-    }
-
-    # Step 2: Fallback to FETCHING cloud evaluation if no stored data
-    if {$evalText eq ""} {
-        set evalJson [::auto_comment::fetchLichessEval $prevFen $variant]
-        if {$evalJson ne ""} {
-            lassign [::auto_comment::formatLichessEval $evalJson $prevFen] evalText moveLabels
-        } else {
-            $w.content.loading configure -text "Lichess eval not available, trying chessdb.cn..."
-            update idletasks
-            set evalJson [::auto_comment::fetchChessDBEval $prevFen]
-            if {$evalJson ne ""} {
-                lassign [::auto_comment::formatChessDBEval $evalJson $prevFen] evalText moveLabels
-            }
-        }
-    }
-
-    if {$evalText eq ""} {
-        destroy $w
-        tk_messageBox -icon info -type ok -title "Auto Comment" \
-            -message "No engine evaluation available for this position from either Lichess or chessdb.cn.\n\nThis position may not have been analyzed yet." \
-            -parent .
-        return
-    }
-
-    # Match the played move against engine lines and append a verdict
-    if {[dict exists $moveLabels $movePlayed]} {
-        set playedLabel [dict get $moveLabels $movePlayed]
-        set engineVerdict "VERDICT: The played move $movePlayed is the engine's $playedLabel move."
-    } else {
-        set engineVerdict "VERDICT: The played move $movePlayed does NOT appear in any of the engine's top lines, suggesting it may be a poor choice."
-    }
-
-    # Add accuracy and specific score data to evalText
-    if {$engineScores ne ""} {
-        append evalText "\n$engineScores"
-    }
-    append evalText "\n$engineVerdict"
-
-    # Identify who just moved (opposite of current side to move)
-    set side [sc_pos side]
-    set whoMoved [expr {$side eq "white" ? "Black" : "White"}]
-
-    # Fetch opening info from ECO code
-    set opening ""
-    set eco [sc_game tag get ECO]
-    if {$eco eq ""} { catch {set eco [sc_eco game]} }
-    if {$eco ne ""} { set opening [::auto_comment::getOpeningName $eco] }
-
-    # Fetch the NAG symbol (annotation) for the move
-    set nagSymbol [string trim [sc_pos getNags]]
-    if {$nagSymbol eq "0"} { set nagSymbol "" }
-
-    # Fetch the PGN up to the current move
-    set pgn [sc_game firstMoves -1]
-
-    # Build the prompt and display it in the SAME window (no destroy/recreate)
-    set prompt [::auto_comment::buildPrompt $prevFen $evalText $movePlayed $variant $opening $nagSymbol 0 0 $whoMoved 1 $pgn $treeInfo]
-
-    ::auto_comment::displayPrompt $w $prompt
 }
 
 # ::auto_comment::getTempDir

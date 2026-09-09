@@ -32,6 +32,28 @@ proc ::analysis_auto_comment::logDebug {message} {
     }
 }
 
+# Convert a raw engine score token (e.g. "+2.10", "M1", "M-3", "Mate in 2")
+# into centipawns from White's perspective. Mate scores map to a large
+# sentinel value; returns "" if the token cannot be parsed.
+proc ::analysis_auto_comment::scoreTokenToCp {token} {
+    if {$token eq ""} { return "" }
+    # Mate-in-N notation: "M1" (White mates) or "M-3" (Black mates)
+    if {[regexp {^M(-?\d+)$} $token -> n]} {
+        if {$n < 0} { return -100000 }
+        return 100000
+    }
+    # English mate notation
+    if {[regexp {^Mate in (-?\d+)$} $token -> n]} {
+        if {$n < 0} { return -100000 }
+        return 100000
+    }
+    # Numeric centipawn score
+    if {[regexp {^([+-]?\d+(?:\.\d+)?)$} $token -> n]} {
+        return [expr {int(round($n * 100.0))}]
+    }
+    return ""
+}
+
 proc ::analysis_auto_comment::batch_generate {{engineId ""}} {
     variable _engineId $engineId
     set w .analysisAutoCommentDlg
@@ -187,11 +209,16 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
         set currentPgn [sc_game firstMoves -1]
         set playedMoveComment [sc_pos getComment]
         set playedMoveScore ""
-        if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+)} $playedMoveComment -> depth score]} {
+        set playedScoreToken ""
+        if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $playedMoveComment -> depth score]} {
             set playedMoveScore "score $score at depth $depth"
-        } elseif {[regexp {(-?\d+\.?\d*|Mate in -?\d+)} $playedMoveComment score]} {
+            set playedScoreToken $score
+        } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $playedMoveComment score]} {
             set playedMoveScore $score
+            set playedScoreToken $score
         }
+        # Whether the played move delivered checkmate
+        set playedMoveIsMate [expr {[sc_pos isMate] ? 1 : 0}]
 
         # PERFORMANCE DATA from Engine Window
         set engineStats ""
@@ -260,6 +287,7 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
         # Determine evaluation
         set evalText ""
         set moveLabels [dict create]
+        set bestScoreToken ""
 
         # 1. Cloud Eval
         set evalJson [::auto_comment::fetchLichessEval $prevFen $variant]
@@ -282,10 +310,12 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
             lappend variationMoves $firstVarMove
             
             set firstComm [sc_pos getComment]
-            if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+)} $firstComm -> depth score]} {
+            if {[regexp {(\d+):([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $firstComm -> depth score]} {
                 lappend varScores "score $score at depth $depth"
-            } elseif {[regexp {(-?\d+\.?\d*|Mate in -?\d+)} $firstComm score]} {
+                set bestScoreToken $score
+            } elseif {[regexp {([+-]?\d+\.?\d*|Mate in -?\d+|M-?\d+)} $firstComm score]} {
                 lappend varScores $score
+                set bestScoreToken $score
             }
 
             set vCount 1
@@ -317,9 +347,38 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
         }
 
         if {$evalText ne "" || $isEnd} {
-            # Verdict
-            # Verdict metadata for the prompt builder
-            if {[dict exists $moveLabels $movePlayed]} {
+            # Determine the mover (opposite of the side to move now).
+            set side [sc_pos side]
+            set whoMoved [expr {$side eq "white" ? "Black" : "White"}]
+
+            # Verdict label.
+            # Prefer the game's own engine scores (White perspective) over the
+            # cloud eval's shallow PV ranking, and treat checkmate specially.
+            set playedCp [::analysis_auto_comment::scoreTokenToCp $playedScoreToken]
+            set bestCp [::analysis_auto_comment::scoreTokenToCp $bestScoreToken]
+
+            if {$playedMoveIsMate} {
+                append evalText "\nVERDICT: $movePlayed is the best move — it delivers checkmate."
+            } elseif {$playedCp ne "" && $bestCp ne ""} {
+                if {$whoMoved eq "Black"} {
+                    set cpLoss [expr {$playedCp - $bestCp}]
+                } else {
+                    set cpLoss [expr {$bestCp - $playedCp}]
+                }
+                if {$cpLoss < 0} { set cpLoss 0 }
+                if {$cpLoss < 10} {
+                    set playedLabel "best"
+                } elseif {$cpLoss < 50} {
+                    set playedLabel "slightly worse"
+                } elseif {$cpLoss < 100} {
+                    set playedLabel "inaccuracy"
+                } elseif {$cpLoss < 200} {
+                    set playedLabel "mistake"
+                } else {
+                    set playedLabel "blunder"
+                }
+                append evalText "\nVERDICT: $movePlayed is a $playedLabel move."
+            } elseif {[dict exists $moveLabels $movePlayed]} {
                 set playedLabel [dict get $moveLabels $movePlayed]
                 append evalText "\nVERDICT: $movePlayed is a $playedLabel move."
             } else {
@@ -327,9 +386,6 @@ proc ::analysis_auto_comment::run_batch {{engineId ""}} {
             }
             if {$playedMoveScore ne ""} { append evalText " The engine evaluation for the played move $movePlayed is $playedMoveScore." }
             if {$engineStats ne ""} { append evalText "\n$engineStats" }
-
-            set side [sc_pos side]
-            set whoMoved [expr {$side eq "white" ? "White" : "Black"}]
 
             # Build Prompt
             set prompt [::auto_comment::buildPrompt $prevFen $evalText $movePlayed $variant $opening $nagSymbol 1 1 $whoMoved 0 $currentPgn $treeInfo]

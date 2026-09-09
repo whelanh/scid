@@ -2183,7 +2183,6 @@ set helpText(PGN) {<h1>The <a PGN>PGN</a> window</h1>
   <li><a PGNChessCom>chess.com</a>: Upload the current game to Chess.com for analysis</li>
   <li><a PGNLichess>lichess.org</a>: Upload the current game to Lichess.org for analysis and sharing</li>
   <li><a PGNChessDB>chessdb Engine Tree</a>: Open the current position in the ChessDB.cn cloud database</li>
-  <li><a PGNAutoComment>Auto Comment</a>: Generate AI commentary for the current position</li>
   </ul>
   These buttons provide instant access to powerful online tools without leaving scidCommunity.
   See the individual help topics for each button for more details.
@@ -2458,43 +2457,12 @@ set helpText(PGNChessDB) {<h1>PGN Window: chessdb Engine Tree Button</h1>
 }
 
 ####################
-### PGN Window Auto Comment button help:
+### Engine Window Game Comment button help:
 
-set helpTitle(PGNAutoComment) "Auto Comment Button"
-set helpText(PGNAutoComment) {<h1>PGN Window: Auto Comment Button</h1>
+set helpTitle(GameComment) "Game Comment Button"
+set helpText(GameComment) {<h1>Engine Window: Game Comment Button</h1>
   <p>
-  The <b>Auto Comment</b> button in the <a PGN>PGN</a> window uses Artificial Intelligence
-  (Gemini or DeepSeek) to generate human-like commentary for the current position.
-  </p>
-  
-  <h3>How to use</h3>
-  <p>
-  Click the <b>Auto Comment</b> button to generate a comment for the current move.
-  scidCommunity will:
-  <ul>
-  <li>Fetch the current position's evaluation from Lichess or ChessDB</li>
-  <li>Send the position data and engine analysis to the chosen AI model</li>
-  <li>Display a preview of the generated commentary</li>
-  <li>Allow you to edit or refine the comment before adding it to the game</li>
-  </ul>
-  </p>
-  
-  <h3>Configuration</h3>
-  <p>
-  Right-click the <b>Auto Comment</b> button to configure your API keys and select
-  your preferred LLM provider (Gemini or DeepSeek).
-  </p>
-  
-  <p><footer>(Updated: scidCommunity, August 2024)</footer></p>
-}
-
-####################
-### Analysis Window Auto Comment button help:
-
-set helpTitle(AnalysisAutoComment) "Auto Comment Button"
-set helpText(AnalysisAutoComment) {<h1>Analysis Window: Auto Comment Button</h1>
-  <p>
-  The <b>Auto Comment</b> button in the <a Analysis>Analysis Engine</a> window allows you to
+  The <b>Game Comment</b> button in the <a Engine>Engine</a> window allows you to
   automatically generate AI commentary for an entire game in batch mode.
   </p>
   
@@ -2517,7 +2485,7 @@ set helpText(AnalysisAutoComment) {<h1>Analysis Window: Auto Comment Button</h1>
   explanations align with your specific engine analysis.
   </p>
   
-  <p><footer>(Updated: scidCommunity, March 2026)</footer></p>
+  <p><footer>(Updated: scidCommunity, September 2026)</footer></p>
 }
 
 
@@ -3415,8 +3383,6 @@ set helpText(Engine) {<h1>The Engine windows</h1>
     variations.</li>
   <li><b>Config</b> <button tb_eng_config>: Shows or hides the engine configuration
     panel.</li>
-  <li><b>Auto Comment</b>: Generates a comment for the current position based on
-    the engine analysis.</li>
   <li><b>Game Comment</b>: Generates comments for all positions in the game.</li>
   </ul>
 
