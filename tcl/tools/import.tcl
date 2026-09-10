@@ -231,7 +231,9 @@ proc importPgnFile {{base} {fnames ""}} {
 #   sequence all match a game already present (or an earlier game in the
 #   same batch) are skipped.
 #
-#   Returns 1 on success, 0 if the user cancelled.
+#   Reports the outcome itself (success summary, import error, or the
+#   "no writable database" message) and returns 1 on success, 0 otherwise
+#   (cancelled, no writable database, or import failure). It never raises.
 proc importPgnNoDup {pgnfile title} {
   set bases {}
   foreach i [sc_base list] {
@@ -292,7 +294,7 @@ proc importPgnNoDup {pgnfile title} {
   closeProgressWindow true
   if {$err} {
     ERROR::MessageBox
-    error $result
+    return 0
   }
 
   set nImported [lindex $result 0]

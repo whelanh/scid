@@ -305,13 +305,10 @@ proc ::chesscom::openPGN {pgnfile username startYear} {
     error "No games were downloaded. Please check the username or start year/month."
   }
 
-  if {[catch {
-    importPgnNoDup $pgnfile "Import My Chess.com Games"
-    after 5000 [list catch [list file delete -force $::chesscom::tempDir]]
-  } err]} {
-    catch {file delete -force $::chesscom::tempDir}
-    error "Error importing PGN file: $err"
-  }
+  # importPgnNoDup reports its own outcome (success, import error, or
+  # cancellation), so no further error handling is needed here.
+  importPgnNoDup $pgnfile "Import My Chess.com Games"
+  after 5000 [list catch [list file delete -force $::chesscom::tempDir]]
 }
 
 # ::chesscom::getTempDir

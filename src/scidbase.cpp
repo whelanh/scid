@@ -319,28 +319,78 @@ namespace {
 constexpr uint64_t kFnvOffsetBasis = 1469598103934665603ULL;
 constexpr uint64_t kFnvPrime = 1099511628211ULL;
 
+// Fold a code point to lowercase for the Latin-script ranges that occur in
+// chess player names (ASCII, Latin-1 Supplement and Latin Extended-A).
+// Characters outside these ranges are returned unchanged.
+uint32_t foldLatinCodepoint(uint32_t cp) {
+	if (cp < 0x80)
+		return (cp >= 'A' && cp <= 'Z') ? cp + ('a' - 'A') : cp;
+
+	// Latin-1 Supplement: U+00C0..U+00DE are the uppercase letters and map to
+	// U+00E0..U+00FE (U+00D7 is the multiplication sign, not a letter).
+	if (cp >= 0x00C0 && cp <= 0x00DE && cp != 0x00D7)
+		return cp + 0x20;
+
+	if (cp == 0x0130) // İ (Latin capital I with dot) has no precomposed
+		return 0x0069; // lowercase here; fold it to plain 'i'.
+	if (cp == 0x0178) // Ÿ (Latin capital Y with diaeresis)
+		return 0x00FF; //   -> ÿ
+
+	// Latin Extended-A: uppercase letters sit on even code points and their
+	// lowercase counterparts on the following odd code point. Exceptions that
+	// are already lowercase (U+0138 ĸ) are left alone.
+	if (cp >= 0x0100 && cp <= 0x017E && !(cp & 1) && cp != 0x0138)
+		return cp + 1;
+
+	return cp;
+}
+
 // Hash a normalized player name: leading/trailing whitespace is stripped and
-// the result is lowercased before hashing. This is the same normalization
-// used by the duplicate fingerprint, so "  CARLSEN, Magnus " and
-// "carlsen, magnus" hash to the same value.
+// the result is lowercased (ASCII and common Latin accents) before hashing.
+// This is the same normalization used by the duplicate fingerprint, so
+// "  CARLSEN, Magnus ", "carlsen, magnus", "DÍAZ" and "díaz" all hash to the
+// same value. Case folding is limited to the Latin ranges; other scripts are
+// left unchanged, which can only produce false negatives (a duplicate is
+// re-imported), never a false positive.
 uint64_t nameNormHash(const char* name) {
 	if (name == nullptr)
 		return kFnvOffsetBasis;
 
-	const char* s = name;
-	while (*s && std::isspace(static_cast<unsigned char>(*s)))
-		++s;
-	const char* e = s;
+	const unsigned char* s = reinterpret_cast<const unsigned char*>(name);
+	const unsigned char* e = s;
 	while (*e)
 		++e;
-	while (e > s && std::isspace(static_cast<unsigned char>(e[-1])))
+	while (s < e && std::isspace(*s))
+		++s;
+	while (e > s && std::isspace(e[-1]))
 		--e;
 
 	uint64_t hash = kFnvOffsetBasis;
-	for (const char* p = s; p < e; ++p) {
-		hash ^= static_cast<unsigned char>(
-		    std::tolower(static_cast<unsigned char>(*p)));
+	while (s < e) {
+		uint32_t cp = *s;
+		int len = 1;
+		if (cp >= 0xC0) {
+			if ((cp & 0xE0) == 0xC0 && s + 1 < e) {
+				cp = ((*s & 0x1F) << 6) | (s[1] & 0x3F);
+				len = 2;
+			} else if ((cp & 0xF0) == 0xE0 && s + 2 < e) {
+				cp = ((*s & 0x0F) << 12) | ((s[1] & 0x3F) << 6) |
+				     (s[2] & 0x3F);
+				len = 3;
+			} else if ((cp & 0xF8) == 0xF0 && s + 3 < e) {
+				cp = ((*s & 0x07) << 18) | ((s[1] & 0x3F) << 12) |
+				     ((s[2] & 0x3F) << 6) | (s[3] & 0x3F);
+				len = 4;
+			} else {
+				// Invalid/truncated sequence: hash the raw byte.
+				cp = *s;
+				len = 1;
+			}
+		}
+
+		hash ^= foldLatinCodepoint(cp);
 		hash *= kFnvPrime;
+		s += len;
 	}
 	return hash;
 }
