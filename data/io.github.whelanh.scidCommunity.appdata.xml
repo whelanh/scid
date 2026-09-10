@@ -79,12 +79,17 @@
   <content_rating type="oars-1.0" />
 
   <releases>
- <release version="5.1.4.14" date="2026-09-08">
+ <release version="5.1.4.15" date="2026-09-10">
+      <description>
+        <p>Add strip comments, not annotations option to Game List right-click menu</p>
+      </description>
+    </release>
+ <release version="5.1.4.14" date="2026-09-09">
       <description>
         <p>Enable importing chess.com, Lichess, and PGN games into existing database with no duplicates</p>
       </description>
     </release>
- <release version="5.1.4.13" date="2026-09-08">
+ <release version="5.1.4.13" date="2026-09-09">
       <description>
         <p>Update model choices and queries for AI generated commentary</p>
       </description>

@@ -1,10 +1,10 @@
 Name:           scidcommunity
-Version:        5.1.4.14
+Version:        5.1.4.15
 Release:        3.git%{shortcommit}%{?dist}
 Summary:        Chess database application with play and training functionality
 
 # Commit hash from github branch
-%global commit 269020a3ccc4feb92bf03df8599cf2b58a790692  
+%global commit e526c4680f20f79e4f7f36e84bac50017bf2c796  
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 License:        GPL-2.0-or-later
@@ -62,6 +62,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/io.github.whel
 %{_metainfodir}/io.github.whelanh.scidCommunity.appdata.xml
 
 %changelog
+* Thu Sep 10, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-15
+- "Add a strip comments, not annotations option to right-click menu in the Game List Window"
 * Wed Sep 09, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-14
 - "Enable importing chess.com, Lichess, and PGN games into existing database; no duplicates"
 * Wed Sep 09, 2026 Hugh Whelan <brickhousedevelopers@gmail.com> - 5.1.4-13
