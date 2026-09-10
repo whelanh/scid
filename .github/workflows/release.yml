@@ -62,12 +62,12 @@ jobs:
           # 2. Replace the broken symlink with a wrapper script that sets the
           #    working directory to Contents/scid (where start.tcl is located)
           rm -f "$MACOS_BIN"
-          cat > "$MACOS_BIN" <<'WRAPPER'
-#!/bin/bash
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$SCRIPT_DIR/../scid"
-exec "$SCRIPT_DIR/../scid/scidCommunity" "$@"
-WRAPPER
+          printf '%s\n' \
+            '#!/bin/bash' \
+            'SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"' \
+            'cd "$SCRIPT_DIR/../scid"' \
+            'exec "$SCRIPT_DIR/../scid/scidCommunity" "$@"' \
+            > "$MACOS_BIN"
           chmod +x "$MACOS_BIN"
 
           # 3. Ad-hoc re-sign the bundle after modifying its contents
