@@ -89,6 +89,8 @@ menuText D EditUndo "Rückgängig" 0 {Macht die letzte Änderung rückgängig}
 menuText D EditRedo "Wiederherstellen" 0 {Redo last game change}
 menuText D EditStripComments "Kommentare" 0 \
   {Alle Kommentare und Kommentarzeichen aus dieser Partie entfernen}
+menuText D EditStripCommentsNotAnnos "Kommentare, keine Anmerkungen" 0 \
+  {Kommentare entfernen, aber Anmerkungen (NAGs) dieser Partie beibehalten}
 menuText D EditStripVars "Varianten" 0 \
   {Alle Varianten aus der Partie entfernen}
 menuText D EditStripAll "Kommentare und Variationen" 0 \

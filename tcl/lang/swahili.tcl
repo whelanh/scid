@@ -68,6 +68,8 @@ menuText Z EditUndo "Tendua" 0 {Tendua mabadiliko ya mchezo uliopita}
 menuText Z EditRedo "Rudia" 0 {Rudia mabadiliko ya mchezo uliopita}
 menuText Z EditStripComments "Maoni" 0 \
   {Ondoa maoni na vidokezo vyote kutoka kwa mchezo huu}
+menuText Z EditStripCommentsNotAnnos "Maoni, si vidokezo" 0 \
+  {Ondoa maoni lakini uhifadhi vidokezo (NAGs) kutoka kwa mchezo huu}
 menuText Z EditStripVars "Tofauti" 0 {Ondoa tofauti zote kutoka kwa mchezo huu}
 menuText Z EditStripAll "Maoni na Tofauti" 0 \
   {Ondoa maoni yote, vidokezo na tofauti kutoka kwa mchezo huu}

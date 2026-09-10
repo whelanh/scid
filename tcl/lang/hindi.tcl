@@ -68,6 +68,8 @@ menuText h EditUndo "पूर्ववत" 0 {अंतिम गेम पर�
 menuText h EditRedo "फिर से करना" 0 {अंतिम गेम परिवर्तन फिर से करें}
 menuText h EditStripComments "टिप्पणियाँ" 0 \
   {इस गेम से सभी टिप्पणियाँ और टिप्पणियाँ हटा दें}
+menuText h EditStripCommentsNotAnnos "टिप्पणियाँ, विश्लेषण चिह्न नहीं" 0 \
+  {इस खेल से टिप्पणियाँ हटाएँ, लेकिन विश्लेषण चिह्न (NAGs) रखें}
 menuText h EditStripVars "बदलाव" 0 {इस खेल से सभी विविधताएँ हटाएँ}
 menuText h EditStripAll "टिप्पणियाँ और विविधताएँ" 0 \
   {इस गेम से सभी टिप्पणियाँ और विविधताएँ हटा दें}

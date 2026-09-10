@@ -77,6 +77,8 @@ menuText S EditUndo "Deshacer" 0 {Deshace el último cambio en la partida}
 menuText S EditRedo "Rehacer" 0 {Rehacer el último cambio de juego}
 menuText S EditStripComments "Comentarios" 0 \
   {Quita todos los comentarios y variaciones de esta partida}
+menuText S EditStripCommentsNotAnnos "Comentarios, no anotaciones" 0 \
+  {Quita los comentarios, pero conserva las anotaciones (NAGs) de esta partida}
 menuText S EditStripVars "Variaciones" 0 {Quita todas las variaciones de esta partida}
 menuText S EditStripAll "Comentarios y variaciones" 0 \
   {Elimina todos los comentarios, anotaciones y variaciones de este juego.}

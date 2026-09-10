@@ -77,6 +77,8 @@ menuText N EditUndo "Ongedaan" 0 {Maak laatset verandering ongedaan}
 menuText N EditRedo "Opnieuw uitvoeren" 0 {Voer de laatste spelwijziging opnieuw uit}
 menuText N EditStripComments "Commentaar" 0 \
   {Verwijder alle commentaar en annotaties uit deze partij}
+menuText N EditStripCommentsNotAnnos "Commentaar, geen annotaties" 0 \
+  {Verwijder commentaar, maar behoud annotaties (NAG's) in deze partij}
 menuText N EditStripVars "Varianten" 0 {Verwijder alle varianten uit deze partij}
 menuText N EditStripAll "Opmerkingen en variaties" 0 \
   {Verwijder alle opmerkingen, annotaties en variaties uit dit spel}

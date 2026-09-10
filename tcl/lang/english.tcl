@@ -108,6 +108,8 @@ menuText E EditUndo "Undo" 0 {Undo last game change}
 menuText E EditRedo "Redo" 0 {Redo last game change}
 menuText E EditStripComments "Comments" 0 \
   {Strip all comments and annotations from this game}
+menuText E EditStripCommentsNotAnnos "Comments, not annotations" 14 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText E EditStripVars "Variations" 0 {Strip all variations from this game}
 menuText E EditStripAll "Comments and Variations" 0 \
   {Strip all comments, annotations and variations from this game}

@@ -65,6 +65,8 @@ menuText M EditStrip "删除" 0 {从此游戏中删除注释或变化}
 menuText M EditUndo "撤销" 0 {撤销上次游戏更改}
 menuText M EditRedo "重做" 0 {重做上次游戏更改}
 menuText M EditStripComments "注释" 0 {从此游戏中删除所有注释和标注}
+menuText M EditStripCommentsNotAnnos "注释，不含标注" 0 \
+  {从此游戏中删除注释，但保留标注（NAG）}
 menuText M EditStripVars "变化" 0 {从此游戏中删除所有变化}
 menuText M EditStripAll "评论和变化" 0 \
   {删除该游戏的所有评论、注释和变体}

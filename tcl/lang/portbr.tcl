@@ -70,6 +70,8 @@ menuText B EditUndo "Desfazer" 0 {Desfaz última mudança no jogo}
 menuText B EditRedo "Repetir" 0 {Repete última mudança no jogo}
 menuText B EditStripComments "Limpar Comentários" 0 \
   {Limpa comentários e anotações no jogo atual}
+menuText B EditStripCommentsNotAnnos "Comentários, não anotações" 0 \
+  {Limpa os comentários, mas mantém as anotações (NAGs) no jogo atual}
 menuText B EditStripVars "Limpar Variantes" 0 \
   {Limpa todas as variantes no jogo atual}
 menuText B EditStripAll "Comentários e variações" 0 \

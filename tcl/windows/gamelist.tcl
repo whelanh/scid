@@ -1425,6 +1425,8 @@ proc glist.popupmenu_ {{w} {x} {y} {abs_x} {abs_y} {layout}} {
       menu $w.game_menu.strip
       $w.game_menu.strip add command -label [tr EditStripComments] \
         -command [list ::game::StripSelected $::glistBase($w) $sel_literal comments]
+      $w.game_menu.strip add command -label [tr EditStripCommentsNotAnnos] \
+        -command [list ::game::StripSelected $::glistBase($w) $sel_literal commentsnonag]
       $w.game_menu.strip add command -label [tr EditStripVars] \
         -command [list ::game::StripSelected $::glistBase($w) $sel_literal variations]
       $w.game_menu.strip add command -label [tr EditStripAll] \
