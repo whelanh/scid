@@ -517,6 +517,18 @@ translate Z StartPos {Nafasi ya kuanza}
 translate Z Total {Jumla}
 translate Z readonly {kusoma tu}
 
+# Import games (skip duplicates):
+translate Z ImportInto {Ingiza kwenye:}
+translate Z Clipbase {Clipbase}
+translate Z NoWritableDatabases {Hakuna hifadhidata zinazoweza kuandikwa zilizofunguliwa. Tafadhali fungua au unda hifadhidata kwanza.}
+translate Z Imported {Imeingizwa}
+translate Z Into {ndani}
+translate Z Skipped {Imerukwa}
+translate Z DuplicateGame {mchezo wa kurudia}
+translate Z DuplicateGames {michezo ya nakala}
+translate Z PgnErrorsWarnings {Makosa/maonyo ya PGN:}
+translate Z NoPgnErrorsWarnings {bila makosa au maonyo ya PGN.}
+
 # Standard error messages:
 translate Z ErrNotOpen {Hii si hifadhidata iliyo wazi.}
 translate Z ErrReadOnly {Hifadhidata hii ni ya kusoma tu; haiwezi kubadilishwa.}

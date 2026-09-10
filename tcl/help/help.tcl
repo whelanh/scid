@@ -1786,6 +1786,9 @@ set helpText(Import) {<h1>The Import window</h1>
   <p>
   First, you can import the games in the file to an existing database
   with the <menu>Tools: Import file of <a PGN>PGN</a> games...</menu> menu command.
+  Games that are already present in the database are automatically skipped:
+  a game is considered a duplicate when its normalized White and Black player
+  names, exact Date, Result and exact move sequence all match an existing game.
   </p>
   <p>
   The alternative is to open the <a PGN>PGN</a> file directly in scidCommunity. However, PGN
@@ -1947,14 +1950,11 @@ set helpText(ImportLichess) {<h1>Import my Lichess</h1>
   
   <h3>After download</h3>
   <p>
-  Once downloaded, the games are automatically opened in the Games List window.
-  You can then:
-  <ul>
-  <li>Browse through your games</li>
-  <li>Filter by various criteria</li>
-  <li>Import selected games into your database</li>
-  <li>Analyze games with chess engines</li>
-  </ul>
+  Once downloaded, you are asked to choose a destination database (the clipbase or
+  any open database). The games are imported directly into that database, and any
+  games that are already present are automatically skipped. A game is considered a
+  duplicate when its normalized White and Black player names, exact Date, Result and
+  exact move sequence all match an existing game.
   </p>
   
   <h3>Requirements</h3>
@@ -2007,8 +2007,10 @@ set helpText(ImportChessCom) {<h1>Import my chess.com</h1>
   <h3>After download</h3>
   <p>
   Once the download completes, all games are concatenated into a single <a PGN>PGN</a> file
-  and automatically opened in the Games List window. You can then filter, analyze,
-  or import the games into your scidCommunity database.
+  and you are asked to choose a destination database (the clipbase or any open
+  database). The games are imported directly into that database, and any games that
+  are already present (matching White and Black players, Date, Result and exact move
+  sequence) are automatically skipped.
   </p>
   
   <h3>Requirements</h3>

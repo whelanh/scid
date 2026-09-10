@@ -281,6 +281,10 @@ proc ::win::createDialog {w {y 10}} {
 	catch { wm transient $w . }
 	catch { wm group $w . }
 	catch { wm attributes $w -type dialog }
+
+	if {[isHyprlandSession]} {
+		after idle [list centerWindowHyprland $w]
+	}
 }
 
 # Make sure that a window is visible

@@ -558,6 +558,18 @@ translate g StartPos {Стартова позиция}
 translate g Total {Общо}
 translate g readonly {само за четене}
 
+# Import games (skip duplicates):
+translate g ImportInto {Импортиране в:}
+translate g Clipbase {Clipbase}
+translate g NoWritableDatabases {Няма отворени бази данни с възможност за запис. Моля, първо отворете или създайте база данни.}
+translate g Imported {Внесени}
+translate g Into {в}
+translate g Skipped {Пропуснато}
+translate g DuplicateGame {дублирана игра}
+translate g DuplicateGames {дублирани игри}
+translate g PgnErrorsWarnings {PGN грешки/предупреждения:}
+translate g NoPgnErrorsWarnings {без PGN грешки или предупреждения.}
+
 # Standard error messages:
 translate g ErrNotOpen {Това не е отворена база данни.}
 translate g ErrReadOnly {Тази база данни е само за четене; не може да бъде променено.}

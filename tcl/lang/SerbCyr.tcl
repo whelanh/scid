@@ -558,6 +558,18 @@ translate J StartPos {Почетна позиција}
 translate J Total {Укупно}
 translate J readonly {само за читање}
 
+# Import games (skip duplicates):
+translate J ImportInto {Увези у:}
+translate J Clipbase {Цлипбасе}
+translate J NoWritableDatabases {Нема отворених база података за писање. Прво отворите или креирајте базу података.}
+translate J Imported {Увезено}
+translate J Into {инто}
+translate J Skipped {Скиппед}
+translate J DuplicateGame {дупликат игре}
+translate J DuplicateGames {дупликате игара}
+translate J PgnErrorsWarnings {ПГН грешке/упозорења:}
+translate J NoPgnErrorsWarnings {без ПГН грешака или упозорења.}
+
 # Standard error messages:
 translate J ErrNotOpen {Ово није отворена база података.}
 translate J ErrReadOnly {Ова база података је само за читање; не може се мењати.}

@@ -558,6 +558,18 @@ translate L StartPos {Poziția de pornire}
 translate L Total {Total}
 translate L readonly {numai pentru citire}
 
+# Import games (skip duplicates):
+translate L ImportInto {Import în:}
+translate L Clipbase {Clipbase}
+translate L NoWritableDatabases {Nu există baze de date inscriptibile deschise. Mai întâi deschideți sau creați o bază de date.}
+translate L Imported {Importat}
+translate L Into {în}
+translate L Skipped {Sărit}
+translate L DuplicateGame {joc duplicat}
+translate L DuplicateGames {jocuri duplicate}
+translate L PgnErrorsWarnings {Erori/avertismente PGN:}
+translate L NoPgnErrorsWarnings {fără erori sau avertismente PGN.}
+
 # Standard error messages:
 translate L ErrNotOpen {Aceasta nu este o bază de date deschisă.}
 translate L ErrReadOnly {Această bază de date este doar pentru citire; nu poate fi alterat.}

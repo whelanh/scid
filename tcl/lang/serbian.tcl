@@ -782,6 +782,26 @@ translate Y Total {Total}
 # ====== TODO To be translated ======
 translate Y readonly {read-only}
 # ====== TODO To be translated ======
+translate Y ImportInto {Import into:}
+# ====== TODO To be translated ======
+translate Y Clipbase {Clipbase}
+# ====== TODO To be translated ======
+translate Y NoWritableDatabases {There are no writable databases open. Please open or create a database first.}
+# ====== TODO To be translated ======
+translate Y Imported {Imported}
+# ====== TODO To be translated ======
+translate Y Into {into}
+# ====== TODO To be translated ======
+translate Y Skipped {Skipped}
+# ====== TODO To be translated ======
+translate Y DuplicateGame {duplicate game}
+# ====== TODO To be translated ======
+translate Y DuplicateGames {duplicate games}
+# ====== TODO To be translated ======
+translate Y PgnErrorsWarnings {PGN errors/warnings:}
+# ====== TODO To be translated ======
+translate Y NoPgnErrorsWarnings {with no PGN errors or warnings.}
+# ====== TODO To be translated ======
 translate Y ErrNotOpen {This is not an open database.}
 # ====== TODO To be translated ======
 translate Y ErrReadOnly {This database is read-only; it cannot be altered.}

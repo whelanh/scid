@@ -294,7 +294,8 @@ proc ::chesscom::downloadWithHTTP {apiurl outfile} {
 }
 
 # ::chesscom::openPGN
-#   Open concatenated PGN and clean up
+#   Import the concatenated PGN into a user-chosen database, skipping
+#   duplicate games, then clean up.
 proc ::chesscom::openPGN {pgnfile username startYear} {
   set ::chesscom::downloading 0
   catch {.menu.file entryconfig "Import my chess.com*" -state normal}
@@ -304,14 +305,12 @@ proc ::chesscom::openPGN {pgnfile username startYear} {
     error "No games were downloaded. Please check the username or start year/month."
   }
 
-  if {[catch {
-    ::file::Open $pgnfile
-    tk_messageBox -icon info -type ok -title "Chess.com Import Complete" \
-      -message "Successfully downloaded games for Chess.com user '$username' starting from $startYear.\n\nThe games are now open in the Games List window."
+  # importPgnNoDup reports its own outcome (success, import error, or
+  # cancellation). Only on success is the downloaded PGN deleted; on
+  # failure/cancel it is kept so a retry does not require downloading
+  # everything again.
+  if {[importPgnNoDup $pgnfile "Import My Chess.com Games"]} {
     after 5000 [list catch [list file delete -force $::chesscom::tempDir]]
-  } err]} {
-    catch {file delete -force $::chesscom::tempDir}
-    error "Error opening PGN file: $err"
   }
 }
 

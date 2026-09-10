@@ -527,6 +527,18 @@ translate O StartPos {Utgangsstilling}
 translate O Total {Sammenlagt}
 translate O readonly {skrivebeskyttet}
 
+# Import games (skip duplicates):
+translate O ImportInto {Importer til:}
+translate O Clipbase {Klippbase}
+translate O NoWritableDatabases {Det er ingen skrivbare databaser åpne. Vennligst åpne eller opprett en database først.}
+translate O Imported {Importert}
+translate O Into {inn i}
+translate O Skipped {Hoppet over}
+translate O DuplicateGame {duplikatspill}
+translate O DuplicateGames {dupliserte spill}
+translate O PgnErrorsWarnings {PGN-feil/advarsler:}
+translate O NoPgnErrorsWarnings {uten PGN-feil eller advarsler.}
+
 # Standard error messages:
 translate O ErrNotOpen {This is not an open database.} ;# ***
 translate O ErrReadOnly {This database is read-only; it cannot be altered.} ;# ***

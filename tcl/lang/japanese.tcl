@@ -558,6 +558,18 @@ translate A StartPos {開始位置}
 translate A Total {合計}
 translate A readonly {読み取り専用}
 
+# Import games (skip duplicates):
+translate A ImportInto {インポート先:}
+translate A Clipbase {クリップベース}
+translate A NoWritableDatabases {開いている書き込み可能なデータベースがありません。まずデータベースを開くか作成してください。}
+translate A Imported {輸入品}
+translate A Into {の中へ}
+translate A Skipped {スキップされました}
+translate A DuplicateGame {重複したゲーム}
+translate A DuplicateGames {重複したゲーム}
+translate A PgnErrorsWarnings {PGN エラー/警告:}
+translate A NoPgnErrorsWarnings {PGN エラーや警告はありません。}
+
 # Standard error messages:
 translate A ErrNotOpen {これはオープンなデータベースではありません。}
 translate A ErrReadOnly {このデータベースは読み取り専用です。変更することはできません。}

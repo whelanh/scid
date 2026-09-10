@@ -549,6 +549,18 @@ translate G StartPos {Εναρκτήρια θέση}
 translate G Total {Σύνολο}
 translate G readonly {μόνο για ανάγνωση}
 
+# Import games (skip duplicates):
+translate G ImportInto {Εισαγωγή σε:}
+translate G Clipbase {Clipbase}
+translate G NoWritableDatabases {Δεν υπάρχουν ανοιχτές βάσεις δεδομένων με δυνατότητα εγγραφής. Ανοίξτε ή δημιουργήστε πρώτα μια βάση δεδομένων.}
+translate G Imported {Εισαγόμενος}
+translate G Into {σε}
+translate G Skipped {Παράλειψη}
+translate G DuplicateGame {διπλό παιχνίδι}
+translate G DuplicateGames {διπλά παιχνίδια}
+translate G PgnErrorsWarnings {Σφάλματα/προειδοποιήσεις PGN:}
+translate G NoPgnErrorsWarnings {χωρίς σφάλματα ή προειδοποιήσεις PGN.}
+
 # Standard error messages:
 translate G ErrNotOpen {Αυτή η βάση δεδομένων δεν είναι ανοικτή.}
 translate G ErrReadOnly {Αυτή η βάση δεδομένων είναι μόνον για ανάγνωση. Δεν μπορεί να αντικατασταθεί.}

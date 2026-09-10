@@ -103,7 +103,26 @@ proc setWinLocation {win} {
   if {[info exists winX${suffix}($win)]  &&  [info exists winY${suffix}($win)]  && \
         [set winX${suffix}($win)] >= 0  &&  [set winY${suffix}($win)] >= 0} {
     catch [list wm geometry $win "+[set winX${suffix}($win)]+[set winY${suffix}($win)]"]
+  } elseif {[isHyprlandSession]} {
+    after idle [list centerWindowHyprland $win]
   }
+}
+
+# Hyprland (XWayland) does not center floating windows, so they appear at the
+# top-left of the screen, often partially off-screen. Center a toplevel on its
+# screen once its contents have been laid out. This is only used under
+# Hyprland, so KDE, GNOME, Windows and other desktops keep their native
+# window placement.
+proc centerWindowHyprland {w} {
+  if {![winfo exists $w]} { return }
+  update idletasks
+  set ww [winfo reqwidth $w]
+  set wh [winfo reqheight $w]
+  set x [expr {([winfo screenwidth $w] - $ww) / 2}]
+  set y [expr {([winfo screenheight $w] - $wh) / 2}]
+  if {$x < 0} { set x 0 }
+  if {$y < 0} { set y 0 }
+  catch { wm geometry $w +$x+$y }
 }
 
 proc setWinSize {win} {

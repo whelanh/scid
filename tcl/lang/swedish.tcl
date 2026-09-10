@@ -528,6 +528,18 @@ translate W StartPos {Utgångsställning}
 translate W Total {Totalt}
 translate W readonly {bara läsbar} ;# ***
 
+# Import games (skip duplicates):
+translate W ImportInto {Importera till:}
+translate W Clipbase {Clipbase}
+translate W NoWritableDatabases {Det finns inga skrivbara databaser öppna. Öppna eller skapa en databas först.}
+translate W Imported {Importerad}
+translate W Into {till}
+translate W Skipped {Hoppade över}
+translate W DuplicateGame {dubblettspel}
+translate W DuplicateGames {dubbletter av spel}
+translate W PgnErrorsWarnings {PGN-fel/varningar:}
+translate W NoPgnErrorsWarnings {utan PGN-fel eller varningar.}
+
 # Standard error messages:
 translate W ErrNotOpen {Databasen är inte öppen.}
 translate W ErrReadOnly {Databasen är skrivskyddad. Du kan inte ändra i den.}

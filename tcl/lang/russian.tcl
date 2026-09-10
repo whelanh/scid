@@ -524,6 +524,18 @@ translate R StartPos {Стартовая позиция}
 translate R Total {Всего}
 translate R readonly {Только для чтения}
 
+# Import games (skip duplicates):
+translate R ImportInto {Импортировать в:}
+translate R Clipbase {База клипов}
+translate R NoWritableDatabases {Нет открытых доступных для записи баз данных. Пожалуйста, сначала откройте или создайте базу данных.}
+translate R Imported {Импортировано}
+translate R Into {в}
+translate R Skipped {Пропущено}
+translate R DuplicateGame {дубликат игры}
+translate R DuplicateGames {дубликаты игр}
+translate R PgnErrorsWarnings {Ошибки/предупреждения PGN:}
+translate R NoPgnErrorsWarnings {без ошибок или предупреждений PGN.}
+
 # Standard error messages:
 translate R ErrNotOpen {Эта база данных не открыта.}
 translate R ErrReadOnly {Эта база данных только для чтения; она не может быть изменена.}

@@ -556,6 +556,18 @@ translate U StartPos {Alkuasema}
 translate U Total {Yhteensä}
 translate U readonly {vain luku}
 
+# Import games (skip duplicates):
+translate U ImportInto {Tuo kohteeseen:}
+translate U Clipbase {Clipbase}
+translate U NoWritableDatabases {Kirjoitettavia tietokantoja ei ole auki. Avaa tai luo ensin tietokanta.}
+translate U Imported {Tuotu}
+translate U Into {sisään}
+translate U Skipped {Ohitettu}
+translate U DuplicateGame {kaksoispeli}
+translate U DuplicateGames {päällekkäisiä pelejä}
+translate U PgnErrorsWarnings {PGN-virheet/varoitukset:}
+translate U NoPgnErrorsWarnings {ilman PGN-virheitä tai varoituksia.}
+
 # Standard error messages:
 translate U ErrNotOpen {Tämä ei ole avoin tietokanta.}
 translate U ErrReadOnly {Tämä tietokanta on vain luku -moodissa; sitä ei voi muokata.}

@@ -546,6 +546,18 @@ translate N StartPos {Begin stelling}
 translate N Total {Totaal}
 translate N readonly {alleen-lezen}
 
+# Import games (skip duplicates):
+translate N ImportInto {Importeren in:}
+translate N Clipbase {Clipbasis}
+translate N NoWritableDatabases {Er zijn geen beschrijfbare databases geopend. Open of maak eerst een database.}
+translate N Imported {Geïmporteerd}
+translate N Into {naar binnen}
+translate N Skipped {Overgeslagen}
+translate N DuplicateGame {duplicaat spel}
+translate N DuplicateGames {dubbele spellen}
+translate N PgnErrorsWarnings {PGN-fouten/waarschuwingen:}
+translate N NoPgnErrorsWarnings {zonder PGN-fouten of waarschuwingen.}
+
 # Standard error messages:
 translate N ErrNotOpen {Deze database is niet geopend.} ;
 translate N ErrReadOnly {Deze database is alleen lezen; kan niet veranderd worded.} ;
