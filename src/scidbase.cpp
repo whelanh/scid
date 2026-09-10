@@ -395,6 +395,19 @@ uint64_t nameNormHash(const char* name) {
 	return hash;
 }
 
+// Hash an out-of-range name id. An index entry may reference a player-name id
+// that no longer exists in the NameBase (e.g. after a bad edit or upgrade);
+// hashing the id itself keeps games with *different* unknown players in
+// separate fingerprint buckets. Using a constant here (like the "?" name)
+// would make every such game share one bucket and could falsely match two
+// unrelated games that happen to have identical dates, results and moves.
+uint64_t nameHashOfUnknownId(idNumberT id) {
+	uint64_t hash = kFnvOffsetBasis ^ 0x9E3779B97F4A7C15ULL;
+	hash ^= static_cast<uint64_t>(id);
+	hash *= kFnvPrime;
+	return hash;
+}
+
 // Combine the individual fingerprint components into a single 64-bit key.
 uint64_t combineFingerprint(uint64_t whiteHash, uint64_t blackHash, dateT date,
                             resultT result) {
@@ -451,10 +464,10 @@ errorT scidBaseT::importGamesNoDup(ICodecDatabase::Codec dbtype,
 		const auto blackId = ie->GetBlack();
 		const uint64_t wh = whiteId < nameHash.size()
 		                        ? nameHash[whiteId]
-		                        : nameNormHash("?");
+		                        : nameHashOfUnknownId(whiteId);
 		const uint64_t bl = blackId < nameHash.size()
 		                        ? nameHash[blackId]
-		                        : nameNormHash("?");
+		                        : nameHashOfUnknownId(blackId);
 		index.push_back(
 		    {combineFingerprint(wh, bl, ie->GetDate(), ie->GetResult()), g});
 	}

@@ -383,12 +383,12 @@ proc ::lichess::openPGN {pgnfile username} {
   
   # Import the PGN file into a database chosen by the user (clipbase or any
   # open database), skipping duplicates. importPgnNoDup reports its own
-  # outcome (success, import error, or cancellation), so no further error
-  # handling is needed here.
-  importPgnNoDup $pgnfile "Import My Lichess Games"
-  
-  # Clean up temp directory after a delay to allow the file to be read
-  after 5000 [list catch [list file delete -force $::lichess::tempDir]]
+  # outcome (success, import error, or cancellation). Only on success is the
+  # downloaded PGN deleted; on failure/cancel it is kept so a retry does not
+  # require downloading everything again.
+  if {[importPgnNoDup $pgnfile "Import My Lichess Games"]} {
+    after 5000 [list catch [list file delete -force $::lichess::tempDir]]
+  }
 }
 
 # lichess::getTempDir

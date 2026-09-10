@@ -306,9 +306,12 @@ proc ::chesscom::openPGN {pgnfile username startYear} {
   }
 
   # importPgnNoDup reports its own outcome (success, import error, or
-  # cancellation), so no further error handling is needed here.
-  importPgnNoDup $pgnfile "Import My Chess.com Games"
-  after 5000 [list catch [list file delete -force $::chesscom::tempDir]]
+  # cancellation). Only on success is the downloaded PGN deleted; on
+  # failure/cancel it is kept so a retry does not require downloading
+  # everything again.
+  if {[importPgnNoDup $pgnfile "Import My Chess.com Games"]} {
+    after 5000 [list catch [list file delete -force $::chesscom::tempDir]]
+  }
 }
 
 # ::chesscom::getTempDir
