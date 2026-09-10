@@ -109,8 +109,8 @@ menuText J EditUndo "Поништи" 0 {Опозови последњу пром
 menuText J EditRedo "Понови" 0 {Понови последњу промену игре}
 menuText J EditStripComments "Коментари" 0 \
   {Уклоните све коментаре и белешке из ове игре}
-menuText J EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText J EditStripCommentsNotAnnos "Коментари, не напомене" 0 \
+  {Уклоните коментаре, али задржите напомене (NAG) из ове партије}
 menuText J EditStripVars "Варијације" 0 {Скините све варијације из ове игре}
 menuText J EditStripAll "Коментари и варијације" 0 \
   {Уклоните све коментаре, напомене и варијације из ове игре}

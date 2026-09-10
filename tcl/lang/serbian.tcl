@@ -76,9 +76,8 @@ menuText Y EditUndo "Undo" 0 {Undo last game change}
 menuText Y EditRedo "Redo" 0 {Redo last game change}
 menuText Y EditStripComments "Komentare" 0 \
   {Ukloni sve komentare i napomene iz ove partije}
-# ====== TODO To be translated ======
-menuText Y EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText Y EditStripCommentsNotAnnos "Komentari, ne napomene" 0 \
+  {Ukloni komentare, ali zadrži napomene (NAG) iz ove partije}
 menuText Y EditStripVars "Varijante" 0 {Ukloni sve varijante iz ove partije}
 menuText Y EditStripAll "Komentari i varijante" 0 \
   {Ukloni sve komentare, napomene i varijante iz ove partije}

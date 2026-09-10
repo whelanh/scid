@@ -72,8 +72,8 @@ menuText W EditUndo "Ångra" 0 {Ångra senaste ändring i parti}
 menuText W EditRedo "Göra om" 0 {Gör om senaste spelbyte}
 menuText W EditStripComments "Kommentarer" 0 \
   {Avlägsna alla kommentarer och noteringar från partiet}
-menuText W EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText W EditStripCommentsNotAnnos "Kommentarer, inte noteringar" 0 \
+  {Avlägsna kommentarer men behåll noteringar (NAG:er) i partiet}
 menuText W EditStripVars "Varianter" 0 {Avlägsna alla varianter från partiet}
 menuText W EditStripAll "Kommentarer och variationer" 0 \
   {Ta bort alla kommentarer, kommentarer och varianter från detta spel}

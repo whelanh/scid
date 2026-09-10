@@ -75,8 +75,8 @@ menuText K EditUndo "Desfés" 0 {Desfés l'últim canvi de la partida}
 menuText K EditRedo "Refés" 0 {Refés l'últim canvi de la partida}
 menuText K EditStripComments "Comentaris" 0 \
   {Esborra tots els comentaris i variants d'aquesta partida}
-menuText K EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText K EditStripCommentsNotAnnos "Comentaris, no anotacions" 0 \
+  {Esborra els comentaris, però conserva les anotacions (NAGs) d'aquesta partida}
 menuText K EditStripVars "Variants" 0 {Esborra totes les variants d'aquesta partida}
 menuText K EditStripAll "Comentaris i variacions" 0 \
   {Elimina tots els comentaris, anotacions i variacions d'aquest joc}

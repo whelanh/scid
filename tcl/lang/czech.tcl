@@ -70,8 +70,8 @@ menuText C EditUndo "Vzt zpt" 0 {Vzt zpt posledn zmnu v partii}
 menuText C EditRedo "Pedlat" 0 {Opakujte posledn zmnu hry}
 menuText C EditStripComments "Komente" 0 \
   {Odstranit vechny poznmky a anotace z tto partie}
-menuText C EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText C EditStripCommentsNotAnnos "Komentáře, ne anotace" 0 \
+  {Odstranit komentáře, ale ponechat anotace (NAG) v této partii}
 menuText C EditStripVars "Varianty" 0 {Odstranit vechny varianty z tto partie}
 menuText C EditStripAll "Komentáře a variace" 0 \
   {Odstraňte z této hry všechny komentáře, anotace a variace}

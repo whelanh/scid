@@ -109,8 +109,8 @@ menuText g EditUndo "Отмяна" 0 {Отмяна на последната п�
 menuText g EditRedo "Повторете" 0 {Повторете последната промяна в играта}
 menuText g EditStripComments "Коментари" 0 \
   {Премахнете всички коментари и анотации от тази игра}
-menuText g EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText g EditStripCommentsNotAnnos "Коментари, без анотации" 0 \
+  {Премахнете коментарите, но запазете анотациите (NAGs) от тази игра}
 menuText g EditStripVars "Вариации" 0 {Отстранете всички варианти от тази игра}
 menuText g EditStripAll "Коментари и вариации" 0 \
   {Премахнете всички коментари, анотации и вариации от тази игра}

@@ -109,8 +109,8 @@ menuText k EditUndo "실행 취소" 0 {현재 변경 취소}
 menuText k EditRedo "다시 실행" 0 {마지막 게임 변경 다시 실행}
 menuText k EditStripComments "댓글" 0 \
   {이 게임의 모든 댓글과 설명을 제거합니다.}
-menuText k EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText k EditStripCommentsNotAnnos "댓글만 제거" 0 \
+  {이 게임에서 댓글은 제거하지만 주석(NAG)은 유지합니다.}
 menuText k EditStripVars "변형" 0 {이 게임의 모든 변형 제거}
 menuText k EditStripAll "의견 및 변형" 0 \
   {이 게임의 모든 댓글, 주석 및 변형을 제거합니다.}

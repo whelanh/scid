@@ -106,8 +106,8 @@ menuText U EditUndo "Kumoa" 1 {Peruuta viimeisin muutos}
 menuText U EditRedo "Tee uudelleen" 0 {Tee uudelleen viimeisin muutos}
 menuText U EditStripComments "Kommentit" 1 \
   {Poista kaikki kommentit ja arvioinnit pelistä}
-menuText U EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText U EditStripCommentsNotAnnos "Kommentit, ei arviointeja" 0 \
+  {Poista kommentit, mutta säilytä arvioinnit (NAG:t) pelissä}
 menuText U EditStripVars "Muunnelmat" 3 {Poista kaikki muunnelmat pelistä}
 menuText U EditStripAll "Kommentteja ja muunnelmia" 0 \
   {Poista kaikki kommentit, huomautukset ja muunnelmat tästä pelistä}

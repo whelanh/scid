@@ -109,8 +109,8 @@ menuText A EditUndo "元に戻す" 0 {最後のゲーム変更を元に戻す}
 menuText A EditRedo "やり直し" 0 {最後のゲーム変更をやり直す}
 menuText A EditStripComments "コメント" 0 \
   {このゲームからすべてのコメントと注釈を削除します}
-menuText A EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText A EditStripCommentsNotAnnos "コメント（注釈を除く）" 0 \
+  {このゲームからコメントを削除しますが、注釈（NAG）は残します}
 menuText A EditStripVars "バリエーション" 0 {このゲームからすべてのバリエーションを削除}
 menuText A EditStripAll "コメントとバリエーション" 0 \
   {このゲームからすべてのコメント、注釈、バリエーションを削除します}

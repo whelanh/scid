@@ -51,8 +51,8 @@ menuText P EditStrip {Usuń} 0 {Usuń komentarze lub warianty z tej partii}
 menuText P EditUndo {Cofnij} 0 {Cofnij ostatnią zmianę w partii}
 menuText P EditRedo {Ponów} 0 {Ponów ostatnią zmianę w partii}
 menuText P EditStripComments {Komentarze} 0 {Usuń wszystkie komentarze i adnotacje z tej partii}
-menuText P EditStripCommentsNotAnnos "Comments, not annotations" 0 \
-  {Strip comments but keep annotations (NAGs) from this game}
+menuText P EditStripCommentsNotAnnos "Komentarze, bez adnotacji" 0 \
+  {Usuń komentarze, ale zachowaj adnotacje (NAG) w tej partii}
 menuText P EditStripVars {Warianty} 0 {Usuń wszystkie warianty z tej partii}
 menuText P EditStripAll "Komentarze i warianty" 0 \
   {Usuń wszystkie komentarze, adnotacje i warianty tej gry}
