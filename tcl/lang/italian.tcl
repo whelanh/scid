@@ -74,6 +74,8 @@ menuText I EditUndo "Annulla" 0 {Annulla l'ultima modifica della partita}
 menuText I EditRedo "Ripeti" 0 {Ripete l'ultima modifica della partita}
 menuText I EditStripComments "Commenti" 0 \
   {Elimina tutti i commenti e le annotazioni dalla parita corrente}
+menuText I EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText I EditStripVars "Varianti" 0 {Elimina tutte le varianti dalla partita corrente}
 menuText I EditStripAll "Commenti e variazioni" 0 \
   {Elimina tutti i commenti, le annotazioni e le variazioni da questo gioco}

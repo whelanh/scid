@@ -69,6 +69,8 @@ menuText Q EditUndo "Скасувати" 0 {Скасувати останню з
 menuText Q EditRedo "Повторити" 0 {Повторити останню зміну гри}
 menuText Q EditStripComments "Коментарі" 0 \
   {Видалити всі коментарі та анотації з цієї гри}
+menuText Q EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText Q EditStripVars "Варіації" 0 {Зніміть усі варіації з цієї гри}
 menuText Q EditStripAll "Коментарі та варіації" 0 \
   {Видалити всі коментарі, анотації та варіації з цієї гри}

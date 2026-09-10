@@ -70,6 +70,8 @@ menuText H EditUndo "Visszavonás" 0 {Az utolsó játékmódosítás visszavoná
 menuText H EditRedo "Újra" 0 {Hajtsa végre a legutóbbi játékmódosítást}
 menuText H EditStripComments "Megjegyzések" 0 \
   {Eltávolítja az összes megjegyzést és elemzést ebbõl a játszmából.}
+menuText H EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText H EditStripVars "Változatok" 0 {Eltávolítja az összes változatot ebbõl a játszmából.}
 menuText H EditStripAll "Megjegyzések és variációk" 0 \
   {Távolíts el minden megjegyzést és változatot ebből a játékból}

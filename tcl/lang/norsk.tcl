@@ -72,6 +72,8 @@ menuText O EditUndo "Angre" 0 {Angre siste spillendring}
 menuText O EditRedo "Gjenta" 0 {Gjenta siste spillendring}
 menuText O EditStripComments "Kommentarer" 0 \
   {Fjern alle kommentarer og annotasjoner fra dette partiet}
+menuText O EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText O EditStripVars "Variasjoner" 0 {Fjern alle variasjoner fra dette partiet}
 menuText O EditStripAll "Kommentarer og varianter" 0 \
   {Fjern alle kommentarer, merknader og varianter fra dette spillet}

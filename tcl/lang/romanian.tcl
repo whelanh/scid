@@ -109,6 +109,8 @@ menuText L EditUndo "Anula" 0 {Anulați ultima modificare a jocului}
 menuText L EditRedo "Reface" 0 {Reface ultima schimbare de joc}
 menuText L EditStripComments "Comentarii" 0 \
   {Eliminați toate comentariile și adnotările din acest joc}
+menuText L EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText L EditStripVars "Variante" 0 {Eliminați toate variantele din acest joc}
 menuText L EditStripAll "Comentarii și variații" 0 \
   {Eliminați toate comentariile, adnotările și variațiile din acest joc}

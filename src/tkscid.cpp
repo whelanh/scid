@@ -4030,8 +4030,10 @@ int sc_game_strip(ClientData, Tcl_Interp *ti, int argc, const char **argv) {
     db->game->strip(true, false, false);
   } else if (argc == 3 && !strcmp("comments", argv[2])) {
     db->game->strip(false, true, true);
+  } else if (argc == 3 && !strcmp("commentsnonag", argv[2])) {
+    db->game->strip(false, true, false);
   } else {
-    return errorResult(ti, "Usage: sc_game strip [comments|variations]");
+    return errorResult(ti, "Usage: sc_game strip [comments|variations|commentsnonag]");
   }
   db->gameAltered = true;
   return UI_Result(ti, OK);

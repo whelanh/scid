@@ -72,6 +72,8 @@ menuText T EditUndo "Geri al" 0 {Son oyun değişikliğini geri al}
 menuText T EditRedo "Yinele" 0 {Son oyun değişikliğini yeniden yap}
 menuText T EditStripComments "Yorumlar" 0 \
   {Bu oyundaki tüm yorumları ve ek açıklamaları kaldır}
+menuText T EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText T EditStripVars "Varyasyonlar" 0 {Bu oyundaki tüm varyasyonları çıkarın}
 menuText T EditStripAll "Yorumlar ve Varyasyonlar" 0 \
   {Bu oyundaki tüm yorumları, açıklamaları ve varyasyonları kaldırın}

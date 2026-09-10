@@ -99,6 +99,8 @@ menuText G EditUndo "Επαναφορά" 0 {Επαναφέρετε την τελ
 menuText G EditRedo "Ξανακάνω" 0 {Επαναλάβετε την τελευταία αλλαγή παιχνιδιού}
 menuText G EditStripComments "Σχόλια" 0 \
   {Απομακρύνετε όλα τα σχόλια και τον υπομνηματισμό από αυτή τη παρτίδα}
+menuText G EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText G EditStripVars "Βαριάντες" 0 {Απομακρύνετε όλες τις βαριάντες από αυτή τη παρτίδα}
 menuText G EditStripAll "Σχόλια και παραλλαγές" 0 \
   {Αφαιρέστε όλα τα σχόλια, τους σχολιασμούς και τις παραλλαγές από αυτό το παιχνίδι}

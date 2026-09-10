@@ -72,6 +72,8 @@ menuText F EditUndo "Annuler" 0 {Annuler la dernière modification de cette part
 menuText F EditRedo "Rétablir" 0 {Refaire la dernière modification de cette partie}
 menuText F EditStripComments "Commentaires" 0 \
   {Épurer cette partie de tous les commentaires et annotations}
+menuText F EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText F EditStripVars "Variantes" 0 {Épurer cette partie des variantes}
 menuText F EditStripAll "Commentaires et variantes" 0 \
   {Supprimez tous les commentaires, annotations et variantes de ce jeu}

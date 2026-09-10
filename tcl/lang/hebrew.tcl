@@ -69,6 +69,8 @@ menuText V EditUndo "לְבַטֵל" 0 {בטל את השינוי במשחק הא
 menuText V EditRedo "לַעֲשׂוֹת שׁוּב" 0 {בצע מחדש את השינוי במשחק האחרון}
 menuText V EditStripComments "הערות" 0 \
   {הסר את כל ההערות וההערות מהמשחק הזה}
+menuText V EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText V EditStripVars "וריאציות" 0 {הסר את כל הווריאציות מהמשחק הזה}
 menuText V EditStripAll "הערות וגיוונים" 0 \
   {הסר את כל ההערות, ההערות והווריאציות מהמשחק הזה}

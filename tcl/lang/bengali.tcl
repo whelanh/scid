@@ -68,6 +68,8 @@ menuText b EditUndo "পূর্বাবস্থায় ফেরান" 0 
 menuText b EditRedo "আবার করুন" 0 {শেষ খেলা পরিবর্তন পুনরায় করুন}
 menuText b EditStripComments "মন্তব্য" 0 \
   {এই গেম থেকে সমস্ত মন্তব্য এবং টীকা ছিনিয়ে নিন}
+menuText b EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText b EditStripVars "বৈচিত্র" 0 {এই গেম থেকে সমস্ত বৈচিত্র বাদ দিন}
 menuText b EditStripAll "মন্তব্য এবং বৈচিত্র" 0 \
   {এই গেম থেকে সমস্ত মন্তব্য, টীকা এবং বৈচিত্র বাদ দিন}

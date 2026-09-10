@@ -74,6 +74,8 @@ menuText R EditUndo "Отменить" 0 {Отменить изменения в
 menuText R EditRedo "Вернуть" 0 {Вернуть изменения в последней партии}
 menuText R EditStripComments "Комментарии" 0 \
   {Убрать все комментарии и аннотации из этой партии}
+menuText R EditStripCommentsNotAnnos "Comments, not annotations" 0 \
+  {Strip comments but keep annotations (NAGs) from this game}
 menuText R EditStripVars "Варианты" 0 {Убрать все варианты из этой партии}
 menuText R EditStripAll "Комментарии и вариации" 0 \
   {Удалить все комментарии, аннотации и варианты из этой игры.}
