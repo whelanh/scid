@@ -525,6 +525,18 @@ translate H StartPos {Kezdõállás}
 translate H Total {Összesen}
 translate H readonly {read-only} ;# ***
 
+# Import games (skip duplicates):
+translate H ImportInto {Importálás ide:}
+translate H Clipbase {Klipbázis}
+translate H NoWritableDatabases {Nincsenek nyitva írható adatbázisok. Először nyissa meg vagy hozzon létre egy adatbázist.}
+translate H Imported {Importált}
+translate H Into {-ba}
+translate H Skipped {Kihagyva}
+translate H DuplicateGame {duplikált játék}
+translate H DuplicateGames {duplikált játékok}
+translate H PgnErrorsWarnings {PGN hibák/figyelmeztetések:}
+translate H NoPgnErrorsWarnings {PGN hibák vagy figyelmeztetések nélkül.}
+
 # Standard error messages:
 translate H ErrNotOpen {Ez az adatbázis nincs megnyitva.}
 translate H ErrReadOnly {Ez az adatbázis csak olvasható; nem lehet megváltoztatni.}

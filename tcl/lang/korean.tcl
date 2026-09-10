@@ -558,6 +558,18 @@ translate k StartPos {시작 위치}
 translate k Total {총}
 translate k readonly {인구의 승리}
 
+# Import games (skip duplicates):
+translate k ImportInto {다음으로 가져오기:}
+translate k Clipbase {클립베이스}
+translate k NoWritableDatabases {쓰기 가능한 데이터베이스가 열려 있지 않습니다. 먼저 데이터베이스를 열거나 생성하세요.}
+translate k Imported {수입됨}
+translate k Into {~ 안으로}
+translate k Skipped {건너뛰었습니다.}
+translate k DuplicateGame {중복 게임}
+translate k DuplicateGames {중복 게임}
+translate k PgnErrorsWarnings {PGN 오류/경고:}
+translate k NoPgnErrorsWarnings {PGN 오류나 경고가 없습니다.}
+
 # Standard error messages:
 translate k ErrNotOpen {이는 공개 데이터베이스가 아닙니다.}
 translate k ErrReadOnly {이 데이터베이스는 선두입니다. 대응할 수 없습니다.}

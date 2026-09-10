@@ -521,6 +521,18 @@ translate T StartPos {Başlangıç ​​konumu}
 translate T Total {Toplam}
 translate T readonly {salt okunur}
 
+# Import games (skip duplicates):
+translate T ImportInto {Şuraya aktar:}
+translate T Clipbase {Klip tabanı}
+translate T NoWritableDatabases {Açık yazılabilir veritabanları yok. Lütfen önce bir veritabanı açın veya oluşturun.}
+translate T Imported {İthal}
+translate T Into {içine}
+translate T Skipped {Atlandı}
+translate T DuplicateGame {yinelenen oyun}
+translate T DuplicateGames {yinelenen oyunlar}
+translate T PgnErrorsWarnings {PGN hataları/uyarıları:}
+translate T NoPgnErrorsWarnings {PGN hatası veya uyarısı olmadan.}
+
 # Standard error messages:
 translate T ErrNotOpen {Bu açık bir veritabanı değil.}
 translate T ErrReadOnly {Bu veritabanı salt okunurdur; değiştirilemez.}

@@ -183,21 +183,26 @@ proc importPgnFile {{base} {fnames ""}} {
     $w.text insert end "$::tr(ImportingFrom) [file tail $fname]...\n"
     $w.text configure -state disabled
     progressBarSet $w.progress 401 21
-    set err [catch {sc_base import $base $fname} result]
+    set err [catch {sc_base import_nodup $base $fname} result]
     $w.text configure -state normal
     if {$err == 1} {
       set autoclose 0
       $w.text insert end "[ERROR::getErrorMsg]\n$result\n\n"
     } else {
       set nImported [lindex $result 0]
-      set warnings [lindex $result 1]
-      set str "Imported $nImported "
-      if {$nImported == 1} { append str "game" } else { append str "games" }
+      set nSkipped  [lindex $result 1]
+      set warnings  [lindex $result 2]
+      set str "[tr Imported] $nImported "
+      if {$nImported == 1} { append str [tr game] } else { append str [tr games] }
+      if {$nSkipped > 0} {
+        append str ", [tr Skipped] $nSkipped "
+        if {$nSkipped == 1} { append str [tr DuplicateGame] } else { append str [tr DuplicateGames] }
+      }
       if {$warnings == ""} {
-        append str " with no PGN errors or warnings."
+        append str " [tr NoPgnErrorsWarnings]"
       } else {
         set autoclose 0
-        append str ".\nPGN errors/warnings:\n$warnings"
+        append str ".\n[tr PgnErrorsWarnings]\n$warnings"
       }
       $w.text insert end "$str\n\n"
       if {$err == 3} {
@@ -216,6 +221,101 @@ proc importPgnFile {{base} {fnames ""}} {
 
   after idle "::notify::DatabaseModified $base"
   if { $autoclose } { destroy $w }
+}
+
+### Import a PGN file into a chosen database, skipping duplicate games.
+#
+#   Prompts the user to pick a destination database (the clipbase or any
+#   open, writable database) and imports the PGN file into it. Games whose
+#   normalized White and Black players, exact Date, Result and exact move
+#   sequence all match a game already present (or an earlier game in the
+#   same batch) are skipped.
+#
+#   Returns 1 on success, 0 if the user cancelled.
+proc importPgnNoDup {pgnfile title} {
+  set bases {}
+  foreach i [sc_base list] {
+    if {[sc_base isReadOnly $i]} { continue }
+    if {$i == $::clipbase_db} {
+      lappend bases [list $i [tr Clipbase]]
+    } else {
+      lappend bases [list $i "Base $i: [::file::BaseName $i]"]
+    }
+  }
+  if {[llength $bases] == 0} {
+    tk_messageBox -icon error -type ok -title $title \
+      -message [tr NoWritableDatabases]
+    return 0
+  }
+
+  set w .importBaseDialog
+  if {[winfo exists $w]} { destroy $w }
+  toplevel $w
+  wm title $w $title
+  wm resizable $w 0 0
+  setWinLocation $w
+
+  # Default to the current database if it is writable, else the first one.
+  set ::importBaseChoice [lindex [lindex $bases 0] 0]
+  if {$::curr_db != $::clipbase_db && ![sc_base isReadOnly $::curr_db]} {
+    set ::importBaseChoice $::curr_db
+  }
+
+  ttk::frame $w.content -padding {10 10}
+  ttk::label $w.content.lbl -text [tr ImportInto] -anchor w
+  pack $w.content.lbl -side top -anchor w -pady {0 6}
+  foreach b $bases {
+    lassign $b baseId label
+    ttk::radiobutton $w.content.rb$baseId -text $label \
+      -variable ::importBaseChoice -value $baseId
+    pack $w.content.rb$baseId -side top -anchor w
+  }
+  pack $w.content -side top -fill both -expand 1
+
+  ttk::frame $w.buttons -padding {10 10}
+  ttk::button $w.buttons.ok -text [tr Import] -command "set ::importBaseResult 1; destroy $w"
+  ttk::button $w.buttons.cancel -text [tr Cancel] -command "set ::importBaseResult 0; destroy $w"
+  pack $w.buttons.ok $w.buttons.cancel -side left -padx 5
+  pack $w.buttons -side top -fill x
+
+  set ::importBaseResult 0
+  bind $w <Return> "$w.buttons.ok invoke"
+  bind $w <Escape> "$w.buttons.cancel invoke"
+  grab $w
+  tkwait window $w
+
+  if {!$::importBaseResult} { return 0 }
+  set base $::importBaseChoice
+
+  progressWindow "scidCommunity" "$::tr(ImportingIn) [::file::BaseName $base]..." $::tr(Cancel)
+  set err [catch {sc_base import_nodup $base $pgnfile} result]
+  closeProgressWindow true
+  if {$err} {
+    ERROR::MessageBox
+    error $result
+  }
+
+  set nImported [lindex $result 0]
+  set nSkipped  [lindex $result 1]
+  set warnings  [lindex $result 2]
+
+  after idle "::notify::DatabaseModified $base"
+
+  set msg "[tr Imported] $nImported "
+  if {$nImported == 1} { append msg [tr game] } else { append msg [tr games] }
+  append msg " [tr Into] [::file::BaseName $base]."
+  if {$nSkipped > 0} {
+    if {$nSkipped == 1} {
+      append msg "\n\n[tr Skipped] $nSkipped [tr DuplicateGame]."
+    } else {
+      append msg "\n\n[tr Skipped] $nSkipped [tr DuplicateGames]."
+    }
+  }
+  if {$warnings ne ""} {
+    append msg "\n\n[tr PgnErrorsWarnings]\n$warnings"
+  }
+  tk_messageBox -icon info -type ok -title $title -message $msg
+  return 1
 }
 
 ###

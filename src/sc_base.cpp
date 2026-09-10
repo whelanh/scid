@@ -535,6 +535,40 @@ UI_res_t sc_base_import(scidBaseT* dbase, UI_handle_t ti, int argc,
 	return UI_Result(ti, OK, res);
 }
 
+/**
+ * sc_base_import_nodup() - import games from a PGN file skipping duplicates.
+ *
+ * A game is considered a duplicate if its normalized White and Black player
+ * names, exact Date, Result and exact move sequence all match a game already
+ * in the database (or one imported earlier in the same batch).
+ *
+ * Return:
+ *   On success, returns a list of three elements: the number of games
+ *   imported, the number of games skipped as duplicates, and a string
+ *   containing import errors or warnings.
+ */
+UI_res_t sc_base_import_nodup(scidBaseT* dbase, UI_handle_t ti, int argc,
+                              const char** argv) {
+	const char* usage = "Usage: sc_base import_nodup baseId filename";
+	if (argc != 4)
+		return UI_Result(ti, ERROR_BadArg, usage);
+
+	gamenumT nImported = 0;
+	gamenumT nSkipped = 0;
+	std::string errorMsg;
+	const auto filename = argv[3];
+	if (auto err = dbase->importGamesNoDup(ICodecDatabase::PGN, filename,
+	                                       UI_CreateProgress(ti), errorMsg,
+	                                       nImported, nSkipped))
+		return UI_Result(ti, err);
+
+	UI_List res(3);
+	res.push_back(nImported);
+	res.push_back(nSkipped);
+	res.push_back(errorMsg);
+	return UI_Result(ti, OK, res);
+}
+
 
 /**
  * sc_base_list() - return a baseId list of opened databases
@@ -964,7 +998,7 @@ UI_res_t sc_base (UI_extra_t cd, UI_handle_t ti, int argc, const char ** argv)
 	    "create",          "current",         "duplicates",
 	    "export",          "extra",           "filename",        "gameflag",
 	    "gamelocation",    "gameslist",       "getGame",         "import",
-	    "inUse",           "isReadOnly",      "list",            "numGames",        "open",
+	    "import_nodup",    "inUse",           "isReadOnly",      "list",            "numGames",        "open",
 	    "piecetrack",      "player_elo",      "slot",            "sortcache",       "stats",
 	    "strip",           "switch",          "taglist",         "tournaments",     "type",
 	    "gamesummary",
@@ -975,7 +1009,7 @@ UI_res_t sc_base (UI_extra_t cd, UI_handle_t ti, int argc, const char ** argv)
 	    BASE_CREATE,       BASE_CURRENT,      BASE_DUPLICATES,
 	    BASE_EXPORT,       BASE_EXTRA,        BASE_FILENAME,     BASE_GAMEFLAG,
 	    BASE_GAMELOCATION, BASE_GAMESLIST,    BASE_GETGAME,      BASE_IMPORT,
-	    BASE_INUSE,        BASE_ISREADONLY,   BASE_LIST,         BASE_NUMGAMES,     BASE_OPEN,
+	    BASE_IMPORT_NODUP, BASE_INUSE,        BASE_ISREADONLY,   BASE_LIST,         BASE_NUMGAMES,     BASE_OPEN,
 	    BASE_PTRACK,       BASE_PLAYER_ELO,   BASE_SLOT,         BASE_SORTCACHE,    BASE_STATS,
 	    BASE_STRIP,        BASE_SWITCH,       BASE_TAGLIST,      BASE_TOURNAMENTS,  BASE_TYPE,
 	    BASE_GAMESUMMARY
@@ -1048,6 +1082,9 @@ UI_res_t sc_base (UI_extra_t cd, UI_handle_t ti, int argc, const char ** argv)
 
 	case BASE_IMPORT:
 		return sc_base_import (dbase, ti, argc, argv);
+
+	case BASE_IMPORT_NODUP:
+		return sc_base_import_nodup(dbase, ti, argc, argv);
 
 	case BASE_ISREADONLY:
 		return UI_Result(ti, OK, dbase->isReadOnly());

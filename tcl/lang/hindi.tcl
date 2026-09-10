@@ -517,6 +517,18 @@ translate h StartPos {आरंभ स्थिति}
 translate h Total {कुल}
 translate h readonly {केवल पढ़ने के लिए}
 
+# Import games (skip duplicates):
+translate h ImportInto {इसमें आयात करें:}
+translate h Clipbase {क्लिपबेस}
+translate h NoWritableDatabases {कोई लिखने योग्य डेटाबेस खुला नहीं है. कृपया पहले एक डेटाबेस खोलें या बनाएं।}
+translate h Imported {आयातित}
+translate h Into {में}
+translate h Skipped {छोड़ा गया}
+translate h DuplicateGame {डुप्लिकेट गेम}
+translate h DuplicateGames {डुप्लिकेट गेम}
+translate h PgnErrorsWarnings {पीजीएन त्रुटियाँ/चेतावनियाँ:}
+translate h NoPgnErrorsWarnings {बिना पीजीएन त्रुटियों या चेतावनियों के।}
+
 # Standard error messages:
 translate h ErrNotOpen {यह एक खुला डेटाबेस नहीं है.}
 translate h ErrReadOnly {यह डेटाबेस केवल पढ़ने योग्य है; इसे बदला नहीं जा सकता.}

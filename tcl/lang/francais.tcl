@@ -533,6 +533,18 @@ translate F StartPos {Position de départ}
 translate F Total {Total}
 translate F readonly {lecture seule}
 
+# Import games (skip duplicates):
+translate F ImportInto {Importer dans :}
+translate F Clipbase {Base de clip}
+translate F NoWritableDatabases {Aucune base de données accessible en écriture n'est ouverte. Veuillez d'abord ouvrir ou créer une base de données.}
+translate F Imported {Importé}
+translate F Into {dans}
+translate F Skipped {Sauté}
+translate F DuplicateGame {jeu en double}
+translate F DuplicateGames {jeux en double}
+translate F PgnErrorsWarnings {Erreurs/avertissements PGN :}
+translate F NoPgnErrorsWarnings {sans erreurs ni avertissements PGN.}
+
 # Standard error messages:
 translate F ErrNotOpen {Ceci n'est pas une base ouverte.}
 translate F ErrReadOnly {Cette base est en lecture seule; elle ne peut être modifiée.}

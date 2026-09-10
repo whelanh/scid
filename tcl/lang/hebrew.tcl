@@ -518,6 +518,18 @@ translate V StartPos {עמדת התחלה}
 translate V Total {סַך הַכֹּל}
 translate V readonly {לקריאה בלבד}
 
+# Import games (skip duplicates):
+translate V ImportInto {ייבוא ​​לתוך:}
+translate V Clipbase {בסיס קליפ}
+translate V NoWritableDatabases {אין מסדי נתונים פתוחים לכתיבה. אנא פתח או צור מסד נתונים תחילה.}
+translate V Imported {מְיוֹבָּא}
+translate V Into {לְתוֹך}
+translate V Skipped {דילג}
+translate V DuplicateGame {משחק משוכפל}
+translate V DuplicateGames {משחקים כפולים}
+translate V PgnErrorsWarnings {שגיאות/אזהרות PGN:}
+translate V NoPgnErrorsWarnings {ללא שגיאות או אזהרות PGN.}
+
 # Standard error messages:
 translate V ErrNotOpen {זה לא מסד נתונים פתוח.}
 translate V ErrReadOnly {מסד נתונים זה הוא לקריאה בלבד; לא ניתן לשנות אותו.}

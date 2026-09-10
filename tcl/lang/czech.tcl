@@ -521,6 +521,18 @@ translate C StartPos {Poten pozice}
 translate C Total {Celkem}
 translate C readonly {jen ke ten}
 
+# Import games (skip duplicates):
+translate C ImportInto {Importovat do:}
+translate C Clipbase {Clipbase}
+translate C NoWritableDatabases {Nejsou otevřené žádné zapisovatelné databáze. Nejprve prosím otevřete nebo vytvořte databázi.}
+translate C Imported {Importováno}
+translate C Into {do}
+translate C Skipped {Přeskočeno}
+translate C DuplicateGame {duplicitní hra}
+translate C DuplicateGames {duplicitní hry}
+translate C PgnErrorsWarnings {Chyby/varování PGN:}
+translate C NoPgnErrorsWarnings {bez chyb nebo varování PGN.}
+
 # Standard error messages:
 translate C ErrNotOpen {To nen oteven databze.}
 translate C ErrReadOnly {Tato databze je jen ke ten; neme bt zmnna.}

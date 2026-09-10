@@ -493,6 +493,18 @@ translate M StartPos {Start position}
 translate M Total {总计}
 translate M readonly {read-only}
 
+# Import games (skip duplicates):
+translate M ImportInto {导入到：}
+translate M Clipbase {剪辑库}
+translate M NoWritableDatabases {没有打开的可写数据库。请先打开或创建数据库。}
+translate M Imported {进口}
+translate M Into {进入}
+translate M Skipped {跳过}
+translate M DuplicateGame {重复游戏}
+translate M DuplicateGames {重复游戏}
+translate M PgnErrorsWarnings {PGN 错误/警告：}
+translate M NoPgnErrorsWarnings {没有 PGN 错误或警告。}
+
 # Standard error messages:
 translate M ErrNotOpen {This is not an open database.}
 translate M ErrReadOnly {This database is read-only; it cannot be altered.}

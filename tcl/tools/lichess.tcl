@@ -373,29 +373,25 @@ proc ::lichess::downloadWithHTTP {apiurl pgnfile {userAgent "Mozilla/5.0"} {toke
 }
 
 # lichess::openPGN
-#   Open the downloaded PGN file in a Games List window
+#   Import the downloaded PGN file into a user-chosen database, skipping
+#   duplicate games.
 #
 proc ::lichess::openPGN {pgnfile username} {
   # Re-enable menu
   set ::lichess::downloading 0
   catch {.menu.file entryconfig "Import my Lichess*" -state normal}
   
-  # Import the PGN file into a temporary database
-  # Use the same approach as TWIC by invoking the standard file importer
+  # Import the PGN file into a database chosen by the user (clipbase or any
+  # open database), skipping duplicates.
   if {[catch {
-    # Open the PGN file via the existing file import flow
-    ::file::Open $pgnfile
+    importPgnNoDup $pgnfile "Import My Lichess Games"
     
-    # Show success message
-    tk_messageBox -icon info -type ok -title "Lichess Import Complete" \
-      -message "Successfully downloaded games for Lichess user '$username'.\n\nThe games are now open in the Games List window."
-    
-    # Clean up temp directory after a delay to allow file to be read
+    # Clean up temp directory after a delay to allow the file to be read
     after 5000 [list catch [list file delete -force $::lichess::tempDir]]
   } err]} {
     # Clean up on error
     catch {file delete -force $::lichess::tempDir}
-    error "Error opening PGN file: $err"
+    error "Error importing PGN file: $err"
   }
 }
 

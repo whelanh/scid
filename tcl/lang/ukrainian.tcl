@@ -518,6 +518,18 @@ translate Q StartPos {Стартова позиція}
 translate Q Total {Всього}
 translate Q readonly {тільки для читання}
 
+# Import games (skip duplicates):
+translate Q ImportInto {Імпортувати в:}
+translate Q Clipbase {Кліпбаза}
+translate Q NoWritableDatabases {Немає відкритих баз даних для запису. Спочатку відкрийте або створіть базу даних.}
+translate Q Imported {Імпортні}
+translate Q Into {в}
+translate Q Skipped {Пропущено}
+translate Q DuplicateGame {дублююча гра}
+translate Q DuplicateGames {дубльовані ігри}
+translate Q PgnErrorsWarnings {Помилки/попередження PGN:}
+translate Q NoPgnErrorsWarnings {без помилок або попереджень PGN.}
+
 # Standard error messages:
 translate Q ErrNotOpen {Це не відкрита база даних.}
 translate Q ErrReadOnly {Ця база даних доступна лише для читання; це не можна змінити.}

@@ -26,6 +26,7 @@
 #include "sortcache.h"
 #include "stored.h"
 #include <algorithm>
+#include <cctype>
 #include <filesystem>
 #include <fstream>
 #include <unordered_map>
@@ -299,6 +300,180 @@ errorT scidBaseT::importGames(ICodecDatabase::Codec dbtype,
 				err = OK;
 			}
 			return err;
+		});
+		errorMsg = pgn.parseErrors();
+		if (nChess960Errors) {
+			errorMsg.append("Ignored ");
+			errorMsg.append(std::to_string(nChess960Errors));
+			errorMsg.append(" chess960 game(s).\n");
+		}
+	}
+
+	auto res_endTrans = endTransaction();
+	return (res != OK) ? res : res_endTrans;
+}
+
+namespace {
+
+// FNV-1a 64-bit hashing constants.
+constexpr uint64_t kFnvOffsetBasis = 1469598103934665603ULL;
+constexpr uint64_t kFnvPrime = 1099511628211ULL;
+
+// Hash a normalized player name: leading/trailing whitespace is stripped and
+// the result is lowercased before hashing. This is the same normalization
+// used by the duplicate fingerprint, so "  CARLSEN, Magnus " and
+// "carlsen, magnus" hash to the same value.
+uint64_t nameNormHash(const char* name) {
+	if (name == nullptr)
+		return kFnvOffsetBasis;
+
+	const char* s = name;
+	while (*s && std::isspace(static_cast<unsigned char>(*s)))
+		++s;
+	const char* e = s;
+	while (*e)
+		++e;
+	while (e > s && std::isspace(static_cast<unsigned char>(e[-1])))
+		--e;
+
+	uint64_t hash = kFnvOffsetBasis;
+	for (const char* p = s; p < e; ++p) {
+		hash ^= static_cast<unsigned char>(
+		    std::tolower(static_cast<unsigned char>(*p)));
+		hash *= kFnvPrime;
+	}
+	return hash;
+}
+
+// Combine the individual fingerprint components into a single 64-bit key.
+uint64_t combineFingerprint(uint64_t whiteHash, uint64_t blackHash, dateT date,
+                            resultT result) {
+	uint64_t key = whiteHash;
+	key = (key ^ blackHash) * kFnvPrime;
+	key = (key ^ static_cast<uint64_t>(date)) * kFnvPrime;
+	key = (key ^ static_cast<uint64_t>(result)) * kFnvPrime;
+	return key;
+}
+
+} // namespace
+
+errorT scidBaseT::importGamesNoDup(ICodecDatabase::Codec dbtype,
+                                   const char* filename,
+                                   const Progress& progress,
+                                   std::string& errorMsg, gamenumT& nImported,
+                                   gamenumT& nSkipped) {
+	ASSERT(dbtype == ICodecDatabase::PGN);
+	nImported = 0;
+	nSkipped = 0;
+
+	if (auto errModify = beginTransaction())
+		return errModify;
+
+	// Build a fingerprint index of the games already in the database.
+	// Each game is keyed by (normalized White, normalized Black, exact Date,
+	// Result); the exact move sequence is compared only against the (few)
+	// games that share the same key, which keeps the check fast even for
+	// very large databases.
+	struct DupKey {
+		uint64_t key;
+		gamenumT gnum;
+		bool operator<(const DupKey& o) const { return key < o.key; }
+	};
+
+	const gamenumT numGames = this->numGames();
+	const NameBase* nb = getNameBase();
+
+	std::vector<uint64_t> nameHash(nb->GetNumNames(NAME_PLAYER));
+	for (idNumberT id = 0; id < nameHash.size(); ++id)
+		nameHash[id] = nameNormHash(nb->GetName(NAME_PLAYER, id));
+
+	std::vector<DupKey> index;
+	index.reserve(numGames);
+	for (gamenumT g = 0; g < numGames; ++g) {
+		if ((g & 0x1FFF) == 0 && !progress.report(g, numGames)) {
+			endTransaction();
+			return ERROR_UserCancel;
+		}
+		const IndexEntry* ie = getIndexEntry(g);
+		if (ie->GetDeleteFlag())
+			continue;
+		const auto whiteId = ie->GetWhite();
+		const auto blackId = ie->GetBlack();
+		const uint64_t wh = whiteId < nameHash.size()
+		                        ? nameHash[whiteId]
+		                        : nameNormHash("?");
+		const uint64_t bl = blackId < nameHash.size()
+		                        ? nameHash[blackId]
+		                        : nameNormHash("?");
+		index.push_back(
+		    {combineFingerprint(wh, bl, ie->GetDate(), ie->GetResult()), g});
+	}
+	std::sort(index.begin(), index.end());
+
+	// Fingerprints of games imported during this run, used to skip
+	// duplicates within the batch itself.
+	struct BatchEntry {
+		std::vector<std::string> moves;
+	};
+	std::unordered_map<uint64_t, std::vector<BatchEntry>> batch;
+
+	auto findExisting = [&](uint64_t key, const std::vector<std::string>& moves) {
+		auto range = std::equal_range(
+		    index.begin(), index.end(), DupKey{key, 0},
+		    [](const DupKey& a, const DupKey& b) { return a.key < b.key; });
+		for (auto it = range.first; it != range.second; ++it) {
+			Game existing;
+			if (getGame(*getIndexEntry(it->gnum), existing) != OK)
+				continue;
+			if (existing.mainLineUCI() == moves)
+				return true;
+		}
+		return false;
+	};
+
+	CodecPgn pgn;
+	auto res = pgn.open(filename, FMODE_ReadOnly);
+	if (res == OK) {
+		uint64_t nChess960Errors = 0;
+		std::vector<byte> buf;
+		res = CodecPgn::parseGames(progress, pgn, [&](Game& game) {
+			const uint64_t key = combineFingerprint(
+			    nameNormHash(game.GetWhiteStr()),
+			    nameNormHash(game.GetBlackStr()), game.GetDate(),
+			    game.GetResult());
+
+			auto moves = game.mainLineUCI();
+
+			// Skip duplicates against games imported earlier in this batch.
+			auto batchIt = batch.find(key);
+			if (batchIt != batch.end()) {
+				for (const auto& e : batchIt->second) {
+					if (e.moves == moves) {
+						++nSkipped;
+						return OK;
+					}
+				}
+			}
+
+			// Skip duplicates against games already in the database.
+			if (findExisting(key, moves)) {
+				++nSkipped;
+				return OK;
+			}
+
+			buf.clear();
+			auto [ie, tags] = game.Encode(buf);
+			auto err = codec_->addGame(ie, tags, {buf.data(), buf.size()});
+			if (err == ERROR_CodecChess960) {
+				++nChess960Errors;
+				return OK;
+			}
+			if (err != OK)
+				return err;
+
+			++nImported;
+			batch[key].push_back({std::move(moves)});
+			return OK;
 		});
 		errorMsg = pgn.parseErrors();
 		if (nChess960Errors) {

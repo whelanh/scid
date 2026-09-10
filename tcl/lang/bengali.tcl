@@ -517,6 +517,18 @@ translate b StartPos {অবস্থান শুরু করুন}
 translate b Total {মোট}
 translate b readonly {শুধুমাত্র পড়ার জন্য}
 
+# Import games (skip duplicates):
+translate b ImportInto {এতে আমদানি করুন:}
+translate b Clipbase {ক্লিপবেস}
+translate b NoWritableDatabases {কোন লিখনযোগ্য ডাটাবেস খোলা নেই. অনুগ্রহ করে প্রথমে একটি ডাটাবেস খুলুন বা তৈরি করুন।}
+translate b Imported {আমদানিকৃত}
+translate b Into {মধ্যে}
+translate b Skipped {এড়িয়ে গেছে}
+translate b DuplicateGame {ডুপ্লিকেট খেলা}
+translate b DuplicateGames {ডুপ্লিকেট গেম}
+translate b PgnErrorsWarnings {PGN ত্রুটি/সতর্কতা:}
+translate b NoPgnErrorsWarnings {কোন PGN ত্রুটি বা সতর্কতা ছাড়া.}
+
 # Standard error messages:
 translate b ErrNotOpen {এটি একটি খোলা ডাটাবেস নয়।}
 translate b ErrReadOnly {এই ডাটাবেস শুধুমাত্র পঠনযোগ্য; এটা পরিবর্তন করা যাবে না।}

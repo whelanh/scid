@@ -540,6 +540,18 @@ translate K StartPos {Posició inicial}
 translate K Total {Total}
 translate K readonly {només de lectura}
 
+# Import games (skip duplicates):
+translate K ImportInto {Importa a:}
+translate K Clipbase {Clipbase}
+translate K NoWritableDatabases {No hi ha bases de dades escrites obertes. Obriu o creeu una base de dades primer.}
+translate K Imported {Importat}
+translate K Into {a}
+translate K Skipped {Saltat}
+translate K DuplicateGame {joc duplicat}
+translate K DuplicateGames {jocs duplicats}
+translate K PgnErrorsWarnings {Errors/avisos PGN:}
+translate K NoPgnErrorsWarnings {sense errors ni avisos PGN.}
+
 # Standard error messages:
 translate K ErrNotOpen {La base de dades no está oberta.}
 translate K ErrReadOnly {Aquesta base de dades es només de lectura; no pot ser modificada.}

@@ -557,6 +557,18 @@ translate E StartPos {Start position}
 translate E Total {Total}
 translate E readonly {read-only}
 
+# Import games (skip duplicates):
+translate E ImportInto {Import into:}
+translate E Clipbase {Clipbase}
+translate E NoWritableDatabases {There are no writable databases open. Please open or create a database first.}
+translate E Imported {Imported}
+translate E Into {into}
+translate E Skipped {Skipped}
+translate E DuplicateGame {duplicate game}
+translate E DuplicateGames {duplicate games}
+translate E PgnErrorsWarnings {PGN errors/warnings:}
+translate E NoPgnErrorsWarnings {with no PGN errors or warnings.}
+
 # Standard error messages:
 translate E ErrNotOpen {This is not an open database.}
 translate E ErrReadOnly {This database is read-only; it cannot be altered.}
