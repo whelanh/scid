@@ -6,7 +6,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleExecutable</key>
-    <string>scid/scid</string>
+    <string>scidCommunity</string>
     <key>CFBundleGetInfoString</key>
     <string>ScidCommunity 5.1.1.2</string>
     <key>CFBundleIconFile</key>

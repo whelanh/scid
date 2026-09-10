@@ -47,6 +47,32 @@ jobs:
           bash build_app.sh
           make install
 
+      - name: Fix macOS app bundle
+        run: |
+          APPDIR="ScidCommunity.app/Contents"
+          REAL_BIN="$APPDIR/scid/scidCommunity"
+          MACOS_BIN="$APPDIR/MacOS/scidCommunity"
+
+          # 1. Fix the hardcoded absolute libtk8.6.dylib path in the real binary
+          OLD_TK=$(otool -L "$REAL_BIN" | awk '/libtk8\.6/ {print $1}')
+          if [ -n "$OLD_TK" ]; then
+            install_name_tool -change "$OLD_TK" "@executable_path/../lib/libtk8.6.dylib" "$REAL_BIN"
+          fi
+
+          # 2. Replace the broken symlink with a wrapper script that sets the
+          #    working directory to Contents/scid (where start.tcl is located)
+          rm -f "$MACOS_BIN"
+          cat > "$MACOS_BIN" <<'WRAPPER'
+#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR/../scid"
+exec "$SCRIPT_DIR/../scid/scidCommunity" "$@"
+WRAPPER
+          chmod +x "$MACOS_BIN"
+
+          # 3. Ad-hoc re-sign the bundle after modifying its contents
+          codesign --force --deep -s - ScidCommunity.app
+
       - name: Create macOS ZIP
         run: |
           ditto -c -k --sequesterRsrc --keepParent ScidCommunity.app scidCommunity-macos.zip
